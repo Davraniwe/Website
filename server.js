@@ -3,7 +3,8 @@ const path = require('path');
 const fs = require('fs');
 
 const PORT = 1000;
-const PUBLIC_DIR = __dirname;
+const SITES_ROOT = __dirname;
+const DEFAULT_SITE = 'cancero.tech';
 
 const MIME_TYPES = {
     '.html': 'text/html; charset=utf-8',
@@ -29,9 +30,48 @@ const sendError = (res, statusCode, message) => {
     res.end(message);
 };
 
+const resolveSiteRoot = async (hostname) => {
+    const candidate = (hostname || '').toLowerCase();
+
+    if (candidate) {
+        const siteDir = path.join(SITES_ROOT, candidate);
+        try {
+            const stats = await fs.promises.stat(siteDir);
+            if (stats.isDirectory() && siteDir.startsWith(SITES_ROOT)) {
+                return siteDir;
+            }
+        } catch (error) {
+            // Ignore and fall back to default site.
+        }
+    }
+
+    return path.join(SITES_ROOT, DEFAULT_SITE);
+};
+
+const sanitizeRelativePath = (rawPath) => {
+    let cleaned = rawPath;
+
+    if (cleaned.endsWith('/')) {
+        cleaned += 'index.html';
+    }
+
+    cleaned = cleaned.replace(/^[/\\]+/, '');
+    cleaned = path.normalize(cleaned);
+    cleaned = cleaned.replace(/^(?:\.\.(?:[\/\\]|$))+/, '');
+
+    if (!cleaned || cleaned === '.' || cleaned === '..') {
+        cleaned = 'index.html';
+    }
+
+    return cleaned;
+};
+
 const server = http.createServer(async (req, res) => {
     try {
-        const requestUrl = new URL(req.url, `http://${req.headers.host}`);
+        const requestUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+        const hostname = requestUrl.hostname;
+        const siteRoot = await resolveSiteRoot(hostname);
+
         let relativePath = decodeURIComponent(requestUrl.pathname);
 
         if (relativePath.includes('\0')) {
@@ -39,13 +79,10 @@ const server = http.createServer(async (req, res) => {
             return;
         }
 
-        if (relativePath.endsWith('/')) {
-            relativePath = path.join(relativePath, 'index.html');
-        }
+        const sanitizedPath = sanitizeRelativePath(relativePath);
+        const absolutePath = path.join(siteRoot, sanitizedPath);
 
-        const absolutePath = path.join(PUBLIC_DIR, relativePath);
-
-        if (!absolutePath.startsWith(PUBLIC_DIR)) {
+        if (!absolutePath.startsWith(siteRoot)) {
             sendError(res, 403, 'Forbidden');
             return;
         }
