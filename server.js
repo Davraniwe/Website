@@ -3,9 +3,16 @@ const path = require('path');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
 
-const PORT = Number(process.env.PORT) || 1001;
 const SITES_ROOT = __dirname;
 const DEFAULT_SITE = 'cancero.tech';
+
+const PRIMARY_PORT = Number(process.env.PORT || process.env.CANCERO_PORT || 1000);
+const BIOGROW_PORT = Number(process.env.BIOGROW_PORT || 1001);
+
+const PORT_SITE_ENTRIES = [
+    [PRIMARY_PORT, 'cancero.tech'],
+    [BIOGROW_PORT, 'biogrow.ru'],
+].filter(([port]) => Number.isFinite(port) && port > 0);
 const EMAIL_RECIPIENTS = process.env.CONTACT_RECIPIENT || 'topoj@bk.ru';
 const EMAIL_FROM = process.env.CONTACT_FROM || process.env.CONTACT_SMTP_USER || 'no-reply@cancero.tech';
 const CONTACT_TIMEZONE = process.env.CONTACT_TIMEZONE || 'Europe/Moscow';
@@ -55,7 +62,7 @@ const sendJson = (res, statusCode, payload) => {
     res.end(JSON.stringify(payload));
 };
 
-const resolveSiteRoot = async (hostname) => {
+const resolveSiteRoot = async (hostname, fallbackSite = DEFAULT_SITE) => {
     const candidate = (hostname || '').toLowerCase();
 
     if (candidate) {
@@ -68,6 +75,17 @@ const resolveSiteRoot = async (hostname) => {
         } catch (error) {
             // Ignore and fall back to default site.
         }
+    }
+
+    const fallbackDir = path.join(SITES_ROOT, fallbackSite);
+
+    try {
+        const stats = await fs.promises.stat(fallbackDir);
+        if (stats.isDirectory()) {
+            return fallbackDir;
+        }
+    } catch (error) {
+        // Ignore and use default site path regardless of existence check failure.
     }
 
     return path.join(SITES_ROOT, DEFAULT_SITE);
@@ -222,10 +240,10 @@ const parseContactPayload = (raw) => {
     return contact;
 };
 
-const composeEmailSubject = (contact) => {
+const composeEmailSubject = (contact, projectLabel = 'cancero.tech') => {
     const base = contact.type === 'b2b' ? 'B2B заявка' : 'Заявка от пациента';
     const suffix = contact.subjectHint ? ` — ${contact.subjectHint}` : '';
-    return `[cancero.tech] ${base}${suffix}`;
+    return `[${projectLabel}] ${base}${suffix}`;
 };
 
 const composeEmailBody = (contact, context) => {
@@ -343,7 +361,7 @@ const getEmailTransport = () => {
     return emailTransport;
 };
 
-const handleContactRequest = async (req, res, requestUrl, hostname) => {
+const handleContactRequest = async (req, res, requestUrl, hostname, siteLabel) => {
     try {
         const payload = await readJsonBody(req, MAX_JSON_SIZE);
         const contact = parseContactPayload(payload);
@@ -363,9 +381,10 @@ const handleContactRequest = async (req, res, requestUrl, hostname) => {
             referer: req.headers.referer || req.headers.referrer || '',
             ip: (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.socket.remoteAddress,
             userAgent: req.headers['user-agent'] || '',
+            siteLabel,
         };
 
-        const subject = composeEmailSubject(contact);
+        const subject = composeEmailSubject(contact, siteLabel || DEFAULT_SITE);
         const text = composeEmailBody(contact, context);
 
         await transport.sendMail({
@@ -394,7 +413,9 @@ const handleContactRequest = async (req, res, requestUrl, hostname) => {
     }
 };
 
-const server = http.createServer(async (req, res) => {
+const createRequestHandler = (fallbackSite) => async (req, res) => {
+    const fallbackSiteLabel = fallbackSite || DEFAULT_SITE;
+
     try {
         const requestUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
         const hostname = requestUrl.hostname;
@@ -416,11 +437,11 @@ const server = http.createServer(async (req, res) => {
                 return;
             }
 
-            await handleContactRequest(req, res, requestUrl, hostname);
+            await handleContactRequest(req, res, requestUrl, hostname, fallbackSiteLabel);
             return;
         }
 
-        const siteRoot = await resolveSiteRoot(hostname);
+        const siteRoot = await resolveSiteRoot(hostname, fallbackSiteLabel);
         let relativePath = decodeURIComponent(requestUrl.pathname);
 
         if (relativePath.includes('\0')) {
@@ -472,8 +493,32 @@ const server = http.createServer(async (req, res) => {
         console.error('Server error:', error);
         sendError(res, 500, 'Internal Server Error');
     }
-});
+};
 
-server.listen(PORT, () => {
-    console.log(`Static site is running on http://localhost:${PORT}`);
-});
+const portSiteMap = new Map();
+for (const [port, site] of PORT_SITE_ENTRIES) {
+    portSiteMap.set(port, site);
+}
+
+const startedPorts = new Set();
+
+for (const [port, fallbackSite] of portSiteMap.entries()) {
+    if (startedPorts.has(port)) {
+        continue;
+    }
+
+    startedPorts.add(port);
+    const server = http.createServer(createRequestHandler(fallbackSite));
+
+    server.listen(port, () => {
+        console.log(`Static site "${fallbackSite}" is running on http://localhost:${port}`);
+    });
+
+    server.on('error', (error) => {
+        console.error(`Failed to start server on port ${port}:`, error);
+    });
+}
+
+if (startedPorts.size === 0) {
+    console.error('No valid ports configured. Set PORT or BIOGROW_PORT environment variables.');
+}

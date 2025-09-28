@@ -11,16 +11,35 @@ if [[ -f "${ROOT_DIR}/.env" ]]; then
     set +a
 fi
 
-PORT="${PORT:-1001}"
+PRIMARY_PORT="${PORT:-${CANCERO_PORT:-1000}}"
+BIOGROW_PORT="${BIOGROW_PORT:-1001}"
 
-existing_pids=$(lsof -ti tcp:${PORT} -sTCP:LISTEN || true)
-if [[ -n "${existing_pids}" ]]; then
-    echo "Порт ${PORT} уже занят. Останавливаю процессы: ${existing_pids}" >&2
-    xargs -r kill <<< "${existing_pids}"
-    sleep 1
+ports_to_check=()
+ports_to_check+=("${PRIMARY_PORT}")
+if [[ -n "${BIOGROW_PORT}" ]]; then
+    ports_to_check+=("${BIOGROW_PORT}")
 fi
 
-export PORT
+declare -A seen_ports=()
+unique_ports=()
+for port in "${ports_to_check[@]}"; do
+    if [[ -n "${port}" && -z "${seen_ports[$port]:-}" ]]; then
+        unique_ports+=("${port}")
+        seen_ports[$port]=1
+    fi
+done
+
+for port in "${unique_ports[@]}"; do
+    existing_pids=$(lsof -ti tcp:${port} -sTCP:LISTEN || true)
+    if [[ -n "${existing_pids}" ]]; then
+        echo "Порт ${port} уже занят. Останавливаю процессы: ${existing_pids}" >&2
+        xargs -r kill <<< "${existing_pids}"
+        sleep 1
+    fi
+done
+
+export PORT="${PRIMARY_PORT}"
+export BIOGROW_PORT
 
 cd "${ROOT_DIR}"
 nohup node server.js > "${SERVER_LOG}" 2>&1 &
