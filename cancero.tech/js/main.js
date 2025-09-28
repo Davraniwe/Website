@@ -98,16 +98,46 @@
         });
     });
 
-    const switchTab = (type) => {
-        const b2cFields = document.getElementById('b2c-fields');
-        const b2bFields = document.getElementById('b2b-fields');
-        const tabs = document.querySelectorAll('.tab-btn');
+    const b2cFields = document.getElementById('b2c-fields');
+    const b2bFields = document.getElementById('b2b-fields');
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contactForm = document.getElementById('contact-form');
+    const statusElement = document.getElementById('form-status');
+    const submitButton = contactForm ? contactForm.querySelector('.form-submit') : null;
+    const privacyCheckbox = contactForm ? contactForm.querySelector('#privacy') : null;
+    let activeTab = 'b2c';
 
+    const setStatus = (message, state) => {
+        if (!statusElement) {
+            return;
+        }
+
+        statusElement.textContent = message || '';
+        statusElement.classList.remove('form-status--success', 'form-status--error', 'form-status--pending');
+
+        if (state) {
+            statusElement.classList.add(`form-status--${state}`);
+        }
+    };
+
+    const toggleFieldset = (container, disabled) => {
+        if (!container) {
+            return;
+        }
+
+        container.querySelectorAll('input, textarea, select').forEach((field) => {
+            field.disabled = disabled;
+        });
+    };
+
+    const switchTab = (type) => {
         if (!b2cFields || !b2bFields || tabs.length < 2) {
             return;
         }
 
-        if (type === 'b2c') {
+        activeTab = type === 'b2b' ? 'b2b' : 'b2c';
+
+        if (activeTab === 'b2c') {
             b2cFields.style.display = 'block';
             b2bFields.style.display = 'none';
             tabs[0].classList.add('active');
@@ -118,18 +148,80 @@
             tabs[0].classList.remove('active');
             tabs[1].classList.add('active');
         }
+
+        if (contactForm) {
+            contactForm.dataset.activeTab = activeTab;
+        }
+
+        toggleFieldset(b2cFields, activeTab !== 'b2c');
+        toggleFieldset(b2bFields, activeTab !== 'b2b');
+
+        setStatus('', null);
     };
 
     window.switchTab = switchTab;
     switchTab('b2c');
 
-    const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', (event) => {
+        contactForm.addEventListener('submit', async (event) => {
             event.preventDefault();
-            alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
-            contactForm.reset();
-            switchTab('b2c');
+
+            if (typeof contactForm.reportValidity === 'function' && !contactForm.reportValidity()) {
+                return;
+            }
+
+            if (privacyCheckbox && !privacyCheckbox.checked) {
+                setStatus('Подтвердите согласие на обработку данных.', 'error');
+                return;
+            }
+
+            const container = activeTab === 'b2c' ? b2cFields : b2bFields;
+            const fields = container ? container.querySelectorAll('input, textarea, select') : [];
+            const payload = {
+                type: activeTab,
+                privacyAccepted: true,
+                page: window.location.href,
+            };
+
+            fields.forEach((field) => {
+                if (field.name) {
+                    payload[field.name] = field.value.trim();
+                }
+            });
+
+            try {
+                setStatus('Отправляем заявку…', 'pending');
+                if (submitButton) {
+                    submitButton.disabled = true;
+                }
+
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload),
+                });
+
+                const result = await response.json().catch(() => ({}));
+
+                if (!response.ok) {
+                    throw new Error(result.error || 'Не удалось отправить заявку. Попробуйте позже.');
+                }
+
+                setStatus(result.message || 'Заявка отправлена. Мы свяжемся с вами в ближайшее время.', 'success');
+                contactForm.reset();
+
+                if (privacyCheckbox) {
+                    privacyCheckbox.checked = false;
+                }
+            } catch (error) {
+                setStatus(error.message || 'Не удалось отправить заявку. Попробуйте позже.', 'error');
+            } finally {
+                if (submitButton) {
+                    submitButton.disabled = false;
+                }
+            }
         });
     }
 

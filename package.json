@@ -1,0 +1,24 @@
+{
+  "name": "cancero-tech-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Static multi-site server for cancero.tech with contact form email delivery.",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "echo \"No tests specified.\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Davraniwe/Website.git"
+  },
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=16"
+  },
+  "dependencies": {
+    "nodemailer": "^7.0.6"
+  }
+}
