@@ -1,0 +1,23 @@
+{
+  "name": "Cancer Resistance",
+  "short_name": "Resistance",
+  "description": "Платформа на основе 3D-опухолей для персонализации противораковой терапии и скрининга препаратов.",
+  "lang": "ru",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0F12",
+  "theme_color": "#7B1113",
+  "icons": [
+    {
+      "src": "/assets/images/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/assets/images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

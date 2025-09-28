@@ -1,0 +1,5 @@
+# Update the sitemap URL to match the production domain if it changes.
+User-agent: *
+Allow: /
+
+Sitemap: https://cancero.tech/sitemap.xml
