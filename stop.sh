@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PORT=1000
+PORT=1001
 
 pids=$(lsof -ti tcp:${PORT} -sTCP:LISTEN || true)
 if [[ -z "${pids}" ]]; then

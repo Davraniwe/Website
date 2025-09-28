@@ -11,7 +11,7 @@ if [[ -f "${ROOT_DIR}/.env" ]]; then
     set +a
 fi
 
-PORT="${PORT:-1000}"
+PORT="${PORT:-1001}"
 
 existing_pids=$(lsof -ti tcp:${PORT} -sTCP:LISTEN || true)
 if [[ -n "${existing_pids}" ]]; then
@@ -19,6 +19,8 @@ if [[ -n "${existing_pids}" ]]; then
     xargs -r kill <<< "${existing_pids}"
     sleep 1
 fi
+
+export PORT
 
 cd "${ROOT_DIR}"
 nohup node server.js > "${SERVER_LOG}" 2>&1 &

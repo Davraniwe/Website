@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
 
-const PORT = Number(process.env.PORT) || 1000;
+const PORT = Number(process.env.PORT) || 1001;
 const SITES_ROOT = __dirname;
 const DEFAULT_SITE = 'cancero.tech';
 const EMAIL_RECIPIENTS = process.env.CONTACT_RECIPIENT || 'topoj@bk.ru';
