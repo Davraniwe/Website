@@ -51,7 +51,10 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: -0.02em;
@@ -103,8 +106,17 @@ a {
 }
 
 @keyframes breathe {
-    0%, 100% { opacity: 0.6; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.05); }
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
 }
 
 /* Particles */
@@ -162,18 +174,23 @@ a {
 }
 
 @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translate(0, 0) scale(1);
         opacity: 0.3;
     }
+
     25% {
         transform: translate(50px, -50px) scale(1.2);
         opacity: 0.6;
     }
+
     50% {
         transform: translate(-30px, 30px) scale(0.8);
         opacity: 0.4;
     }
+
     75% {
         transform: translate(40px, 60px) scale(1.1);
         opacity: 0.5;
@@ -361,8 +378,17 @@ nav {
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(1.2); }
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: scale(1.2);
+    }
 }
 
 .hero-cta {
@@ -916,6 +942,7 @@ footer {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
