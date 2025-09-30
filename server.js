@@ -2,6 +2,7 @@ const http = require('http');
 const path = require('path');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
+const https = require('https');
 
 const SITES_ROOT = __dirname;
 const DEFAULT_SITE = 'cancero.tech';
@@ -21,6 +22,7 @@ const SMTP_CONNECTION_TIMEOUT = Number(process.env.CONTACT_SMTP_CONNECTION_TIMEO
 const SMTP_SOCKET_TIMEOUT = Number(process.env.CONTACT_SMTP_SOCKET_TIMEOUT || 15000);
 const SMTP_GREETING_TIMEOUT = Number(process.env.CONTACT_SMTP_GREETING_TIMEOUT || 15000);
 const SMTP_POOL = String(process.env.CONTACT_SMTP_POOL || 'false').toLowerCase() === 'true';
+const GOOGLE_FORM_VIEW_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScpWf7-RuYeJ52lHmTdznZF09ri9rOJcHAnuvfY2qSRBu8POg/viewform';
 
 const MIME_TYPES = {
     '.html': 'text/html; charset=utf-8',
@@ -57,7 +59,7 @@ const sendJson = (res, statusCode, payload) => {
         'Content-Type': 'application/json; charset=utf-8',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
     });
     res.end(JSON.stringify(payload));
 };
@@ -413,6 +415,46 @@ const handleContactRequest = async (req, res, requestUrl, hostname, siteLabel) =
     }
 };
 
+const htmlDecode = (input = '') => input
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&amp;/g, '&');
+
+const fetchGoogleFormState = () => new Promise((resolve, reject) => {
+    const request = https.get(GOOGLE_FORM_VIEW_URL, (response) => {
+        if (response.statusCode && response.statusCode >= 400) {
+            response.resume();
+            reject(new Error(`Google Form responded with status ${response.statusCode}`));
+            return;
+        }
+
+        let data = '';
+        response.setEncoding('utf8');
+        response.on('data', (chunk) => { data += chunk; });
+        response.on('end', () => {
+            const extract = (name, fallback = '') => {
+                const match = data.match(new RegExp(`name="${name}" value="([^"]*)"`));
+                return match ? match[1] : fallback;
+            };
+
+            const fbzx = htmlDecode(extract('fbzx'));
+            if (!fbzx) {
+                reject(new Error('Google Form token fbzx not found'));
+                return;
+            }
+
+            const partialResponse = htmlDecode(extract('partialResponse', `[null,null,"${fbzx}"]`));
+            const pageHistory = htmlDecode(extract('pageHistory', '0'));
+            const draftResponse = htmlDecode(extract('draftResponse', '[]'));
+            const submissionTimestamp = htmlDecode(extract('submissionTimestamp', '-1'));
+
+            resolve({ fbzx, partialResponse, pageHistory, draftResponse, submissionTimestamp });
+        });
+    });
+
+    request.on('error', reject);
+});
+
 const createRequestHandler = (fallbackSite) => async (req, res) => {
     const fallbackSiteLabel = fallbackSite || DEFAULT_SITE;
 
@@ -420,6 +462,22 @@ const createRequestHandler = (fallbackSite) => async (req, res) => {
         const requestUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
         const hostname = requestUrl.hostname;
         const pathname = requestUrl.pathname;
+
+        if (pathname === '/api/google-form-token') {
+            if (req.method !== 'GET') {
+                sendJson(res, 405, { error: 'Метод не поддерживается' });
+                return;
+            }
+
+            try {
+                const tokens = await fetchGoogleFormState();
+                sendJson(res, 200, { status: 'ok', tokens });
+            } catch (error) {
+                console.error('Google form token fetch failed:', error);
+                sendJson(res, 500, { error: 'Не удалось получить токены Google Form. Попробуйте позже.' });
+            }
+            return;
+        }
 
         if (pathname === '/api/contact') {
             if (req.method === 'OPTIONS') {

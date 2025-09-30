@@ -69,8 +69,26 @@
                             <span class="stat-label">Побочных эффектов</span>
                         </div>
                     </div>
+                    <div class="hero-credentials">
+                        <div class="credential-card">
+                            <span class="credential-title">НИЛ OpenLab</span>
+                            <span class="credential-subtitle">Казань, 2024</span>
+                        </div>
+                        <div class="credential-card">
+                            <span class="credential-title">Wnt/β-катенин</span>
+                            <span class="credential-subtitle">Премиальный протокол</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="hero-image">
+                    <div class="hero-photo-card">
+                        <img class="hero-photo" src="assets/images/sferoid.png"
+                            alt="3D-сфероид дермального сосочка BioGrow">
+                        <div class="hero-photo-badge">
+                            <span class="badge-title">3D-сфероид</span>
+                            <span class="badge-meta">14 дней культивации</span>
+                        </div>
+                    </div>
                     <div class="molecule-animation">
                         <svg viewBox="0 0 400 400">
                             <!-- DNA Helix Animation -->
@@ -333,10 +351,32 @@
                             <p>Формирование новых волосяных фолликулов и укрепление существующих</p>
                         </div>
                     </div>
+                    <div class="tech-badges">
+                        <div class="tech-badge">Sterile Grade B</div>
+                        <div class="tech-badge">Сертифицированные реагенты</div>
+                        <div class="tech-badge">Контроль качества 24/7</div>
+                    </div>
                 </div>
                 <div class="tech-visualization">
-                    <img src="https://via.placeholder.com/500x400/F3F4F6/4A90E2?text=Механизм+действия"
-                        alt="Механизм действия препарата">
+                    <figure class="lab-photo">
+                        <img src="assets/images/labs.png" alt="Лабораторный комплекс BioGrow">
+                        <figcaption>Стерильная лаборатория с автоматизированными инкубаторами для культивации
+                            клеточных сфероидов</figcaption>
+                    </figure>
+                    <div class="lab-highlight">
+                        <div class="highlight-item">
+                            <span class="highlight-value">ISO 14644-1</span>
+                            <span class="highlight-label">Чистые помещения</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-value">+18°C</span>
+                            <span class="highlight-label">Стабилизированная среда</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-value">4</span>
+                            <span class="highlight-label">Инкубационных модуля</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -450,20 +490,41 @@
                         </div>
                     </div>
                 </div>
-                <div class="contact-form">
+                <form class="contact-form" data-google-form novalidate>
                     <h3>Оставить заявку</h3>
-                    <input type="text" placeholder="Ваше имя" class="form-input">
-                    <input type="email" placeholder="Email" class="form-input">
-                    <select class="form-input">
-                        <option>Выберите тип сотрудничества</option>
-                        <option>Инвестор</option>
-                        <option>Партнер</option>
-                        <option>СМИ</option>
-                        <option>Другое</option>
-                    </select>
-                    <textarea placeholder="Ваше сообщение" class="form-input" rows="4"></textarea>
-                    <button class="btn btn-primary btn-block">Отправить</button>
-                </div>
+                    <div class="form-grid">
+                        <label class="form-group">
+                            <span>Ваше имя*</span>
+                            <input type="text" class="form-input" placeholder="Иван Иванов"
+                                name="entry.1301184674" data-entry="name" required>
+                        </label>
+                        <label class="form-group">
+                            <span>Email*</span>
+                            <input type="email" class="form-input" placeholder="name@example.com"
+                                name="entry.1017719845" data-entry="email" required>
+                        </label>
+                        <label class="form-group">
+                            <span>Тип сотрудничества*</span>
+                            <select class="form-input" name="entry.628951633" data-entry="partnership" required>
+                                <option value="" disabled selected>Выберите вариант</option>
+                                <option value="Инвестор">Инвестор</option>
+                                <option value="Партнер">Партнер</option>
+                                <option value="СМИ">СМИ</option>
+                                <option value="Другое">Другое</option>
+                            </select>
+                        </label>
+                        <label class="form-group form-group-wide">
+                            <span>Ваше сообщение</span>
+                            <textarea class="form-input" rows="4" placeholder="Расскажите, что вас интересует"
+                                name="entry.1100639162" data-entry="message"></textarea>
+                        </label>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-block" data-form-submit>Отправить</button>
+                        <p class="form-notice">Отправляя форму, вы подтверждаете согласие на обработку персональных данных.</p>
+                    </div>
+                    <p class="form-status" data-form-status hidden></p>
+                </form>
             </div>
         </div>
     </section>

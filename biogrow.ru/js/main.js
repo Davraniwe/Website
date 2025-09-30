@@ -10,6 +10,45 @@ document.addEventListener('click', (e) => {
     el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 
+// Mobile navigation toggle
+(() => {
+    const menu = document.querySelector('.nav-menu');
+    const burger = document.querySelector('.hamburger');
+    if (!menu || !burger) return;
+
+    burger.addEventListener('click', () => {
+        const open = menu.classList.toggle('is-open');
+        burger.classList.toggle('is-active', open);
+    });
+
+    menu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+            if (!menu.classList.contains('is-open')) return;
+            menu.classList.remove('is-open');
+            burger.classList.remove('is-active');
+        });
+    });
+})();
+
+// Google Form configuration
+const GOOGLE_FORM_ENDPOINT = 'https://docs.google.com/forms/d/e/1FAIpQLScpWf7-RuYeJ52lHmTdznZF09ri9rOJcHAnuvfY2qSRBu8POg/formResponse';
+const GOOGLE_FORM_ENTRIES = {
+    name: 'entry.1301184674',
+    email: 'entry.1017719845',
+    partnership: 'entry.628951633',
+    partnershipSentinel: 'entry.628951633_sentinel',
+    message: 'entry.1100639162',
+    timestamp: ''
+};
+
+const GOOGLE_FORM_STATIC_FIELDS = {
+    fvv: '1',
+    draftResponse: '[]',
+    pageHistory: '0',
+    submissionTimestamp: '-1',
+    submit: 'Submit'
+};
+
 // Tabs (market B2B/B2C)
 document.querySelectorAll('[data-tabs]').forEach((tabs) => {
     const tabButtons = tabs.querySelectorAll('.tab');
@@ -94,19 +133,166 @@ document.querySelectorAll('.card, .grid-3 > *, .grid-4 > *, .split > *, .timelin
     });
 })();
 
-// Contact form (demo)
-document.querySelectorAll('.contact-form').forEach((form) => {
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const email = form.querySelector('input[name="email"]');
-        const success = form.querySelector('.form-success');
-        if (!email || !email.value.includes('@')) {
-            email?.setCustomValidity('Введите корректный e‑mail');
-            email?.reportValidity();
-            setTimeout(() => email?.setCustomValidity(''), 0);
-            return;
+// Contact form → Google Forms bridge
+(() => {
+    const setStatus = (el, type, message) => {
+        if (!el) return;
+        el.textContent = message || '';
+        el.hidden = !message;
+        el.classList.remove('is-success', 'is-error');
+        if (type === 'success') el.classList.add('is-success');
+        if (type === 'error') el.classList.add('is-error');
+    };
+
+    const assignNames = (form) => {
+        form.querySelectorAll('[data-entry]').forEach((field) => {
+            const key = field.dataset.entry;
+            if (key && GOOGLE_FORM_ENTRIES[key]) {
+                field.name = GOOGLE_FORM_ENTRIES[key];
+            }
+        });
+    };
+
+    let tokenPromise = null;
+    const fetchTokens = async () => {
+        if (!tokenPromise) {
+            tokenPromise = fetch('/api/google-form-token', { cache: 'no-store' })
+                .then(async (response) => {
+                    if (!response.ok) {
+                        throw new Error(`Token request failed with status ${response.status}`);
+                    }
+                    const data = await response.json();
+                    if (!data || data.status !== 'ok' || !data.tokens) {
+                        throw new Error('Token response malformed');
+                    }
+                    return data.tokens;
+                })
+                .catch((error) => {
+                    tokenPromise = null;
+                    throw error;
+                });
         }
-        success?.removeAttribute('hidden');
-        form.reset();
+        return tokenPromise;
+    };
+
+    // Пробуем заранее получить токены, чтобы сократить задержку при первом отправлении
+    fetchTokens().catch(() => {
+        tokenPromise = null;
     });
-});
+
+    document.querySelectorAll('form[data-google-form]').forEach((form) => {
+        const statusEl = form.querySelector('[data-form-status]');
+        const submitBtn = form.querySelector('[data-form-submit]');
+
+        assignNames(form);
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const fields = {
+                name: form.querySelector('[data-entry="name"]'),
+                email: form.querySelector('[data-entry="email"]'),
+                partnership: form.querySelector('[data-entry="partnership"]'),
+                message: form.querySelector('[data-entry="message"]')
+            };
+
+            const values = {
+                name: fields.name?.value.trim() || '',
+                email: fields.email?.value.trim() || '',
+                partnership: fields.partnership?.value || '',
+                message: fields.message?.value.trim() || ''
+            };
+
+            const validateField = (field, message) => {
+                if (!field) return false;
+                field.setCustomValidity(message);
+                field.reportValidity();
+                setTimeout(() => field.setCustomValidity(''), 0);
+                return true;
+            };
+
+            if (!values.name) {
+                if (fields.name) fields.name.focus();
+                validateField(fields.name, 'Укажите имя');
+                return;
+            }
+
+            if (!values.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+                if (fields.email) fields.email.focus();
+                validateField(fields.email, 'Введите корректный email');
+                return;
+            }
+
+            if (!values.partnership) {
+                if (fields.partnership) fields.partnership.focus();
+                validateField(fields.partnership, 'Выберите вариант сотрудничества');
+                return;
+            }
+
+            let dynamicTokens;
+            try {
+                submitBtn?.setAttribute('disabled', 'true');
+                submitBtn?.classList.add('is-loading');
+                setStatus(statusEl, null, 'Отправляем заявку...');
+                dynamicTokens = await fetchTokens();
+            } catch (error) {
+                console.error('Google Form token error:', error);
+                setStatus(statusEl, 'error', 'Не удалось подключиться к форме. Попробуйте позже.');
+                submitBtn?.removeAttribute('disabled');
+                submitBtn?.classList.remove('is-loading');
+                return;
+            }
+
+            const formData = new FormData();
+            const entries = GOOGLE_FORM_ENTRIES;
+
+            if (entries.name) formData.append(entries.name, values.name);
+            if (entries.email) formData.append(entries.email, values.email);
+            if (entries.partnership) formData.append(entries.partnership, values.partnership);
+            if (entries.message) formData.append(entries.message, values.message);
+            if (entries.timestamp) formData.append(entries.timestamp, new Date().toISOString());
+            if (entries.partnershipSentinel) formData.append(entries.partnershipSentinel, '');
+
+            Object.entries(GOOGLE_FORM_STATIC_FIELDS).forEach(([key, value]) => {
+                formData.append(key, value);
+            });
+
+            if (dynamicTokens.fbzx) {
+                formData.append('fbzx', dynamicTokens.fbzx);
+            }
+            if (dynamicTokens.partialResponse) {
+                formData.append('partialResponse', dynamicTokens.partialResponse);
+            }
+            if (dynamicTokens.pageHistory) {
+                formData.append('pageHistory', dynamicTokens.pageHistory);
+            }
+            if (dynamicTokens.draftResponse) {
+                formData.set('draftResponse', dynamicTokens.draftResponse);
+            }
+            if (dynamicTokens.submissionTimestamp) {
+                formData.append('submissionTimestamp', dynamicTokens.submissionTimestamp);
+            }
+
+            try {
+                await fetch(GOOGLE_FORM_ENDPOINT, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: formData
+                });
+
+                setStatus(statusEl, 'success', 'Заявка отправлена. Мы свяжемся с вами в ближайшее время.');
+                form.reset();
+                if (fields.partnership) {
+                    fields.partnership.selectedIndex = 0;
+                }
+                tokenPromise = null; // запросим свежие токены для следующего отправления
+            } catch (error) {
+                console.error('Google Form submit error:', error);
+                setStatus(statusEl, 'error', 'Не удалось отправить заявку. Попробуйте снова или свяжитесь по email.');
+            } finally {
+                submitBtn?.removeAttribute('disabled');
+                submitBtn?.classList.remove('is-loading');
+            }
+        });
+    });
+})();
