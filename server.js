@@ -10,11 +10,13 @@ const DEFAULT_SITE = 'cancero.tech';
 const PRIMARY_PORT = Number(process.env.PORT || process.env.CANCERO_PORT || 1000);
 const BIOGROW_LIGHT_PORT = Number(process.env.BIOGROW_PORT || 1001);
 const BIOGROW_DARK_PORT = Number(process.env.BIOGROW_DARK_PORT || 1002);
+const LISA_BIOTECH_PORT = Number(process.env.LISA_PORT || 1005);
 
 const PORT_SITE_ENTRIES = [
     [PRIMARY_PORT, 'cancero.tech'],
     [BIOGROW_LIGHT_PORT, 'biogrow.ru'],
     [BIOGROW_DARK_PORT, 'biogrow.ru.dark'],
+    [LISA_BIOTECH_PORT, 'lisa.biotech'],
 ].filter(([port]) => Number.isFinite(port) && port > 0);
 const EMAIL_RECIPIENTS = process.env.CONTACT_RECIPIENT || 'topoj@bk.ru';
 const EMAIL_FROM = process.env.CONTACT_FROM || process.env.CONTACT_SMTP_USER || 'no-reply@cancero.tech';
