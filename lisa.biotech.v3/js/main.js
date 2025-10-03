@@ -1,316 +1,337 @@
-/**
- * Lisa Biotech — NeuroVasc Gene
- * Интерактивность и анимации
- */
+const NeuroVitalApp = (() => {
+    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-document.addEventListener('DOMContentLoaded', () => {
-    initScrollProgress();
-    initHeaderScroll();
-    initRevealOnScroll();
-    initFAQ();
-    initSmoothScroll();
-    initCounters();
-    initParticles();
-});
-
-/**
- * Scroll Progress Bar
- */
-function initScrollProgress() {
-    const progressBar = document.createElement('div');
-    progressBar.className = 'scroll-progress';
-    document.body.appendChild(progressBar);
-
-    window.addEventListener('scroll', () => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const progress = (scrollTop / scrollHeight) * 100;
-        progressBar.style.width = `${progress}%`;
-    }, { passive: true });
-}
-
-/**
- * Header Scroll Effect
- */
-function initHeaderScroll() {
-    const header = document.querySelector('header');
-    if (!header) return;
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+    const formatNumber = (value) => {
+        if (value >= 1_000_000) {
+            return (value / 1_000_000).toFixed(1);
         }
-    }, { passive: true });
-}
+        if (value >= 1_000) {
+            return (value / 1_000).toFixed(1);
+        }
+        if (value >= 10) {
+            return Math.round(value).toString();
+        }
+        return value.toFixed(1);
+    };
 
-/**
- * Reveal on Scroll Animation
- */
-function initRevealOnScroll() {
-    const reveals = document.querySelectorAll('.reveal');
+    const createParticle = () => {
+        const particle = document.createElement('span');
+        particle.className = 'particle';
 
-    if (!('IntersectionObserver' in window)) {
-        reveals.forEach(el => el.classList.add('active'));
-        return;
-    }
+        const size = Math.random() * 12 + 6;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.animationDelay = `${Math.random() * 18}s`;
+        particle.style.animationDuration = `${18 + Math.random() * 14}s`;
+        particle.style.opacity = (0.25 + Math.random() * 0.45).toFixed(2);
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target);
+        return particle;
+    };
+
+    const throttle = (fn, delay = 200) => {
+        let last = 0;
+        let timer;
+
+        return (...args) => {
+            const now = Date.now();
+            if (now - last < delay) {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    last = now;
+                    fn(...args);
+                }, delay - (now - last));
+            } else {
+                last = now;
+                fn(...args);
             }
-        });
-    }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
-    });
+        };
+    };
 
-    reveals.forEach(el => observer.observe(el));
-}
+    class App {
+        constructor() {
+            this.header = null;
+            this.progressBar = null;
+            this.metricsSection = null;
+            this.counters = [];
+            this.revealElements = [];
+            this.revealObserver = null;
+            this.counterObserver = null;
+            this.countersAnimated = false;
+        }
 
-/**
- * FAQ Accordion
- */
-function initFAQ() {
-    const faqItems = document.querySelectorAll('.faq-item');
+        init() {
+            this.cacheDom();
+            this.injectScrollProgress();
+            this.bindScrollEffects();
+            this.setupReveal();
+            this.setupCounters();
+            this.setupSmoothScroll();
+            this.setupFaq();
+            this.setupParticles();
+            this.setupForm();
+        }
 
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
+        cacheDom() {
+            this.header = document.querySelector('header');
+            this.metricsSection = document.querySelector('.metrics');
+            this.counters = Array.from(document.querySelectorAll('.metric-value'));
+            this.revealElements = Array.from(document.querySelectorAll('.reveal'));
+        }
 
-        question.addEventListener('click', () => {
-            const isActive = item.classList.contains('active');
-
-            // Close all
-            faqItems.forEach(i => i.classList.remove('active'));
-
-            // Open clicked if it wasn't active
-            if (!isActive) {
-                item.classList.add('active');
+        injectScrollProgress() {
+            this.progressBar = document.querySelector('.scroll-progress');
+            if (!this.progressBar) {
+                this.progressBar = document.createElement('div');
+                this.progressBar.className = 'scroll-progress';
+                document.body.appendChild(this.progressBar);
             }
-        });
-    });
-}
+            this.updateScrollEffects();
+        }
 
-/**
- * Smooth Scroll for Anchor Links
- */
-function initSmoothScroll() {
-    const links = document.querySelectorAll('a[href^="#"]');
+        bindScrollEffects() {
+            window.addEventListener('scroll', () => this.updateScrollEffects(), { passive: true });
+        }
 
-    links.forEach(link => {
-        link.addEventListener('click', (e) => {
-            const href = link.getAttribute('href');
+        updateScrollEffects() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
 
-            if (href === '#' || href === '#top') {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (this.progressBar) {
+                this.progressBar.style.width = `${progress}%`;
+            }
+
+            if (this.header) {
+                this.header.classList.toggle('scrolled', scrollTop > 24);
+            }
+        }
+
+        setupReveal() {
+            if (!this.revealElements?.length) {
                 return;
             }
 
-            const target = document.querySelector(href);
-            if (!target) return;
+            if (!('IntersectionObserver' in window) || prefersReducedMotion) {
+                this.revealElements.forEach((el) => el.classList.add('is-visible'));
+                return;
+            }
 
-            e.preventDefault();
-            const headerHeight = document.querySelector('header')?.offsetHeight || 0;
-            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
-
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
+            this.revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        this.revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.18,
+                rootMargin: '0px 0px -10%'
             });
-        });
-    });
-}
 
-/**
- * Animated Counters
- */
-function initCounters() {
-    const counters = document.querySelectorAll('.metric-value');
-
-    if (!counters.length) return;
-
-    const animateCounter = (counter) => {
-        const target = parseFloat(counter.getAttribute('data-count') || counter.textContent);
-        const suffix = counter.getAttribute('data-suffix') || '';
-        const duration = 2000;
-        const start = performance.now();
-
-        const step = (timestamp) => {
-            const progress = Math.min((timestamp - start) / duration, 1);
-            const easeProgress = easeOutExpo(progress);
-            const current = target * easeProgress;
-
-            counter.textContent = formatNumber(current, target) + suffix;
-
-            if (progress < 1) {
-                requestAnimationFrame(step);
-            } else {
-                counter.textContent = formatNumber(target, target) + suffix;
-            }
-        };
-
-        requestAnimationFrame(step);
-    };
-
-    const formatNumber = (num, target) => {
-        if (target >= 1000000) {
-            return (num / 1000000).toFixed(1);
-        } else if (target >= 1000) {
-            return (num / 1000).toFixed(1);
-        } else if (target >= 10) {
-            return Math.floor(num);
-        } else {
-            return num.toFixed(1);
+            this.revealElements.forEach((el) => this.revealObserver.observe(el));
         }
-    };
 
-    const easeOutExpo = (t) => {
-        return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-    };
-
-    // Trigger when metrics section is visible
-    const metricsSection = document.querySelector('.metrics');
-    if (!metricsSection) {
-        counters.forEach(counter => animateCounter(counter));
-        return;
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                counters.forEach(counter => animateCounter(counter));
-                observer.disconnect();
+        setupCounters() {
+            if (!this.counters.length) {
+                return;
             }
-        });
-    }, { threshold: 0.3 });
 
-    observer.observe(metricsSection);
-}
+            const runCounters = () => {
+                if (this.countersAnimated) {
+                    return;
+                }
+                this.countersAnimated = true;
+                this.counters.forEach((counter) => this.animateCounter(counter));
+            };
 
-/**
- * Enhanced Particles System
- */
-function initParticles() {
-    const particlesContainer = document.querySelector('.particles');
-    if (!particlesContainer) return;
+            if (!('IntersectionObserver' in window) || prefersReducedMotion) {
+                runCounters();
+                return;
+            }
 
-    // Add more dynamic particles
-    const particleCount = window.innerWidth > 768 ? 8 : 5;
-    const existingParticles = particlesContainer.querySelectorAll('.particle').length;
+            this.counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        runCounters();
+                        this.counterObserver.disconnect();
+                    }
+                });
+            }, { threshold: 0.35 });
 
-    for (let i = existingParticles; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.top = `${Math.random() * 100}%`;
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.animationDelay = `${Math.random() * 20}s`;
-        particle.style.animationDuration = `${15 + Math.random() * 10}s`;
-        particlesContainer.appendChild(particle);
+            if (this.metricsSection) {
+                this.counterObserver.observe(this.metricsSection);
+            } else {
+                runCounters();
+            }
+        }
+
+        animateCounter(counter) {
+            const targetValue = parseFloat(counter.dataset.count ?? counter.textContent);
+            const suffix = counter.dataset.suffix ?? '';
+            const start = performance.now();
+            const duration = 2200;
+
+            const step = (timestamp) => {
+                const elapsed = timestamp - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = easeOutCubic(progress);
+                const currentValue = targetValue * eased;
+
+                counter.textContent = `${formatNumber(currentValue)}${suffix}`;
+
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    counter.textContent = `${formatNumber(targetValue)}${suffix}`;
+                }
+            };
+
+            requestAnimationFrame(step);
+        }
+
+        setupSmoothScroll() {
+            const links = Array.from(document.querySelectorAll('a[href^="#"]'));
+            if (!links.length) {
+                return;
+            }
+
+            links.forEach((link) => {
+                link.addEventListener('click', (event) => {
+                    const targetId = link.getAttribute('href');
+                    if (!targetId || targetId === '#') {
+                        return;
+                    }
+
+                    if (targetId === '#top') {
+                        event.preventDefault();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        return;
+                    }
+
+                    const target = document.querySelector(targetId);
+                    if (!target) {
+                        return;
+                    }
+
+                    event.preventDefault();
+
+                    const headerOffset = this.header?.offsetHeight ?? 0;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerOffset - 12;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        }
+
+        setupFaq() {
+            const items = Array.from(document.querySelectorAll('.faq-item'));
+            if (!items.length) {
+                return;
+            }
+
+            items.forEach((item) => {
+                const question = item.querySelector('.faq-question');
+                if (!question) {
+                    return;
+                }
+
+                question.setAttribute('role', 'button');
+                question.setAttribute('tabindex', '0');
+                question.setAttribute('aria-expanded', 'false');
+
+                const toggle = () => {
+                    const isActive = item.classList.contains('active');
+                    items.forEach((faq) => {
+                        faq.classList.remove('active');
+                        const faqQuestion = faq.querySelector('.faq-question');
+                        faqQuestion?.setAttribute('aria-expanded', 'false');
+                    });
+                    if (!isActive) {
+                        item.classList.add('active');
+                        question.setAttribute('aria-expanded', 'true');
+                    }
+                };
+
+                question.addEventListener('click', toggle);
+                question.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        toggle();
+                    }
+                });
+            });
+        }
+
+        setupParticles() {
+            const container = document.querySelector('.particles');
+            if (!container || prefersReducedMotion) {
+                return;
+            }
+
+            const populate = () => {
+                const desired = window.innerWidth > 1200 ? 16 : window.innerWidth > 768 ? 11 : 7;
+
+                container.innerHTML = '';
+
+                for (let i = 0; i < desired; i += 1) {
+                    container.appendChild(createParticle());
+                }
+            };
+
+            populate();
+            window.addEventListener('resize', throttle(populate, 300));
+        }
+
+        setupForm() {
+            const form = document.querySelector('.contact-form');
+            if (!form) {
+                return;
+            }
+
+            const status = document.createElement('p');
+            status.className = 'form-status';
+            status.hidden = true;
+            status.setAttribute('role', 'status');
+            status.setAttribute('aria-live', 'polite');
+            form.appendChild(status);
+
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                const submitButton = form.querySelector('button[type="submit"]');
+                if (submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Отправляем…';
+                }
+
+                setTimeout(() => {
+                    if (submitButton) {
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'Отправить';
+                    }
+
+                    status.textContent = 'Спасибо! Мы свяжемся с вами в ближайшее время.';
+                    status.hidden = false;
+
+                    form.reset();
+
+                    setTimeout(() => {
+                        status.hidden = true;
+                    }, 4000);
+                }, 1200);
+            });
+        }
     }
-}
 
-/**
- * Form Handling (если будет форма)
- */
-function initForm() {
-    const form = document.querySelector('.contact-form');
-    if (!form) return;
+    return new App();
+})();
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
-
-        // TODO: Replace with actual endpoint
-        console.log('Form submitted:', data);
-
-        // Show success message
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Отправлено ✓';
-        submitBtn.disabled = true;
-
-        setTimeout(() => {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-            form.reset();
-        }, 3000);
-    });
-}
-
-/**
- * Mobile Menu Toggle (если будет)
- */
-function initMobileMenu() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-
-    if (!menuToggle || !navLinks) return;
-
-    menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        menuToggle.setAttribute('aria-expanded',
-            navLinks.classList.contains('active') ? 'true' : 'false'
-        );
-    });
-}
-
-/**
- * Cursor Trail Effect (optional premium effect)
- */
-function initCursorTrail() {
-    if (window.innerWidth < 768) return; // Skip on mobile
-
-    const trail = [];
-    const trailLength = 8;
-
-    for (let i = 0; i < trailLength; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'cursor-trail';
-        dot.style.cssText = `
-            position: fixed;
-            width: ${8 - i}px;
-            height: ${8 - i}px;
-            border-radius: 50%;
-            background: rgba(0, 180, 216, ${0.6 - i * 0.08});
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease;
-        `;
-        document.body.appendChild(dot);
-        trail.push(dot);
-    }
-
-    let mouseX = 0, mouseY = 0;
-    let positions = Array(trailLength).fill({ x: 0, y: 0 });
-
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-
-    function animate() {
-        positions.unshift({ x: mouseX, y: mouseY });
-        positions = positions.slice(0, trailLength);
-
-        trail.forEach((dot, i) => {
-            const pos = positions[i];
-            dot.style.transform = `translate(${pos.x}px, ${pos.y}px)`;
-        });
-
-        requestAnimationFrame(animate);
-    }
-
-    animate();
-}
-
-/**
- * Initialize All (optional features)
- */
-// initCursorTrail(); // Uncomment for cursor trail effect
-initForm();
+document.addEventListener('DOMContentLoaded', () => {
+    NeuroVitalApp.init();
+});
