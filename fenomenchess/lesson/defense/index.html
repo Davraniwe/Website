@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Феномен | Защита в шахматах</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/lesson-page.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Иконки для социальных сетей -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Дополнительные стили для визуализации защиты */
+        .threat-defense-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .threat-arrow {
+            position: relative;
+            width: 80%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .threat-arrow:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #e74c3c;
+        }
+
+        .threat-arrow:after {
+            content: "";
+            position: absolute;
+            right: 0;
+            width: 10px;
+            height: 10px;
+            border-top: 2px solid #e74c3c;
+            border-right: 2px solid #e74c3c;
+            transform: rotate(45deg);
+        }
+
+        .defense-arrow {
+            position: relative;
+            width: 80%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .defense-arrow:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #2ecc71;
+        }
+
+        .defense-arrow:after {
+            content: "";
+            position: absolute;
+            right: 0;
+            width: 10px;
+            height: 10px;
+            border-top: 2px solid #2ecc71;
+            border-right: 2px solid #2ecc71;
+            transform: rotate(45deg);
+        }
+
+        .quote-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .quote-author {
+            text-align: right;
+            font-weight: 500;
+        }
+
+        .example-box {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin: 25px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .example-box h3 {
+            margin-top: 0;
+            color: #3498db;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .example-detail {
+            margin: 15px 0;
+        }
+
+        .example-detail strong {
+            color: #333;
+            display: inline-block;
+            min-width: 80px;
+        }
+
+        .chess-move {
+            font-weight: bold;
+            color: #d35400;
+        }
+
+        @media (max-width: 768px) {
+            .chess-diagram iframe {
+                height: 500px;
+            }
+
+            .chess-diagram {
+                max-width: 700px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .chess-diagram iframe {
+                height: 500px;
+            }
+
+            .chess-diagram {
+                max-width: 600px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="../../img/common/logo.png" alt="Феномен Шахматная школа" class="logo-img">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../../index.html">Главная</a></li>
+                    <li><a href="../../lessons/" class="active">Уроки</a></li>
+                    <li><a href="../../index.html#about">О нас</a></li>
+                    <li><a href="../../index.html#contact">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="lesson-container">
+        <aside class="lesson-sidebar">
+            <div class="sidebar-header">
+                <h3>Содержание урока</h3>
+                <button class="sidebar-toggle-mobile">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <nav class="sidebar-navigation">
+                <ul>
+                    <li><a href="#introduction">Введение</a></li>
+                    <li><a href="#principles">Принципы защиты</a></li>
+                    <li><a href="#examples">Практические примеры</a>
+                        <ul>
+                            <li><a href="#example1">Пример 1: Уход с защитой</a></li>
+                            <li><a href="#example2">Пример 2: Защита от мата</a></li>
+                            <li><a href="#example3">Пример 3: Уход с защитой (вариация)</a></li>
+                            <li><a href="#example4">Пример 4: Контратака</a></li>
+                            <li><a href="#example5">Пример 5: Связка как защита</a></li>
+                            <li><a href="#example6">Пример 6: Слабость последней горизонтали</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#improvement">Как стать сильнее в защите</a></li>
+                    <li><a href="#homework">Домашнее задание</a></li>
+                    <li><a href="#conclusion">Заключение</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="lesson-content">
+            <!-- Брендовые декоративные элементы -->
+            <div class="brand-element brand-circle" style="top: 50px; right: 30px;"></div>
+            <div class="brand-element brand-cross" style="bottom: 100px; left: 20px;"></div>
+
+            <div class="lesson-header">
+                <div class="breadcrumbs">
+                    <a href="../../index.html">Главная</a> &gt;
+                    <a href="../../lessons/">Уроки</a> &gt;
+                    <span>Защита в шахматах</span>
+                </div>
+                <h1>Защита в шахматах</h1>
+                <div class="lesson-meta-header">
+                    <div class="author">
+                        <span>Автор: Давран Сабиров</span>
+                    </div>
+                    <div class="date">Опубликовано: 5 апреля 2025</div>
+                </div>
+            </div>
+
+            <section id="introduction" class="lesson-section">
+                <p class="introduction-text">
+                    Защита в шахматах позволяет избежать материальных потерь, шахов королю и даже матовых угроз.
+                    Мы можем помешать и стратегическим планам соперника, например, созданию проходной пешки или
+                    захвату ключевого поля.
+                </p>
+                <p>
+                    Умение защищаться от угроз противника очень важно, потому что позволяет продолжать борьбу.
+                    Если мы не сможем защититься от угроз противника, то потеряем свои фигуры и попадем в проигранное
+                    окончание. Хуже того, мы получим мат.
+                </p>
+                <div class="quote-box">
+                    <p>"Я стараюсь избежать случайностей. Те, кто рассчитывает на случайности, должны играть в карты
+                        или рулетку... Шахматы — совсем другое."</p>
+                    <p class="quote-author">— Гроссмейстер Тигран Петросян, 9-й чемпион мира</p>
+                </div>
+            </section>
+
+            <section id="principles" class="lesson-section">
+                <h2>Принципы защиты</h2>
+                <p>
+                    Хороший принцип – в первую очередь думайте о защите. После того, как соперник сделал ход,
+                    вы должны оценить <strong>все изменения</strong> на доске и найти <strong>все угрозы</strong>,
+                    которые созданы этим ходом.
+                </p>
+                <p>
+                    Для упрощения, можно задать себе три вопроса:
+                </p>
+                <ol>
+                    <li>В чем заключается идея этого хода?</li>
+                    <li>Противник угрожает или защищается?</li>
+                    <li>Какой будет самый сильный ответ на ваш планируемый ход?</li>
+                </ol>
+                <p>
+                    Чтобы находить сильнейшие защитные ходы, сначала нужно научиться видеть угрозы соперника,
+                    а потом уже искать от них лучшую защиту.
+                </p>
+                <div class="threat-defense-diagram">
+                    <div class="diagram-title">Схема анализа позиции</div>
+                    <div class="threat-arrow">Определение угрозы</div>
+                    <div class="defense-arrow">Поиск защиты</div>
+                </div>
+            </section>
+
+            <section id="examples" class="lesson-section">
+                <h2>Практические примеры</h2>
+
+                <div id="example1" class="example-box">
+                    <h3>Пример 1: Уход с защитой</h3>
+                    <div class="chess-diagram">
+                        <iframe src="https://lichess.org/study/embed/kjDTxrwt/Na9ByXvs#0" frameborder=0></iframe>
+                    </div>
+                    <div class="example-detail">
+                        <strong>Позиция:</strong> Чёрные поставили двойной удар. У белых "висит" (находится под боем)
+                        сразу две фигуры: конь и слон.
+                    </div>
+                    <div class="example-detail">
+                        <strong>Угроза:</strong> Чёрные могут взять либо коня, либо слона (... Л:d3/Л:f3)
+                    </div>
+                    <div class="example-detail">
+                        <strong>Решение:</strong> Есть эффективный метод защиты: уйти одной фигурой и ей же защитить
+                        другую.
+                        После <span class="chess-move">1.Сe2</span> у белых всё в порядке.
+                    </div>
+                </div>
+
+                <div id="example2" class="example-box">
+                    <h3>Пример 2: Защита от мата</h3>
+                    <div class="chess-diagram">
+                        <iframe src="https://lichess.org/study/embed/kjDTxrwt/5ws049PV#0" frameborder=0></iframe>
+                    </div>
+                    <div class="example-detail">
+                        <strong>Позиция:</strong> Черные создали матовую угрозу.
+                    </div>
+                    <div class="example-detail">
+                        <strong>Угроза:</strong> Черные готовятся поставить мат ходом ... Фb2#
+                    </div>
+                    <div class="example-detail">
+                        <strong>Решение:</strong> У белых единственная защита — <span class="chess-move">1.Лb1</span>,
+                        которая предотвращает мат.
+                    </div>
+                </div>
+
+                <div id="example3" class="example-box">
+                    <h3>Пример 3: Уход с защитой (вариация)</h3>
+                    <div class="chess-diagram">
+                        <iframe src="https://lichess.org/study/embed/kjDTxrwt/KG3vJl4I#0" frameborder=0></iframe>
+                    </div>
+                    <div class="example-detail">
+                        <strong>Позиция:</strong> Похожая ситуация, как с примером 1. Чёрные создали двойной удар на
+                        ладью и коня.
+                    </div>
+                    <div class="example-detail">
+                        <strong>Угроза:</strong> Черные угрожают взятием одной из фигур (... Ф:a3/Ф:h2)
+                    </div>
+                    <div class="example-detail">
+                        <strong>Решение:</strong> Ход <span class="chess-move">1.Лh3</span> спасает обе фигуры белых,
+                        уводя ладью из-под удара и защищая коня.
+                    </div>
+                </div>
+
+                <div id="example4" class="example-box">
+                    <h3>Пример 4: Контратака вместо защиты</h3>
+                    <div class="chess-diagram">
+                        <iframe src="https://lichess.org/study/embed/kjDTxrwt/NM2pRSKH#0" frameborder=0></iframe>
+                    </div>
+                    <div class="example-detail">
+                        <strong>Позиция:</strong> Черные готовят матовую атаку.
+                    </div>
+                    <div class="example-detail">
+                        <strong>Угроза:</strong> Черные хотят поставить мат ходом ... Фg2#
+                    </div>
+                    <div class="example-detail">
+                        <strong>Ошибочное решение:</strong> Ход <span class="chess-move">1.Ke3</span> не спасает,
+                        так как после <span class="chess-move">1...С:e3 2.Сf1 С:f2 3.Крh1 Фf1#</span> все равно следует
+                        мат.
+                    </div>
+                    <div class="example-detail">
+                        <strong>Правильное решение:</strong> Ходом <span class="chess-move">1.Сf1</span> белые не только
+                        защищаются от мата, но и ловят малоподвижного ферзя черных.
+                    </div>
+                </div>
+
+                <div id="example5" class="example-box">
+                    <h3>Пример 5: Связка как метод защиты</h3>
+                    <div class="chess-diagram">
+                        <iframe src="https://lichess.org/study/embed/kjDTxrwt/7tc0ddye#1" frameborder=0></iframe>
+                    </div>
+                    <div class="example-detail">
+                        <strong>Позиция:</strong> Белые угрожают поставить мат.
+                    </div>
+                    <div class="example-detail">
+                        <strong>Угроза:</strong> Белые готовят мат ходом Лa7#
+                    </div>
+                    <div class="example-detail">
+                        <strong>Решение:</strong> Черные защищаются ходом <span class="chess-move">1...Сd1</span>,
+                        полностью связывая ладью и нейтрализуя угрозу мата.
+                    </div>
+                </div>
+
+                <div id="example6" class="example-box">
+                    <h3>Пример 6: Профилактика слабости последней горизонтали</h3>
+                    <div class="chess-diagram">
+                        <iframe src="https://lichess.org/study/embed/kjDTxrwt/aeL7HgQA#0" frameborder=0></iframe>
+                    </div>
+                    <div class="example-detail">
+                        <strong>Позиция:</strong> У белых двойное нападение на коня против одной защиты, но взятие
+                        невыгодно из-за связки ферзя с защитой последней горизонтали.
+                    </div>
+                    <div class="example-detail">
+                        <strong>Угроза:</strong> Если белые возьмут коня, черные ответят матом Лd1#
+                    </div>
+                    <div class="example-detail">
+                        <strong>Решение:</strong> Белым следует сначала создать "форточку" для короля ходом
+                        <span class="chess-move">1.h3</span>, обеспечивая путь к отступлению, а затем уже
+                        реализовывать материальное преимущество.
+                    </div>
+                </div>
+
+                <div class="important-note">
+                    <p>
+                        Особое внимание следует уделить защите от угроз мата по последней горизонтали. Эта уязвимость
+                        часто возникает, когда король оказывается "запертым" собственными пешками, что создаёт
+                        предпосылки
+                        для мата по последней горизонтали. Подробнее в теме -
+                        <a href="../slabost-posledney-gorizontali/">слабость последней горизонтали</a>
+                    </p>
+                </div>
+            </section>
+
+            <section id="improvement" class="lesson-section">
+                <h2>Как стать сильнее в защите?</h2>
+                <ol class="numbered-list">
+                    <li><strong>Анализируйте угрозы противника</strong> после каждого его хода</li>
+                    <li><strong>Тренируйте внимательность</strong> - решайте шахматные задачи на защиту</li>
+                    <li><strong>Изучайте партии защитного стиля</strong> гроссмейстеров, таких как Тигран Петросян,
+                        Анатолий Карпов</li>
+                    <li><strong>Практикуйте позиции с защитой</strong> - на учебных занятиях и в практических партиях
+                    </li>
+                    <li><strong>Развивайте профилактическое мышление</strong> - учитесь предвидеть угрозы и заранее их
+                        предотвращать</li>
+                </ol>
+            </section>
+
+            <!-- <section id="video-lesson" class="lesson-section">
+                <h2>Видеоурок</h2>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/placeholder-id" title="Урок по защите в шахматах"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <p class="video-description">Видеоурок будет доступен в ближайшее время.</p>
+                </div>
+            </section> -->
+
+            <section id="homework" class="lesson-section">
+                <h2>Домашнее задание</h2>
+                <div class="homework-container">
+                    <div class="homework-intro">
+                        <p>Мы узнали больше о защите в шахматах — пора решить несколько заданий и найти защитные ходы.
+                        </p>
+                    </div>
+                    <div class="homework-links">
+                        <p><a href="https://lichess.org/study/RqWiwXRg" class="homework-link" target="_blank">
+                                <i class="fa-solid fa-chess-board"></i>
+                                Упражнение: Слабость последней горизонтали
+                            </a></p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="conclusion" class="lesson-section">
+                <h2>Заключение</h2>
+                <div class="summary-box">
+                    <p>
+                        Хорошо проведенная защита позволит перейти в контратаку и выиграть партию. Развивая защитные
+                        навыки,
+                        вы значительно повысите свою общую шахматную силу. Помните: в первую очередь думайте о защите,
+                        затем о нападении. Безопасность короля и сохранность материала — основа для построения успешной
+                        игры.
+                    </p>
+                </div>
+            </section>
+
+            <section class="lesson-feedback">
+                <h2>Обратная связь</h2>
+                <p>Остались вопросы по уроку? Задайте их преподавателю!</p>
+                <form class="feedback-form">
+                    <div class="form-group">
+                        <label for="feedback-message">Ваш вопрос или комментарий</label>
+                        <textarea id="feedback-message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
+            </section>
+
+            <section class="lesson-share">
+                <h3>Поделиться уроком</h3>
+                <div class="share-buttons">
+                    <a href="#" class="share-button vk">
+                        <i class="fa-brands fa-vk"></i> ВКонтакте
+                    </a>
+                    <a href="#" class="share-button telegram">
+                        <i class="fa-brands fa-telegram"></i> Telegram
+                    </a>
+                    <a href="#" class="share-button whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <img src="../../img/common/logo.png" alt="Феномен Шахматная школа">
+                    <p>Обучение шахматам для всех уровней</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="../../index.html">Главная</a></li>
+                        <li><a href="../../lessons/">Уроки</a></li>
+                        <li><a href="../../index.html#about">О нас</a></li>
+                        <li><a href="../../index.html#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Социальные сети</h4>
+                    <div class="social-icons">
+                        <a href="#" target="_blank"><i class="fa-brands fa-vk"></i></a>
+                        <a href="#" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                        <a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Подпишитесь на новости</h4>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Ваш email" required>
+                        <button type="submit" class="btn btn-small">Подписаться</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Феномен Шахматная школа. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/sidebar-navigation.js"></script>
+    <script src="../../js/lesson-page.js"></script>
+</body>
+
+</html>

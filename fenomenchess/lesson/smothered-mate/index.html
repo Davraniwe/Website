@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Феномен | Спертый мат</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/lesson-page.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Иконки для социальных сетей -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Стили для шахматных ходов */
+        .chess-move {
+            font-weight: 700;
+            color: #c52f2f;
+            font-family: "Roboto Mono", monospace;
+            padding: 0 3px;
+            background-color: rgba(255, 245, 224, 0.6);
+            border-radius: 3px;
+            display: inline-block;
+            margin: 0 2px;
+        }
+
+        .move-sequence {
+            background-color: #f8f3e8;
+            padding: 8px 12px;
+            border-left: 3px solid #c52f2f;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+            font-family: "Roboto Mono", monospace;
+            line-height: 1.6;
+        }
+
+        .move-description {
+            margin-top: 8px;
+            font-style: italic;
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        .important-note {
+            background-color: #f0f7ff;
+            border-left: 4px solid #3498db;
+            padding: 12px 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .important-note h4 {
+            margin-top: 0;
+            color: #3498db;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="../../img/common/logo.png" alt="Феномен Шахматная школа" class="logo-img">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../../index.html">Главная</a></li>
+                    <li><a href="../../lessons/" class="active">Уроки</a></li>
+                    <li><a href="../../index.html#about">О нас</a></li>
+                    <li><a href="../../index.html#contact">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="lesson-container">
+        <aside class="lesson-sidebar">
+            <div class="sidebar-header">
+                <h3>Содержание урока</h3>
+                <button class="sidebar-toggle-mobile">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <nav class="sidebar-navigation">
+                <ul>
+                    <li><a href="#introduction">Введение</a></li>
+                    <li><a href="#what-is-smothered">Что такое спертый мат</a></li>
+                    <li><a href="#examples">Примеры</a>
+                        <ul>
+                            <li><a href="#example1">Пример 1: Мат Лусены</a></li>
+                            <li><a href="#example2">Пример 2: Партия Джоакино Греко</a></li>
+                            <li><a href="#example3">Пример 3: Спертый мат двумя конями</a></li>
+                            <li><a href="#example4">Пример 4: Спертый мат в Итальянской партии</a></li>
+                            <li><a href="#example5">Пример 5: Спертый мат в Итальянской партии 2</a></li>
+                            <li><a href="#example6">Пример 6: Спертый мат в Защите Каро-Канн</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#video-lesson">Видеоурок</a></li>
+                    <li><a href="#summary">Итоги</a></li>
+                    <li><a href="#homework">Домашнее задание</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="lesson-content">
+            <!-- Брендовые декоративные элементы -->
+            <div class="brand-element brand-circle" style="top: 50px; right: 30px;"></div>
+            <div class="brand-element brand-cross" style="bottom: 100px; left: 20px;"></div>
+
+            <div class="lesson-header">
+                <div class="breadcrumbs">
+                    <a href="../../index.html">Главная</a> &gt;
+                    <a href="../../lessons/">Уроки</a> &gt;
+                    <span>Спертый мат</span>
+                </div>
+                <h1>Спертый мат</h1>
+                <div class="lesson-meta-header">
+                    <div class="author">
+                        <span>Автор: Давран Сабиров</span>
+                    </div>
+                    <div class="date">Опубликовано: 25 марта 2025</div>
+                </div>
+            </div>
+            <section id="introduction" class="lesson-section">
+                <p class="introduction-text">
+                    Спертый мат — мат конем, основанный на комбинационной идее, в которой король оказывается
+                    заблокированным своими же фигурами. Знание и понимание спертого мата станет полезным дополнением к
+                    вашему тактическому мастерству.
+                </p>
+            </section>
+            <section id="what-is-smothered" class="lesson-section">
+                <h2>Что такое спертый мат?</h2>
+                <p>
+                    Спертый мат (или мат Лусены) — мат, основанный на комбинационной идее, в которой король оказывается
+                    заблокированным своими же фигурами. При постановке спертого мата в шахматах, фигура соперника
+                    завлекается на поле, где она запирает короля, а следующим ходом ставится мат.
+                </p>
+                <div class="chess-diagram gif">
+                    <img src="2025-03-25233931-ezgif.com-video-to-gif-converter.gif" alt="Спертый мат" width="600">
+                    <p class="diagram-caption">
+                        Иллюстрация спертого мата: конь ставит мат королю, окруженному своими же фигурами.
+                    </p>
+                </div>
+                <p>
+                    Спертый мат основан на тактическом приеме - <a href="#">блокировка</a> (подробнее о приеме можете
+                    узнать по ссылке).
+                </p>
+            </section>
+
+            <section id="examples" class="lesson-section">
+                <h2>Примеры</h2>
+                <p>
+                    Существует много разных комбинаций, ведущих к спертому мату, но мы изучим самые распространенные.
+                </p>
+
+                <div id="example1" class="subsection">
+                    <h3>Пример 1. Мат Лусены (1497 год)</h3>
+                    <p>
+                        На диаграмме положение из древнейшего трактата - одной из первых шахматных книг, написанной в
+                        Испании в конце XV столетия, где представлен спертый мат королю после блокировки поля.
+                    </p>
+                    <div class="chess-diagram">
+                        <iframe src="https://lichess.org/study/embed/aEzlcxHU/nVo9DvZV" frameborder=0></iframe>
+                    </div>
+                    <p>
+                        Несмотря на материальное превосходство чёрных, блестяще взаимодействуя ферзём и конём, белые
+                        ставят мат в 5 ходов.
+                    </p>
+                    <div class="move-sequence">
+                        <span class="chess-move">4.Фg8+</span> - Ключевой ход комбинации
+                        <div class="move-description">
+                            Ферзь заставляет ладью запереть своего короля. После чего король черных оказался
+                            заблокированным и белые ставят мат ходом <span class="chess-move">5.Кf7#</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="example2" class="subsection">
+                    <h3>Пример 2. Партия Джоакино Греко (начало XVII века)</h3>
+                    <div class="chess-diagram">
+                        <iframe src="https://lichess.org/study/embed/aEzlcxHU/e0Sy0RDD" frameborder=0></iframe>
+                    </div>
+                    <p>
+                        Черные заматовали нерокированного короля белых, используя идею спертого мата.
+                    </p>
+                </div>
+
+                <div id="example3" class="subsection">
+                    <h3>Пример 3. Спертый мат двумя конями</h3>
+                    <div class="chess-diagram">
+                        <iframe src="https://lichess.org/study/embed/aEzlcxHU/DI174CUB" frameborder=0></iframe>
+                    </div>
+                    <div class="move-sequence">
+                        <span class="chess-move">3...К:h2#</span>
+                        <div class="move-description">
+                            В этой позиции единственное поле отступления у короля держит другой наш конь, что делает мат
+                            неизбежным.
+                        </div>
+                    </div>
+                </div>
+
+                <div id="example4" class="subsection">
+                    <h3>Пример 4. Спертый мат в Итальянской партии</h3>
+                    <p>
+                        Итальянская партия популярна на всех уровнях, от новичка до гроссмейстера и начинается после
+                        <span class="chess-move">1.e4 e5 2.Кf3 Кc6 3.Сc4</span>:
+                    </p>
+                    <div class="chess-diagram">
+                        <iframe src="https://lichess.org/study/embed/aEzlcxHU/E9CCKNvs" frameborder=0></iframe>
+                    </div>
+                    <div class="move-sequence">
+                        <span class="chess-move">9...К:d4</span> - Ключевой ход в позиции
+                        <div class="move-description">
+                            Этим ходом черные отвлекают коня от поля h4, на которое попадает ферзь <span
+                                class="chess-move">10...Фh4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="example5" class="subsection">
+                    <h3>Пример 5. Спертый мат в Итальянской партии 2</h3>
+                    <p>
+                        Теперь рассмотрим семиходовый спёртый мат, встречающийся в Итальянской партии.
+                    </p>
+                    <div class="chess-diagram">
+                        <iframe src="https://lichess.org/study/embed/aEzlcxHU/giZ5gTN9" frameborder=0></iframe>
+                    </div>
+                    <div class="move-sequence">
+                        <span class="chess-move">7...Кf3#</span>
+                        <div class="move-description">
+                            Красивый выигрышный ход, ставящий мат, аналогичный <span class="chess-move">6...Кd6#</span>
+                            в защите Каро-Канн. Белые совершили пару ошибок, поэтому так быстро проиграли эту партию.
+                            <span class="chess-move">4.К:d4</span> избегает всех осложнений.
+                        </div>
+                    </div>
+                    <p>
+                        Играете вы <span class="chess-move">1.e4</span> белыми или <span
+                            class="chess-move">1...e5</span> чёрными, об этом мате важно помнить!
+                    </p>
+                </div>
+
+                <div id="example6" class="subsection">
+                    <h3>Пример 6. Спертый мат в Защите Каро-Канн</h3>
+                    <p>
+                        Защита Каро-Канн считается одним из самых надёжных дебютов, которые могут сыграть чёрные. Тем не
+                        менее даже в этом солидном дебюте есть быстрые победы, о которых нужно знать. Защита Каро-Канн
+                        начинается после <span class="chess-move">1.e4 c6 2.d4 d5</span>:
+                    </p>
+                    <div class="chess-diagram">
+                        <iframe src="https://lichess.org/study/embed/aEzlcxHU/pepyWIut" frameborder=0></iframe>
+                    </div>
+                    <p>
+                        Черные только что сыграли <span class="chess-move">Кgf6</span>, но их король полностью
+                        заблокирован собственными фигурами, и белые ставят ему мат — <span
+                            class="chess-move">6.Кd6#</span>
+                    </p>
+                    <div class="important-note">
+                        <h4>Запомните!</h4>
+                        <p>
+                            Что нужно помнить о таких ранних спёртых матах, так это то, что всегда нужно быть начеку,
+                            когда вражеский ферзь выстроится против вашего короля. Чёрные могли избежать этого быстрого
+                            мата, сыграв <span class="chess-move">5...Кdf6</span>, <span
+                                class="chess-move">5...Фc7</span>, <span class="chess-move">5...e6</span> или любой
+                            другой ход, дающий королю «форточку».
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="video-lesson" class="lesson-section">
+                <h2>Видеоурок</h2>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/62W_YYVz4SU?si=V2eX1TlTKnFzoeb_"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <section id="summary" class="lesson-section">
+                <h2>Итоги</h2>
+                <div class="summary-box">
+                    <p>Ключевые моменты о спертом мате:</p>
+                    <ol class="numbered-list">
+                        <li>Спертый мат — это тактический прием, в котором король противника оказывается заблокирован
+                            своими же фигурами</li>
+                        <li>Для постановки спертого мата требуется конь, который может поставить мат заблокированному
+                            королю</li>
+                        <li>Часто спертому мату предшествует жертва ферзя, вынуждающая фигуру противника заблокировать
+                            своего короля</li>
+                        <li>Спертый мат может встречаться в различных дебютах, включая Итальянскую, Испанскую партии и
+                            защиту Каро-Канн</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="homework" class="lesson-section">
+                <h2>Домашнее задание</h2>
+                <div class="homework-container">
+                    <div class="homework-intro">
+                        <p>Для закрепления материала перейдите по ссылке и выполните упражнения:</p>
+                    </div>
+                    <div class="homework-links">
+                        <a href="https://lichess.org/study/LwxDEE43" class="homework-link" target="_blank">
+                            <i class="fa-solid fa-chess-board"></i>
+                            Упражнения на тему "Спертый мат"
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="lesson-feedback">
+                <h2>Обратная связь</h2>
+                <p>Остались вопросы по уроку? Задайте их преподавателю!</p>
+                <form class="feedback-form">
+                    <div class="form-group">
+                        <label for="feedback-message">Ваш вопрос или комментарий</label>
+                        <textarea id="feedback-message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
+            </section>
+
+            <section class="lesson-share">
+                <h3>Поделиться уроком</h3>
+                <div class="share-buttons">
+                    <a href="#" class="share-button vk">
+                        <i class="fa-brands fa-vk"></i> ВКонтакте
+                    </a>
+                    <a href="#" class="share-button telegram">
+                        <i class="fa-brands fa-telegram"></i> Telegram
+                    </a>
+                    <a href="#" class="share-button whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <img src="../../img/common/logo.png" alt="Феномен Шахматная школа">
+                    <p>Обучение шахматам для всех уровней</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="../../index.html">Главная</a></li>
+                        <li><a href="../../lessons/">Уроки</a></li>
+                        <li><a href="../../index.html#about">О нас</a></li>
+                        <li><a href="../../index.html#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Социальные сети</h4>
+                    <div class="social-icons">
+                        <a href="#" target="_blank"><i class="fa-brands fa-vk"></i></a>
+                        <a href="#" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                        <a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Подпишитесь на новости</h4>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Ваш email" required>
+                        <button type="submit" class="btn btn-small">Подписаться</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Феномен Шахматная школа. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/sidebar-navigation.js"></script>
+    <script src="../../js/lesson-page.js"></script>
+</body>
+
+</html>

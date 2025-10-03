@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Феномен Шахматы - интерактивный обучающий курс по шахматам для начинающих и продвинутых игроков. Изучайте тактики, дебюты, эндшпиль и стратегию.">
+    <meta name="keywords" content="шахматы, обучение шахматам, шахматный курс, тактика шахмат, дебюты, эндшпиль">
+    <meta name="author" content="Феномен Шахматы">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Феномен Шахматы - Обучающий курс">
+    <meta property="og:description" content="Интерактивный курс по изучению шахмат от начального до продвинутого уровня">
+    <meta property="og:image" content="/img/common/logo.png">
+
+    <title>Феномен Шахматы - Обучающий курс</title>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            min-height: 100vh;
+        }
+
+        .hero-section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .logo-container {
+            max-width: 400px;
+            margin: 0 auto 2rem;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+        }
+
+        .content-section {
+            background: var(--bg-light);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem;
+            max-width: 1000px;
+            margin: 2rem auto;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            border-radius: 2px;
+        }
+
+        .course-card {
+            display: block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--text-light);
+            padding: 2rem;
+            border-radius: var(--border-radius-md);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+            box-shadow: var(--shadow-md);
+        }
+
+        .course-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(46, 60, 126, 0.3);
+        }
+
+        .course-card-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-card-desc {
+            opacity: 0.9;
+        }
+
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .lesson-card {
+            background: var(--bg-gray);
+            padding: 1.5rem;
+            border-radius: var(--border-radius-md);
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all var(--transition-fast);
+            border: 2px solid transparent;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .lesson-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .lesson-card-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .lesson-card-title {
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+
+        @media (max-width: 768px) {
+            .content-section {
+                padding: 2rem 1.5rem;
+                margin: 1rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .lessons-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero-section">
+        <div class="container">
+            <div class="logo-container">
+                <img src="/img/common/logo.png" alt="Феномен Шахматы">
+            </div>
+            <h1 class="hero-title">Добро пожаловать в мир шахмат!</h1>
+            <p class="hero-subtitle">Интерактивный курс для изучения тактики и стратегии</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content-section">
+            <h2 class="section-title">🎓 Основной курс</h2>
+            <a href="/course/1/lesson/0/index.html" class="course-card">
+                <div class="course-card-title">📚 Курс 1: Основы шахматной тактики</div>
+                <div class="course-card-desc">Изучите двойные удары, вилки, связки и другие базовые тактические приёмы</div>
+            </a>
+
+            <h2 class="section-title">📖 Дополнительные уроки</h2>
+            <div class="lessons-grid">
+                <a href="/lesson/debyutnye-principy/lesson-page.html" class="lesson-card">
+                    <div class="lesson-card-icon">🎯</div>
+                    <div class="lesson-card-title">Дебютные принципы</div>
+                </a>
+                <a href="/lesson/slabost-poslednei-gorizontali/index.html" class="lesson-card">
+                    <div class="lesson-card-icon">🎪</div>
+                    <div class="lesson-card-title">Слабость последней горизонтали</div>
+                </a>
+                <a href="/lesson/defense/index.html" class="lesson-card">
+                    <div class="lesson-card-icon">🛡️</div>
+                    <div class="lesson-card-title">Защита</div>
+                </a>
+                <a href="/lesson/dvoinoi-udar/double-attack-page.html" class="lesson-card">
+                    <div class="lesson-card-icon">⚔️</div>
+                    <div class="lesson-card-title">Двойной удар</div>
+                </a>
+                <a href="/lesson/prohodnaya-peshka/prohodnaya-peshka.html" class="lesson-card">
+                    <div class="lesson-card-icon">♟️</div>
+                    <div class="lesson-card-title">Проходная пешка</div>
+                </a>
+                <a href="/lesson/proryv/index.html" class="lesson-card">
+                    <div class="lesson-card-icon">💥</div>
+                    <div class="lesson-card-title">Прорыв</div>
+                </a>
+                <a href="/lesson/smothered-mate/index.html" class="lesson-card">
+                    <div class="lesson-card-icon">🏇</div>
+                    <div class="lesson-card-title">Спёртый мат</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 2rem 0; color: rgba(255, 255, 255, 0.8);">
+        <p>&copy; 2025 Феномен Шахматы. Все права защищены.</p>
+    </footer>
+</body>
+
+</html>

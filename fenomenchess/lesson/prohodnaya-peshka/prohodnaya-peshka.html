@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шахматная Академия | Пешечный прорыв</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/lesson-page.css">
+    <link rel="stylesheet" href="../../css/chess-embed.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="../../img/common/logo.svg" alt="Шахматная Академия" class="logo-img">
+                <span class="logo-text">Шахматная Академия</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../../index.html">Главная</a></li>
+                    <li><a href="../../lessons/" class="active">Уроки</a></li>
+                    <li><a href="../../index.html#about">О нас</a></li>
+                    <li><a href="../../index.html#contact">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="lesson-container">
+        <aside class="lesson-sidebar">
+            <div class="sidebar-header">
+                <h3>Содержание урока</h3>
+                <button class="sidebar-toggle-mobile">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <nav class="sidebar-navigation">
+                <ul>
+                    <li><a href="#introduction" class="active">Введение</a></li>
+                    <li><a href="#what-is-breakthrough">Что такое пешечный прорыв</a></li>
+                    <li><a href="#why-important">Почему это важно</a></li>
+                    <li><a href="#conditions">Условия для успешного прорыва</a></li>
+                    <li><a href="#examples">Примеры пешечного прорыва</a>
+                        <ul>
+                            <li><a href="#example1">Пример 1</a></li>
+                            <li><a href="#example2">Пример 2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#practical-tasks">Практические задания</a></li>
+                    <li><a href="#summary">Итоги</a></li>
+                    <li><a href="#homework">Домашнее задание</a></li>
+                </ul>
+            </nav>
+            <div class="lesson-meta-sidebar">
+                <div class="lesson-level intermediate">Средний уровень</div>
+                <div class="lesson-duration"><img src="../../img/common/icons/clock.svg" alt="Длительность"> 45 минут
+                </div>
+                <div class="lesson-exercises"><img src="../../img/common/icons/tasks.svg" alt="Задания"> 6 заданий</div>
+            </div>
+            <div class="lesson-navigation">
+                <a href="../dvoinoi-udar/" class="prev-lesson">
+                    <img src="../../img/common/icons/arrow-left.svg" alt="Предыдущий урок">
+                    <span>Двойной удар</span>
+                </a>
+                <a href="../endshpil-basics/" class="next-lesson">
+                    <span>Основы эндшпиля</span>
+                    <img src="../../img/common/icons/arrow-right.svg" alt="Следующий урок">
+                </a>
+            </div>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="breadcrumbs">
+                    <a href="../../index.html">Главная</a> &gt;
+                    <a href="../../lessons/">Уроки</a> &gt;
+                    <span>Проходная пешка</span>
+                </div>
+                <h1>Проходная пешка</h1>
+                <div class="lesson-meta-header">
+                    <div class="author">
+                        <img src="../../img/common/instructors/instructor3.jpg" alt="Автор">
+                        <span>Автор: Давран Сабиров</span>
+                    </div>
+                    <div class="date">Опубликовано: 12 марта 2025</div>
+                    <div class="views"><img src="../../img/common/icons/eye.svg" alt="Просмотры"> 742</div>
+                </div>
+            </div>
+
+            <section id="introduction" class="lesson-section">
+                <p class="introduction-text">
+                    Пешечный прорыв — это мощный тактический приём в шахматах, особенно важный в эндшпиле.
+                    Умение правильно реализовать прорыв часто становится решающим фактором в достижении победы в равных
+                    позициях.
+                </p>
+            </section>
+
+            <section id="what-is-breakthrough" class="lesson-section">
+                <h2>Что такое пешечный прорыв?</h2>
+                <p>
+                    <strong>Проходная пешка</strong> — это пешка, которая движется к полю превращения без препятствий со
+                    стороны пешек соперника.
+                    Особая ценность прорыва состоит в его способности нарушить равновесие на доске и обеспечить решающее
+                    преимущество,
+                    особенно когда материальные силы примерно равны.
+                </p>
+
+                <div class="chess-embed-container">
+                    <iframe class="chess-embed" src="https://lichess.org/study/embed/Cb6ZTv3R/wVQxMuwF"
+                        frameborder="0"></iframe>
+                </div>
+            </section>
+
+            <section id="why-important" class="lesson-section">
+                <h2>Почему прорыв пешек так важен?</h2>
+                <p>
+                    В эндшпиле позиции часто выглядят равными, и найти путь к победе бывает непросто.
+                    Пешечный прорыв часто возникает <strong>как будто из ниоткуда</strong>.
+                    Умение своевременно заметить возможность прорыва — критически важный навык для любого шахматиста.
+                </p>
+                <p>
+                    Прорыв может полностью изменить исход партии, ведь успешно образованная проходная пешка обычно
+                    становится
+                    <strong>главным фактором победы</strong>.
+                </p>
+                <div class="info-box">
+                    <h4>Важно знать!</h4>
+                    <p>Пешечный прорыв — один из самых зрелищных и неожиданных тактических приёмов, который часто
+                        создаёт эффект внезапности.
+                        Ваш соперник может не ожидать, что вы готовы пожертвовать материал для достижения
+                        стратегического преимущества.</p>
+                </div>
+            </section>
+
+            <section id="conditions" class="lesson-section">
+                <h2>Условия для успешного пешечного прорыва</h2>
+                <p>
+                    Чтобы пешечный прорыв привёл к успеху, необходимо соблюдение ряда условий:
+                </p>
+                <ul class="conditions-list">
+                    <li>
+                        <strong>Преимущество в пространстве:</strong> пешки должны быть более продвинутыми вперед.
+                    </li>
+                    <li>
+                        <strong>Пешечное напряжение на территории соперника:</strong> пешечный контакт должен
+                        происходить на половине
+                        противника, а не на своей.
+                    </li>
+                    <li>
+                        <strong>Отсутствие королей в непосредственной близости:</strong> короли, расположенные в
+                        «квадрате пешки»,
+                        способны резко поменять оценку прорыва.
+                    </li>
+                </ul>
+                <p>
+                    Идея пешечного прорыва обычно выглядит следующим образом:
+                </p>
+                <div class="quote-box">
+                    <p>
+                        Вы жертвуете одну или две пешки, заставляя соперника реагировать.
+                        После серии взятий образуется одна или несколько проходных пешек.
+                        Благодаря изначально большему пространству, ваша пешка достигает последней горизонтали раньше
+                        пешки соперника.
+                    </p>
+                </div>
+            </section>
+
+            <section id="examples" class="lesson-section">
+                <h2>Примеры пешечного прорыва</h2>
+                <p>
+                    Чтобы наглядно увидеть красоту и практическую значимость этого приема, рассмотрим следующие примеры:
+                </p>
+
+                <div id="example1" class="subsection">
+                    <h3>Пример 1: Неправильный и правильный подход</h3>
+                    <p>
+                        У белых преимущество вследствии того, что их король и пешки продвинулись дальше, чем король и
+                        пешки черных.
+                    </p>
+                    <p>
+                        <strong>Неправильный подход:</strong> 1. Кf5?. Дальше следовало 1 ... Kf7 2. Kе5 Kе7 З. Kd5 Kd7
+                        4. c6+ Kс8 5. Kе6 а6! 6.cxb7+.
+                        В результате ничья.
+                    </p>
+                    <p>
+                        <strong>Правильный подход:</strong> Следовало начать с хода 1. b6!
+                    </p>
+
+                    <div class="chess-embed-container">
+                        <iframe class="chess-embed" src="https://lichess.org/study/embed/Cb6ZTv3R/s0SjbONt"
+                            frameborder="0"></iframe>
+                    </div>
+                    <p class="example-description">
+                        В этом примере мы видим, как правильный выбор хода приводит к успешному пешечному прорыву.
+                        Белые жертвуют пешку, но в результате создают неудержимую проходную, которая решает исход
+                        партии.
+                    </p>
+                </div>
+
+                <div id="example2" class="subsection">
+                    <h3>Пример 2: Классический пешечный прорыв</h3>
+                    <p>
+                        В этом примере демонстрируется классический пример пешечного прорыва в эндшпиле.
+                    </p>
+                    <div class="chess-embed-container">
+                        <iframe class="chess-embed" src="https://lichess.org/study/embed/JerCua4O/i3iVEN9F#4"
+                            frameborder="0"></iframe>
+                    </div>
+                    <p class="example-description">
+                        Этот пример показывает, как жертва пешки создает возможность для прорыва,
+                        которая в итоге приводит к образованию решающей проходной пешки.
+                    </p>
+                </div>
+            </section>
+
+            <section id="practical-tasks" class="lesson-section">
+                <h2>Практические задания</h2>
+                <p>
+                    Теперь, когда мы понимаем принцип пешечного прорыва, давайте потренируемся в его применении.
+                    Ниже представлены интерактивные упражнения:
+                </p>
+                <div class="chess-embed-container">
+                    <iframe class="chess-embed training-board"
+                        src="https://lichess.org/training/frame?theme=brown&bg=dark" allowtransparency="true"
+                        frameborder="0"></iframe>
+                </div>
+                <p class="task-description">
+                    В приведенном выше тренажере вы можете решать различные шахматные задачи, в том числе связанные с
+                    реализацией пешечного прорыва.
+                </p>
+            </section>
+
+            <section id="summary" class="lesson-section">
+                <h2>Итоги</h2>
+                <div class="summary-box">
+                    <p>Ключевые моменты о пешечном прорыве:</p>
+                    <ol class="numbered-list">
+                        <li>Пешечный прорыв — это тактический приём, при котором жертвуется одна или несколько пешек для
+                            создания проходной</li>
+                        <li>Для успешного прорыва необходимо преимущество в пространстве и правильное расположение пешек
+                        </li>
+                        <li>Короли могут существенно влиять на успешность прорыва, находясь в непосредственной близости
+                            от места действия</li>
+                        <li>Умение видеть и реализовывать возможности для прорыва — важный навык в эндшпиле</li>
+                        <li>Пешечный прорыв часто является решающим фактором в преобразовании равной позиции в
+                            выигрышную</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="homework" class="lesson-section">
+                <h2>Домашнее задание</h2>
+                <div class="homework-container">
+                    <div class="homework-intro">
+                        <p>Для закрепления материала выполните следующие задания:</p>
+                    </div>
+
+                    <div class="homework-task">
+                        <h4>Задание 1</h4>
+                        <p>В данной позиции найдите ход, который приведет к успешному пешечному прорыву:</p>
+                        <div class="chess-diagram">
+                            <img src="../../img/lessons/peshechnyj-proryv/task1.png" alt="Задание 1" class="lesson-img">
+                        </div>
+                        <div class="task-variants">
+                            <div class="variant">
+                                <label class="radio-label">
+                                    <input type="radio" name="task1" value="a">
+                                    <span>A) b5</span>
+                                </label>
+                            </div>
+                            <div class="variant">
+                                <label class="radio-label">
+                                    <input type="radio" name="task1" value="b">
+                                    <span>Б) a5</span>
+                                </label>
+                            </div>
+                            <div class="variant">
+                                <label class="radio-label">
+                                    <input type="radio" name="task1" value="c">
+                                    <span>В) Kрd5</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="homework-task">
+                        <h4>Задание 2</h4>
+                        <p>Какое условие НЕ является необходимым для успешного пешечного прорыва?</p>
+                        <div class="task-variants">
+                            <div class="variant">
+                                <label class="radio-label">
+                                    <input type="radio" name="task2" value="a">
+                                    <span>A) Преимущество в пространстве</span>
+                                </label>
+                            </div>
+                            <div class="variant">
+                                <label class="radio-label">
+                                    <input type="radio" name="task2" value="b">
+                                    <span>Б) Наличие у соперника лишней пешки</span>
+                                </label>
+                            </div>
+                            <div class="variant">
+                                <label class="radio-label">
+                                    <input type="radio" name="task2" value="c">
+                                    <span>В) Пешечное напряжение на территории соперника</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary check-homework">Проверить ответы</button>
+                </div>
+            </section>
+
+            <section class="lesson-feedback">
+                <h2>Обратная связь</h2>
+                <p>Остались вопросы по уроку? Задайте их преподавателю!</p>
+                <form class="feedback-form">
+                    <div class="form-group">
+                        <label for="feedback-message">Ваш вопрос или комментарий</label>
+                        <textarea id="feedback-message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
+            </section>
+
+            <section class="lesson-share">
+                <h3>Поделиться уроком</h3>
+                <div class="share-buttons">
+                    <a href="#" class="share-button vk"><img src="../../img/common/icons/vk.svg" alt="ВКонтакте">
+                        ВКонтакте</a>
+                    <a href="#" class="share-button telegram"><img src="../../img/common/icons/telegram.svg"
+                            alt="Telegram"> Telegram</a>
+                    <a href="#" class="share-button whatsapp"><img src="../../img/common/icons/whatsapp.svg"
+                            alt="WhatsApp"> WhatsApp</a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <section class="related-lessons">
+        <div class="container">
+            <h2>Похожие <span class="highlight">уроки</span></h2>
+            <div class="lessons-grid small-grid">
+                <div class="lesson-card">
+                    <div class="lesson-image">
+                        <img src="../../img/lessons/endshpil-basics/thumbnail.jpg" alt="Основы эндшпиля">
+                        <div class="lesson-level intermediate">Средний</div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Основы эндшпиля</h3>
+                        <div class="lesson-meta">
+                            <span class="lesson-duration"><img src="../../img/common/icons/clock.svg"
+                                    alt="Длительность"> 45 минут</span>
+                        </div>
+                        <a href="../endshpil-basics/" class="btn btn-secondary btn-small">Перейти к уроку</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="lesson-image">
+                        <img src="../../img/lessons/peshechnaya-struktura/thumbnail.jpg" alt="Пешечная структура">
+                        <div class="lesson-level intermediate">Средний</div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Пешечная структура</h3>
+                        <div class="lesson-meta">
+                            <span class="lesson-duration"><img src="../../img/common/icons/clock.svg"
+                                    alt="Длительность"> 40 минут</span>
+                        </div>
+                        <a href="../peshechnaya-struktura/" class="btn btn-secondary btn-small">Перейти к уроку</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="lesson-image">
+                        <img src="../../img/lessons/peshechnyj-endshpil/thumbnail.jpg" alt="Пешечный эндшпиль">
+                        <div class="lesson-level advanced">Продвинутый</div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Пешечный эндшпиль</h3>
+                        <div class="lesson-meta">
+                            <span class="lesson-duration"><img src="../../img/common/icons/clock.svg"
+                                    alt="Длительность"> 50 минут</span>
+                        </div>
+                        <a href="../peshechnyj-endshpil/" class="btn btn-secondary btn-small">Перейти к уроку</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <img src="../../img/common/logo-white.svg" alt="Шахматная Академия">
+                    <p>Обучение шахматам для всех уровней</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="../../index.html">Главная</a></li>
+                        <li><a href="../../lessons/">Уроки</a></li>
+                        <li><a href="../../index.html#about">О нас</a></li>
+                        <li><a href="../../index.html#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Социальные сети</h4>
+                    <div class="social-icons">
+                        <a href="#" target="_blank"><img src="../../img/common/icons/vk.svg" alt="ВКонтакте"></a>
+                        <a href="#" target="_blank"><img src="../../img/common/icons/telegram.svg" alt="Telegram"></a>
+                        <a href="#" target="_blank"><img src="../../img/common/icons/youtube.svg" alt="YouTube"></a>
+                    </div>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Подпишитесь на новости</h4>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Ваш email" required>
+                        <button type="submit" class="btn btn-small">Подписаться</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Шахматная Академия. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/sidebar-navigation.js"></script>
+    <script src="../../js/lesson-page.js"></script>
+    <script src="../../js/chess-embed.js"></script>
+</body>
+
+</html>

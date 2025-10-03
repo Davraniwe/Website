@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Феномен | Слабость последней горизонтали</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/lesson-page.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Иконки для социальных сетей -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Стили для визуализации "форточки" */
+        .window-visualization {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            gap: 30px;
+        }
+
+        .king-position {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .king-position:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+        }
+
+        .king-position.with-window:before {
+            width: 70%;
+        }
+
+        .king-icon {
+            font-size: 40px;
+            z-index: 2;
+        }
+
+        .window-arrow {
+            font-size: 30px;
+            color: #3498db;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="../../img/common/logo.png" alt="Феномен Шахматная школа" class="logo-img">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../../index.html">Главная</a></li>
+                    <li><a href="../../lessons/" class="active">Уроки</a></li>
+                    <li><a href="../../index.html#about">О нас</a></li>
+                    <li><a href="../../index.html#contact">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="lesson-container">
+        <aside class="lesson-sidebar">
+            <div class="sidebar-header">
+                <h3>Содержание урока</h3>
+                <button class="sidebar-toggle-mobile">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <nav class="sidebar-navigation">
+                <ul>
+                    <li><a href="#introduction">Введение</a></li>
+                    <li><a href="#what-is-weakness">Что такое слабость последней горизонтали</a></li>
+                    <li><a href="#why-important">Стратегическое значение</a></li>
+                    <li><a href="#prevention">Профилактика: создание "форточки"</a></li>
+                    <li><a href="#examples">Примеры</a>
+                        <ul>
+                            <li><a href="#example1">Пример 1: Профилактика</a></li>
+                            <li><a href="#example2">Пример 2: Жертва ферзя</a></li>
+                            <li><a href="#example3">Пример 3: Тактический выигрыш</a></li>
+                            <li><a href="#example4">Пример 4: Комбинация с вилкой</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#video-lesson">Видеоурок</a></li>
+                    <li><a href="#summary">Итоги</a></li>
+                    <li><a href="#homework">Домашнее задание</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="lesson-content">
+            <!-- Брендовые декоративные элементы -->
+            <div class="brand-element brand-circle" style="top: 50px; right: 30px;"></div>
+            <div class="brand-element brand-cross" style="bottom: 100px; left: 20px;"></div>
+
+            <div class="lesson-header">
+                <div class="breadcrumbs">
+                    <a href="../../index.html">Главная</a> &gt;
+                    <a href="../../lessons/">Уроки</a> &gt;
+                    <span>Слабость последней горизонтали</span>
+                </div>
+                <h1>Слабость последней горизонтали</h1>
+                <div class="lesson-meta-header">
+                    <div class="author">
+                        <span>Автор: Давран Сабиров</span>
+                    </div>
+                    <div class="date">Опубликовано: 20 марта 2025</div>
+                </div>
+            </div>
+            <section id="introduction" class="lesson-section">
+                <p class="introduction-text">
+                    Слабость последней горизонтали — это важный стратегический мотив, который часто становится
+                    решающим фактором в шахматной партии. Умение распознавать и использовать эту слабость,
+                    а также защищаться от подобных угроз, является необходимым навыком для каждого шахматиста.
+                </p>
+            </section>
+            <section id="what-is-weakness" class="lesson-section">
+                <h2>Что такое слабость последней горизонтали?</h2>
+                <p>
+                    Слабость первой (для белых) или восьмой (для черных) горизонтали — это не самостоятельный
+                    тактический
+                    приём, а важный стратегический мотив, который может привести к решающей комбинации. Эта уязвимость
+                    часто возникает, когда король оказывается "запертым" собственными пешками, что создаёт предпосылки
+                    для мата по последней горизонтали.
+                </p>
+                <p>
+                    <strong>Мат по последней горизонтали</strong> возникает, когда тяжелая фигура противника (ферзь или
+                    ладья)
+                    проникает на последнюю горизонталь (первую для белых, восьмую для черных), а король не может уйти
+                    из-под удара, поскольку заблокирован собственными нетронутыми пешками.
+                </p>
+                <div class="chess-diagram gif">
+                    <img src="phpHhxgmi.gif" alt="Мат по последней горизонтали">
+                    <p class="diagram-caption">
+                        На иллюстрации: Белая ладья вторгается на последнюю горизонталь черных, где король
+                        ограничен в движении собственными пешками, что приводит к мату.
+                    </p>
+                </div>
+                <p>
+                    В некоторых случаях не только пешки, но и другие фигуры могут ограничивать поля отступления
+                    короля, способствуя реализации мата по последней горизонтали:
+                </p>
+                <div class="chess-diagram gif">
+                    <img src="phpdHBslP.gif" alt="Мат с участием других фигур">
+                </div>
+            </section>
+
+            <section id="prevention" class="lesson-section">
+                <h2>Профилактика: создание "форточки"</h2>
+                <p>
+                    Мат по последней горизонтали является одним из фундаментальных тактических мотивов в шахматах.
+                    Его особая значимость заключается в том, что он часто возникает после рокировки — стандартного
+                    приема для обеспечения безопасности короля.
+                </p>
+                <p>
+                    Парадоксально, но укрытие короля за пешечным "забором" создает потенциальную
+                    уязвимость по горизонтали. То, что должно защищать короля, может превратиться
+                    в ловушку при определенных обстоятельствах.
+                </p>
+                <p>
+                    Основной метод профилактики мата по последней горизонтали — это создание так называемой "форточки"
+                    для короля, то есть пространства для отступления в случае атаки по горизонтали.
+                </p>
+
+                <div class="window-visualization">
+                    <div class="king-position">
+                        <img src="image1.png" alt="Мат с участием других фигур">
+                    </div>
+                    <div class="window-arrow">→</div>
+                    <div class="king-position with-window">
+                        <img src="image2.png" alt="Мат с участием других фигур">
+                    </div>
+                </div>
+
+                <div class="important-note">
+                    <h4>Запомните!</h4>
+                    <p>
+                        В практической игре часто встречаются превентивные ходы <span class="chess-move">h3</span>/<span
+                            class="chess-move">h6</span> или
+                        <span class="chess-move">g3</span>/<span class="chess-move">g6</span>, которые в шахматной
+                        терминологии называются "форточками".
+                        Своевременное создание "форточки" — пространства для отступления короля — эффективно
+                        нейтрализует опасность мата по последней горизонтали.
+                    </p>
+                    <p>
+                        Однако следует помнить, что продвижение пешек перед королем также может создать новые слабости
+                        в позиции, поэтому такие ходы должны быть тщательно оценены с учетом конкретной ситуации на
+                        доске.
+                    </p>
+                    <p>
+                        Умение распознавать эту слабость и использовать её в своих комбинациях — важнейший навык для
+                        шахматиста любого уровня. Аналогично, понимание того, как предотвратить подобные угрозы,
+                        становится ключевым аспектом защиты.
+                    </p>
+                </div>
+            </section>
+
+            <section id="examples" class="lesson-section">
+                <h2>Примеры</h2>
+                <p>
+                    Рассмотрим несколько практических примеров, демонстрирующих различные аспекты слабости
+                    последней горизонтали и способы её использования.
+                </p>
+
+                <div id="example1" class="subsection">
+                    <h3>Пример 1: Профилактика и значение "форточки"</h3>
+                    <p>
+                        Рассмотрим конкретную позицию (диаграмма 61), демонстрирующую, как избежать угрозы
+                        мата на последней горизонтали путем создания "форточки" для короля.
+                    </p>
+                    <div class="chess-diagram">
+                        <iframe src="https://lichess.org/study/embed/VHcwPDNH/Y4xB4VND#last" frameborder=0></iframe>
+                    </div>
+                    <p>
+                        В этой позиции черные угрожают объявить мат белому королю ходом <span
+                            class="chess-move">1...Лc1#</span> или
+                        <span class="chess-move">1...Лe1#</span>. У белых есть несколько вариантов:
+                    </p>
+                    <ol>
+                        <li>
+                            Ход <span class="chess-move">1.Лa1</span> защищает первую горизонталь, но превращает ладью в
+                            пассивного
+                            защитника, "привязывая" её к королю.
+                        </li>
+                        <li>
+                            Более эффективный способ — создание "форточки" путем продвижения одной из пешек перед
+                            королем:
+                            <span class="chess-move">1.h3</span> или <span class="chess-move">1.g3</span>.
+                        </li>
+                    </ol>
+                    <p>
+                        Однако, выбор между этими ходами не очевиден. В данной позиции <span
+                            class="chess-move">1.h3</span> не спасает от мата
+                        <span class="chess-move">1...Лc1#</span>, поскольку черный слон контролирует поле h2,
+                        препятствуя отступлению короля.
+                    </p>
+                    <div class="move-sequence">
+                        Правильное решение: <span class="chess-move">1.g3!</span>
+                        <div class="move-description">
+                            Этот ход одновременно ограничивает действие черного слона, создает поле g2 для отступления
+                            короля и предотвращает угрозу мата.
+                        </div>
+                    </div>
+                </div>
+
+                <div id="example2" class="subsection">
+                    <h3>Пример 2: Жертва ферзя для мата по последней горизонтали</h3>
+                    <p>
+                        Простая цель поимки загнанного в угол короля на последней горизонтали является движущей
+                        силой многочисленных комбинаций. Диаграмма 62 иллюстрирует хорошо известную схему
+                        заматования короля на последней горизонтали.
+                    </p>
+                    <div class="chess-diagram">
+                        <iframe src="https://lichess.org/study/embed/VHcwPDNH/j4g5erEh" frameborder=0></iframe>
+                    </div>
+                    <p>
+                        Черные как будто бы защитили свою последнюю горизонталь ладьей b8, но после жертвы ферзя,
+                        белые форсируют мат:
+                    </p>
+                    <div class="move-sequence">
+                        <span class="chess-move">1.Фe8+!</span> <span class="chess-move">1...Лxe8</span> <span
+                            class="chess-move">2.Лxe8#</span>
+                        <div class="move-description">
+                            Жертва ферзя приводит к вскрытию линии для ладьи и неизбежному мату.
+                        </div>
+                    </div>
+                </div>
+
+                <div id="example3" class="subsection">
+                    <h3>Пример 3: Тактический выигрыш материала</h3>
+                    <p>
+                        На диаграмме 63 черный король оттеснен в угол, и последняя горизонталь представляет собой
+                        слабость в позиции черных. К тому же черные непоправимо отстали от белых в развитии,
+                        отчего у черного слона нет в распоряжении ходов на безопасные для него поля.
+                    </p>
+                    <div class="chess-diagram">
+                        <iframe src="https://lichess.org/study/embed/VHcwPDNH/YnVMwHLv" frameborder=0></iframe>
+                    </div>
+                    <p>
+                        Но как бы хорошо ни обстояли дела для белых, они не могут сразу же расправиться со своим
+                        оппонентом, потому что черный ферзь мешает белой ладье сыграть <span
+                            class="chess-move">Лe8</span>.
+                    </p>
+                    <div class="move-sequence">
+                        <span class="chess-move">1.Фd6!</span>
+                        <div class="move-description">
+                            Белые отдают своего ферзя, зная, что если он будет взят, поле е8 больше не будет защищено.
+                        </div>
+                    </div>
+                    <p>
+                        Поскольку <span class="chess-move">1...Фg8</span> и <span class="chess-move">1...Фf7</span>
+                        проигрывают из-за того, что черного
+                        ферзя возьмет белый слон, а <span class="chess-move">1...Фxd6 2.Лe8+</span> ведет к заматованию
+                        черного короля,
+                        у черных нет выбора: они вынуждены отдать своего слона ходом <span
+                            class="chess-move">1...Сd7</span> или
+                        <span class="chess-move">1...Сe6</span> ради того, чтобы обезопасить свою последнюю горизонталь.
+                        Однако
+                        после <span class="chess-move">1...Сd7 2.Фxd7</span>, потеря слона в конечном счете приведет
+                        черных к поражению.
+                    </p>
+                </div>
+
+                <div id="example4" class="subsection">
+                    <h3>Пример 4: Комбинация с вилкой</h3>
+                    <p>
+                        Диаграмма 65 показывает, как проблема последней горизонтали может также способствовать тому,
+                        что вилки и двойные нападения становятся еще опаснее и сильнее, чем обычно.
+                    </p>
+                    <div class="chess-diagram">
+                        <iframe src="https://lichess.org/study/embed/VHcwPDNH/26HmMf40" frameborder=0></iframe>
+                    </div>
+                    <p>
+                        Черный ферзь привязан к полю е8, он обязан охранять его от вторжения белой ладьи.
+                    </p>
+                    <div class="move-sequence">
+                        <span class="chess-move">1.Кc7!</span>
+                        <div class="move-description">
+                            Ход, который в иных условиях был бы невозможен, теперь становится для черных убийственным.
+                        </div>
+                    </div>
+                    <p>
+                        Черные не могут играть <span class="chess-move">1...Фxc7</span> (или <span
+                            class="chess-move">1...Фxd2</span>) из-за
+                        <span class="chess-move">2.Лe8+ Кf8 3.Лxf8#</span>. Перед лицом угроз <span
+                            class="chess-move">2.Лe8+</span> или
+                        <span class="chess-move">2.Кxa8</span> черные вынуждены сдаться.
+                    </p>
+                </div>
+            </section>
+
+            <section id="video-lesson" class="lesson-section">
+                <h2>Видеоурок</h2>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/WJuhy3qQiao?si=B4UlaXZI6AsL2sGz"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <section id="summary" class="lesson-section">
+                <h2>Итоги</h2>
+                <div class="summary-box">
+                    <p>Ключевые моменты о слабости последней горизонтали:</p>
+                    <ol class="numbered-list">
+                        <li>Слабость последней горизонтали — это стратегический мотив, который может привести к решающим
+                            тактическим комбинациям</li>
+                        <li>Мат по последней горизонтали становится возможен, когда король заблокирован собственными
+                            пешками</li>
+                        <li>Создание "форточки" (ходы h3/h6 или g3/g6) — основной способ профилактики от мата по
+                            последней горизонтали</li>
+                        <li>Тяжелые фигуры (ладья, ферзь) особенно эффективны для атаки по последней горизонтали</li>
+                        <li>Внимательно следите за открытыми линиями, которые могут привести к вторжению на последнюю
+                            горизонталь</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="homework" class="lesson-section">
+                <h2>Домашнее задание</h2>
+                <div class="homework-container">
+                    <div class="homework-intro">
+                        <p>Для закрепления материала перейдите по ссылкам и выполните упражнения:</p>
+                    </div>
+                    <div class="homework-links">
+                        <p><a href="https://stepchess.ru/course/213" class="homework-link" target="_blank">
+                                <i class="fa-solid fa-chess-pawn"></i>
+                                Упражнение: Слабость последней горизонтали</a></p>
+                        <p><a href="https://lichess.org/study/VHcwPDNH/0wwa253P" class="homework-link" target="_blank">
+                                <i class="fa-solid fa-chess-board"></i>
+                                Практика: 3 задачи по слабости последней горизонтали
+                            </a></p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="lesson-feedback">
+                <h2>Обратная связь</h2>
+                <p>Остались вопросы по уроку? Задайте их преподавателю!</p>
+                <form class="feedback-form">
+                    <div class="form-group">
+                        <label for="feedback-message">Ваш вопрос или комментарий</label>
+                        <textarea id="feedback-message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
+            </section>
+
+            <section class="lesson-share">
+                <h3>Поделиться уроком</h3>
+                <div class="share-buttons">
+                    <a href="#" class="share-button vk">
+                        <i class="fa-brands fa-vk"></i> ВКонтакте
+                    </a>
+                    <a href="#" class="share-button telegram">
+                        <i class="fa-brands fa-telegram"></i> Telegram
+                    </a>
+                    <a href="#" class="share-button whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <img src="../../img/common/logo.png" alt="Феномен Шахматная школа">
+                    <p>Обучение шахматам для всех уровней</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="../../index.html">Главная</a></li>
+                        <li><a href="../../lessons/">Уроки</a></li>
+                        <li><a href="../../index.html#about">О нас</a></li>
+                        <li><a href="../../index.html#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Социальные сети</h4>
+                    <div class="social-icons">
+                        <a href="#" target="_blank"><i class="fa-brands fa-vk"></i></a>
+                        <a href="#" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                        <a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Подпишитесь на новости</h4>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Ваш email" required>
+                        <button type="submit" class="btn btn-small">Подписаться</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Феномен Шахматная школа. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/sidebar-navigation.js"></script>
+    <script src="../../js/lesson-page.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Феномен | Полная (абсолютная) связка</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/lesson-page.css">
+    <link rel="stylesheet" href="/css/custom-sidebar-playlist.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Стили для Квиза (можно вынести в custom-sidebar-playlist.css или lesson-page.css) */
+        .quiz-question-title {
+            font-size: 1.1em;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .task-variants {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .radio-label {
+            display: block;
+            padding: 0.75rem 1rem;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: var(--border-radius-md, 8px);
+            cursor: pointer;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .radio-label:hover {
+            border-color: var(--fenomen-blue, #249efa);
+            background-color: rgba(36, 158, 250, 0.05);
+        }
+
+        .radio-label input[type="radio"] {
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .check-quiz-btn {
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-feedback {
+            margin-top: 10px;
+            padding: 0.75rem;
+            border-radius: var(--border-radius-sm, 4px);
+            font-weight: 500;
+        }
+
+        .quiz-feedback.correct {
+            background-color: #e6ffed;
+            border: 1px solid #5cb85c;
+            color: #3c763d;
+        }
+
+        .quiz-feedback.incorrect {
+            background-color: #f9e9e9;
+            border: 1px solid #d9534f;
+            color: #a94442;
+        }
+
+        .homework-task {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--fenomen-lightgray, #eaeaea);
+        }
+
+        .homework-task:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .video-placeholder {
+            background-color: #f0f0f0;
+            border: 1px dashed #ccc;
+            padding: 3rem 1rem;
+            text-align: center;
+            color: #777;
+            border-radius: var(--border-radius-md, 8px);
+            font-size: 1.1em;
+        }
+
+        .lesson-img {
+            max-width: 400px;
+            margin: 1rem auto;
+            border: 1px solid var(--border-color, #dee2e6);
+            border-radius: var(--border-radius-sm, 4px);
+        }
+
+        .diagram-caption {
+            text-align: center;
+            font-style: italic;
+            color: #555;
+            margin-top: -0.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="/img/common/logo.png" alt="Феномен Шахматная школа" class="logo-img">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/index.html">Главная</a></li>
+                    <li><a href="/lessons/" class="active">Уроки</a></li>
+                    <li><a href="/index.html#about">О нас</a></li>
+                    <li><a href="/index.html#contact">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="lesson-container layout-with-right-sidebar">
+        <main class="lesson-content">
+            <div class="brand-element brand-circle" style="top: 50px; right: 30px;"></div>
+            <div class="brand-element brand-cross" style="bottom: 100px; left: 20px;"></div>
+
+            <div class="lesson-header">
+                <div class="breadcrumbs">
+                    <a href="/index.html">Главная</a> >
+                    <a href="/course/1/">Курс: Основы тактики</a> >
+                    <span>Полная (абсолютная) связка</span>
+                </div>
+                <h1>Полная (абсолютная) связка</h1>
+                <div class="lesson-meta-header">
+                    <div class="author">
+                        <span>Автор: Давран Сабиров</span>
+                    </div>
+                    <div class="date">Опубликовано: 25.05.2025</div>
+                </div>
+            </div>
+
+            <section id="introduction" class="lesson-section">
+                <p class="introduction-text">
+                    Связка — это мощный тактический прием, ограничивающий подвижность фигуры соперника. Сегодня мы
+                    разберем самый строгий её вид — полную или абсолютную связку.
+                </p>
+            </section>
+
+            <section id="video-lesson" class="lesson-section">
+                <h2>Видеоурок</h2>
+                <div class="video-placeholder">
+                    <p><i class="fa-solid fa-clapperboard"></i> Видеоурок по этой теме скоро появится!</p>
+                </div>
+            </section>
+
+            <section id="what-is-absolute-pin" class="lesson-section">
+                <h2>Что такое полная (абсолютная) связка?</h2>
+                <p>
+                    <strong>Связка</strong> в шахматах возникает, когда дальнобойная фигура (ферзь, ладья или слон)
+                    атакует фигуру соперника, за которой на линии атаки (вертикали, горизонтали или диагонали) находится
+                    другая, более ценная фигура или важное поле.
+                </p>
+                <p>В любой связке участвуют три ключевых элемента:</p>
+                <ul>
+                    <li><strong>Связывающая фигура:</strong> Ваша дальнобойная фигура, которая создает связку.</li>
+                    <li><strong>Связанная фигура:</strong> Фигура соперника, которая находится под атакой и прикрывает
+                        собой более важный объект.</li>
+                    <li><strong>Прикрываемый объект:</strong> Более ценная фигура или важное поле, находящееся за
+                        связанной фигурой.</li>
+                </ul>
+                <p>
+                    <strong>Полная (абсолютная) связка</strong> — это особый случай, когда прикрываемым объектом
+                    является <strong>король</strong> соперника. В такой ситуации связанная фигура полностью теряет свою
+                    подвижность, так как её ход открыл бы шах королю, что запрещено правилами шахмат.
+                    Она может двигаться только вдоль линии связки, если это не открывает короля.
+                </p>
+            </section>
+
+            <section id="pin-diagram-section" class="lesson-section">
+                <h2>Схема абсолютной связки</h2>
+                <div class="interactive-pin-diagram variant-1">
+                    <div class="diagram-board">
+                        <div class="square black" data-square="d8"></div>
+                        <div class="square white" data-square="e8" data-piece="♚" data-role="king">♚</div>
+                        <div class="square black" data-square="f8"></div>
+                        <div class="square white" data-square="d7"></div>
+                        <div class="square black occupied" data-square="e7" data-piece="♞" data-role="pinned-knight">♞
+                        </div>
+                        <div class="square white" data-square="f7"></div>
+                        <div class="square black" data-square="d6"></div>
+                        <div class="square white" data-square="e6"></div>
+                        <div class="square black" data-square="f6"></div>
+                        <div class="square white" data-square="d5"></div>
+                        <div class="square black" data-square="e5"></div>
+                        <div class="square white" data-square="f5"></div>
+                        <div class="square black" data-square="d1"></div>
+                        <div class="square white occupied" data-square="e1" data-piece="♖" data-role="pinning-rook">♖
+                        </div>
+                        <div class="square black" data-square="f1"></div>
+
+                        <div class="line-of-attack" id="line-of-attack-v1"></div>
+                    </div>
+                    <div class="diagram-info" id="info-box-v1">
+                        Наведите или кликните на фигуру, чтобы узнать ее роль.
+                    </div>
+                </div>
+
+                <style>
+                    .interactive-pin-diagram.variant-1 {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        padding: 20px;
+                        background-color: #f7f7f7;
+                        border-radius: 8px;
+                        max-width: 224px;
+                        margin: 20px auto;
+                        font-family: 'Roboto', sans-serif;
+                        border: 1px solid #e0e0e0;
+                    }
+
+                    .diagram-board {
+                        display: grid;
+                        grid-template-columns: repeat(3, 60px);
+                        grid-template-rows: repeat(5, 60px);
+                        border: 2px solid #333;
+                        position: relative;
+                        /* Важно для позиционирования линии атаки */
+                    }
+
+                    .square {
+                        width: 60px;
+                        height: 60px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 38px;
+                        position: relative;
+                        box-sizing: border-box;
+                    }
+
+                    .square.black {
+                        background-color: #b58863;
+                    }
+
+                    .square.white {
+                        background-color: #f0d9b5;
+                    }
+
+                    .square[data-piece="♚"] {
+                        color: #000000;
+                    }
+
+                    .square[data-piece="♞"] {
+                        color: #000000;
+                    }
+
+                    .square[data-piece="♖"] {
+                        color: #333333;
+                    }
+
+                    /* Темная ладья для видимости */
+
+                    .square.occupied {
+                        cursor: pointer;
+                    }
+
+                    .square.highlight-pinning {
+                        box-shadow: 0 0 10px 3px gold;
+                        z-index: 10;
+                    }
+
+                    .square.highlight-pinned {
+                        box-shadow: 0 0 10px 3px red;
+                        z-index: 10;
+                    }
+
+                    .square.highlight-king {
+                        box-shadow: 0 0 10px 3px orange;
+                        z-index: 10;
+                    }
+
+                    .line-of-attack {
+                        position: absolute;
+                        /* Теперь позиционируется относительно .diagram-board */
+                        background-color: rgba(255, 0, 0, 0.35);
+                        width: 6px;
+                        transform-origin: top center;
+                        transition: height 0.2s ease, top 0.2s ease;
+                        z-index: 5;
+                        display: none;
+                        border-radius: 3px;
+                    }
+
+                    .diagram-info {
+                        margin-top: 15px;
+                        padding: 10px;
+                        background-color: #fff;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        text-align: center;
+                        min-height: 40px;
+                        line-height: 1.4;
+                        width: calc(100% - 40px);
+                        box-sizing: border-box;
+                        font-size: 0.9em;
+                    }
+                </style>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const diagramV1 = document.querySelector('.interactive-pin-diagram.variant-1');
+                        if (!diagramV1) return;
+
+                        const squaresV1 = diagramV1.querySelectorAll('.diagram-board .square[data-role]');
+                        const infoBoxV1 = diagramV1.querySelector('#info-box-v1');
+                        const lineOfAttackV1 = diagramV1.querySelector('#line-of-attack-v1');
+
+                        const rookSquare = diagramV1.querySelector('[data-role="pinning-rook"]');
+                        const knightSquare = diagramV1.querySelector('[data-role="pinned-knight"]');
+                        const kingSquare = diagramV1.querySelector('[data-role="king"]');
+
+                        function showInfo(squareElement) {
+                            const role = squareElement.dataset.role;
+                            // Убираем подсветку с других фигур перед добавлением новой
+                            squaresV1.forEach(s => s.className = s.className.replace(/highlight-\w+/, '').trim());
+                            squareElement.classList.add(`highlight-${role.split('-')[0]}`);
+
+                            if ((role === 'pinning-rook' || role === 'pinned-knight' || role === 'king') && rookSquare && kingSquare) {
+                                const kingCenterY = kingSquare.offsetTop + kingSquare.offsetHeight / 2;
+                                const rookCenterY = rookSquare.offsetTop + rookSquare.offsetHeight / 2;
+
+                                const lineTopPosition = Math.min(kingCenterY, rookCenterY);
+                                const lineHeight = Math.abs(rookCenterY - kingCenterY);
+
+                                lineOfAttackV1.style.display = 'block';
+                                lineOfAttackV1.style.top = `${lineTopPosition}px`;
+                                lineOfAttackV1.style.height = `${lineHeight}px`;
+                                // Горизонтальное положение линии (по центру клетки ладьи, т.к. она связывает по вертикали 'e')
+                                // offsetLeft фигуры будет корректен, т.к. линия теперь внутри .diagram-board
+                                lineOfAttackV1.style.left = `${rookSquare.offsetLeft + rookSquare.offsetWidth / 2 - lineOfAttackV1.offsetWidth / 2}px`;
+                            } else {
+                                lineOfAttackV1.style.display = 'none'; // Скрываем линию, если не одна из ключевых фигур
+                            }
+
+                            switch (role) {
+                                case 'pinning-rook':
+                                    infoBoxV1.innerHTML = '<strong>Белая Ладья (♖)</strong><br>Связывающая фигура. Атакует по вертикали.';
+                                    break;
+                                case 'pinned-knight':
+                                    infoBoxV1.innerHTML = '<strong>Черный Конь (♞)</strong><br>Связанная фигура. Не может уйти с вертикали, так как откроет шах Королю.';
+                                    break;
+                                case 'king':
+                                    infoBoxV1.innerHTML = '<strong>Черный Король (♚)</strong><br>Прикрываемый объект. Из-за него Конь связан.';
+                                    break;
+                                default:
+                                    infoBoxV1.textContent = 'Наведите или кликните на фигуру, чтобы узнать ее роль.';
+                            }
+                        }
+
+                        function hideInfo(squareElement) {
+                            squareElement.className = squareElement.className.replace(/highlight-\w+/, '').trim();
+
+                            let isMouseOverAnotherInteractiveSquare = false;
+                            squaresV1.forEach(s => {
+                                if (s.matches(':hover') && s.dataset.role) {
+                                    isMouseOverAnotherInteractiveSquare = true;
+                                }
+                            });
+
+                            if (!isMouseOverAnotherInteractiveSquare) {
+                                infoBoxV1.textContent = 'Наведите или кликните на фигуру, чтобы узнать ее роль.';
+                                lineOfAttackV1.style.display = 'none';
+                            }
+                        }
+
+                        squaresV1.forEach(square => {
+                            square.addEventListener('mouseenter', () => showInfo(square));
+                            square.addEventListener('click', () => showInfo(square)); // Добавлено для касаний/кликов
+                            square.addEventListener('mouseleave', () => hideInfo(square));
+                        });
+                    });
+                </script>
+            </section>
+
+
+            <section id="homework" class="lesson-section">
+                <h2>Проверь себя: Квиз</h2>
+                <div class="homework-container quiz-container">
+
+                    <div id="quiz-question-pin1" class="homework-task">
+                        <div class="quiz-question-title">
+                            <p><strong>Вопрос 1:</strong> Какие фигуры могут создавать связку?</p>
+                        </div>
+                        <div class="task-variants">
+                            <label class="radio-label">
+                                <input type="radio" name="q_pin1" value="a">
+                                <span>A) Только конь и пешка</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="q_pin1" value="b" data-correct="true">
+                                <span>B) Только дальнобойные фигуры (ферзь, ладья, слон)</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="q_pin1" value="c">
+                                <span>C) Любая фигура, включая короля</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="q_pin1" value="d">
+                                <span>D) Только ферзь, так как он самый сильный</span>
+                            </label>
+                        </div>
+                        <button class="btn btn-primary check-quiz-btn" data-question="q_pin1">Проверить ответ</button>
+                        <div class="quiz-feedback" id="feedback-q_pin1"></div>
+                    </div>
+
+                    <div id="quiz-question-pin2" class="homework-task">
+                        <div class="quiz-question-title">
+                            <p><strong>Вопрос 2:</strong> При полной (абсолютной) связке, какая фигура всегда является
+                                прикрываемой?</p>
+                        </div>
+                        <div class="task-variants">
+                            <label class="radio-label">
+                                <input type="radio" name="q_pin2" value="a">
+                                <span>A) Ферзь</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="q_pin2" value="b">
+                                <span>B) Любая тяжелая фигура (ферзь или ладья)</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="q_pin2" value="c" data-correct="true">
+                                <span>C) Король</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="q_pin2" value="d">
+                                <span>D) Незанятое ключевое поле</span>
+                            </label>
+                        </div>
+                        <button class="btn btn-primary check-quiz-btn" data-question="q_pin2">Проверить ответ</button>
+                        <div class="quiz-feedback" id="feedback-q_pin2"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="homework" class="lesson-section">
+                <h2>Домашнее задание</h2>
+                <div class="homework-container">
+                    <div class="homework-intro">
+                        <p>Для закрепления темы, решите следующие задачи по ссылке:</p>
+                    </div>
+                    <div class="homework-links">
+                        <a href="https://lichess.org/study/l8WAo5at" class="homework-link" target="_blank">
+                            <i class="fa-solid fa-link"></i> Перейти к задачам
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="lesson-feedback">
+                <h2>Обратная связь</h2>
+                <p>Остались вопросы по уроку? Задайте их преподавателю!</p>
+                <form class="feedback-form">
+                    <div class="form-group">
+                        <label for="feedback-message">Ваш вопрос или комментарий</label>
+                        <textarea id="feedback-message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
+            </section>
+
+            <section class="lesson-share">
+                <h3>Поделиться уроком</h3>
+                <div class="share-buttons">
+                    <a href="#" class="share-button vk"><i class="fa-brands fa-vk"></i> ВКонтакте</a>
+                    <a href="#" class="share-button telegram"><i class="fa-brands fa-telegram"></i> Telegram</a>
+                    <a href="#" class="share-button whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </section>
+        </main>
+        <aside class="lesson-sidebar course-playlist-sidebar">
+            <div class="sidebar-header">
+                <h3>Основы тактики</h3>
+                <button class="sidebar-toggle-mobile"><span></span><span></span><span></span></button>
+            </div>
+            <nav class="sidebar-navigation">
+                <ul class="lesson-list">
+                    <li><a href="/course/1/lesson/0/">Двойной удар (Введение)</a></li>
+                    <li><a href="/course/1/lesson/1/">Вилка: пешка</a></li>
+                    <li><a href="/course/1/lesson/2/">Вилка: конь</a></li>
+                    <li><a href="/course/1/lesson/3/">Двойной удар: Идея 1</a></li>
+                    <li><a href="/course/1/lesson/4/">Двойной удар: Идея 2</a></li>
+                    <li><a href="/course/1/lesson/5/">Двойной удар: Идея 3</a></li>
+                    <li><a href="/course/1/lesson/6/">Двойной удар: Защита</a></li>
+                    <li class="active"><a href="#">Полная (абсолютная) связка</a></li>
+                    <li><a href="/course/1/lesson/8/">Неполная (относительная) связка</a></li>
+                    <li><a href="/course/1/lesson/9/">Связка: Идея 1 (скоро)</a></li>
+                    <li><a href="/course/1/lesson/10/">Связка: Идея 2 (скоро)</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo"><img src="/img/common/logo.png" alt="Феномен Шахматная школа">
+                    <p>Обучение шахматам для всех уровней</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="/index.html">Главная</a></li>
+                        <li><a href="/lessons/">Уроки</a></li>
+                        <li><a href="/index.html#about">О нас</a></li>
+                        <li><a href="/index.html#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Социальные сети</h4>
+                    <div class="social-icons"><a href="#" target="_blank"><i class="fa-brands fa-vk"></i></a><a href="#"
+                            target="_blank"><i class="fa-brands fa-telegram"></i></a><a href="#" target="_blank"><i
+                                class="fa-brands fa-youtube"></i></a></div>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Подпишитесь на новости</h4>
+                    <form class="newsletter-form"><input type="email" placeholder="Ваш email" required><button
+                            type="submit" class="btn btn-small">Подписаться</button></form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Феномен Шахматная школа. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/sidebar-navigation.js"></script>
+    <script src="/js/lesson-page.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const checkButtons = document.querySelectorAll('.check-quiz-btn');
+            checkButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const questionName = this.dataset.question;
+                    const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+                    const feedbackDiv = document.getElementById(`feedback-${questionName}`);
+                    if (selectedOption) {
+                        const isCorrect = selectedOption.dataset.correct === 'true';
+                        if (isCorrect) {
+                            feedbackDiv.textContent = 'Верно! ✅';
+                            feedbackDiv.className = 'quiz-feedback correct';
+                        } else {
+                            feedbackDiv.textContent = 'Неверно. Попробуйте еще раз. ❌';
+                            feedbackDiv.className = 'quiz-feedback incorrect';
+                        }
+                    } else {
+                        feedbackDiv.textContent = 'Пожалуйста, выберите ответ.';
+                        feedbackDiv.className = 'quiz-feedback incorrect';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

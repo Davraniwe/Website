@@ -1,0 +1,772 @@
+/* Обновленный CSS для страницы урока в стиле Феномен (lesson-page.css) */
+
+/* Брендовые цвета Феномен Шахматная школа */
+:root {
+  --fenomen-blue: #249efa; /* Голубой */
+  --fenomen-yellow: #ffdb58; /* Желтый */
+  --fenomen-darkgray: #202020; /* Темно-серый */
+  --fenomen-lightgray: #eaeaea; /* Светло-серый */
+  --fenomen-white: #ffffff;
+  --fenomen-accent: #c52f2f; /* Акцентный красный для ходов */
+
+  /* Дополнительные свойства */
+  --header-height: 70px;
+  --transition-speed: 0.3s;
+  --border-radius: 8px;
+  --sidebar-max-height: 500px; /* Для мобильного меню */
+}
+
+/* =================== БАЗОВЫЕ СТИЛИ =================== */
+body {
+  font-family: "Cera Round Pro", "Roboto", sans-serif;
+  color: var(--fenomen-darkgray);
+  background-color: var(--fenomen-white);
+  line-height: 1.6;
+}
+
+/* Стилизация выделения текста */
+::selection {
+  background-color: rgba(36, 158, 250, 0.2);
+}
+
+/* =================== СТРУКТУРА УРОКА =================== */
+.lesson-container {
+  display: flex;
+  margin: 1.5rem auto 2rem;
+  max-width: 1400px;
+  padding: 0 1.5rem;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.lesson-section {
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.subsection {
+  margin-bottom: 0.5rem;
+}
+
+/* =================== БОКОВАЯ НАВИГАЦИЯ =================== */
+.lesson-sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background-color: var(--fenomen-white);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-right: 1.5rem;
+  position: sticky;
+  top: calc(var(--header-height) + 10px);
+  align-self: flex-start;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  transition: top var(--transition-speed) ease;
+  padding-bottom: 1rem;
+  border: 1px solid var(--fenomen-lightgray);
+  z-index: 100;
+}
+
+.sidebar-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--fenomen-lightgray);
+  background-color: var(--fenomen-blue);
+  color: var(--fenomen-white);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-header h3 {
+  margin-bottom: 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.sidebar-toggle-mobile {
+  display: none;
+  background: none;
+  border: none;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1001;
+}
+
+.sidebar-toggle-mobile span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background-color: var(--fenomen-white);
+  margin: 4px auto;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Анимация гамбургер-меню */
+.sidebar-toggle-mobile.active span:nth-child(1) {
+  transform: rotate(-45deg) translate(-4px, 4px);
+}
+
+.sidebar-toggle-mobile.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.sidebar-toggle-mobile.active span:nth-child(3) {
+  transform: rotate(45deg) translate(-4px, -4px);
+}
+
+/* Стили для навигации в сайдбаре */
+.sidebar-navigation {
+  padding: 1rem;
+}
+
+.sidebar-navigation ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-navigation ul ul {
+  padding-left: 1.2rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.sidebar-navigation ul ul::before {
+  content: "";
+  position: absolute;
+  left: 0.3rem;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--fenomen-lightgray);
+}
+
+.sidebar-navigation li {
+  margin-bottom: 0.25rem;
+}
+
+.sidebar-navigation a {
+  display: block;
+  padding: 0.4rem 0.5rem;
+  color: var(--fenomen-darkgray);
+  font-size: 0.9rem;
+  border-radius: 4px;
+  transition: all var(--transition-speed) ease;
+  text-decoration: none;
+}
+
+.sidebar-navigation a:hover {
+  background-color: rgba(36, 158, 250, 0.1);
+  color: var(--fenomen-blue);
+}
+
+.sidebar-navigation a.active {
+  background-color: var(--fenomen-blue);
+  color: var(--fenomen-white);
+  font-weight: 500;
+}
+
+/* Стили для субменю на мобильных */
+.submenu-item {
+  padding-left: 20px;
+  position: relative;
+}
+
+.submenu-item a {
+  color: #555;
+  font-size: 0.9em;
+}
+
+.submenu-item::before {
+  content: "→";
+  position: absolute;
+  left: 5px;
+  top: 8px;
+  color: #777;
+  font-size: 0.8em;
+}
+
+/* =================== ОСНОВНОЙ КОНТЕНТ =================== */
+.lesson-content {
+  flex: 1;
+  background-color: var(--fenomen-white);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  border: 1px solid var(--fenomen-lightgray);
+}
+
+.lesson-header {
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--fenomen-lightgray);
+  padding-bottom: 1rem;
+}
+
+/* Хлебные крошки */
+.breadcrumbs {
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.breadcrumbs a {
+  color: #777;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  color: var(--fenomen-blue);
+}
+
+/* Основной заголовок */
+h1 {
+  font-size: 2.25rem;
+  margin-bottom: 0.75rem;
+  font-weight: bold;
+  color: var(--fenomen-darkgray);
+}
+
+/* Метаданные урока */
+.lesson-meta-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+}
+
+.date {
+  color: #777;
+}
+
+/* Вводный текст */
+.introduction-text {
+  font-size: 1.15rem;
+  color: var(--fenomen-darkgray);
+  border-left: 3px solid var(--fenomen-blue);
+  padding-left: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Заголовки разделов */
+h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.75rem;
+  color: var(--fenomen-darkgray);
+  font-weight: bold;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 3px;
+  background-color: var(--fenomen-blue);
+}
+
+h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: var(--fenomen-darkgray);
+  font-weight: bold;
+}
+
+/* Параграфы */
+p {
+  margin-bottom: 0.75rem;
+}
+
+/* =================== ШАХМАТНЫЕ ДИАГРАММЫ =================== */
+.chess-diagram {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin: 1rem auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: var(--fenomen-lightgray);
+}
+
+.chess-diagram iframe {
+  width: 100%;
+  height: 500px;
+  border: none;
+  display: block;
+}
+
+/* Описания диаграмм и примеров */
+.diagram-caption,
+.example-description {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--fenomen-darkgray);
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+  padding: 0 1rem;
+}
+
+/* =================== ШАХМАТНЫЕ ХОДЫ =================== */
+/* Стили для шахматных ходов и последовательностей */
+.chess-move {
+  font-weight: 700;
+  color: var(--fenomen-accent);
+  font-family: "Roboto Mono", monospace;
+  padding: 0 3px;
+  background-color: rgba(255, 245, 224, 0.6);
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 2px;
+}
+
+.move-sequence {
+  background-color: #f8f3e8;
+  padding: 8px 12px;
+  border-left: 3px solid var(--fenomen-accent);
+  margin: 15px 0;
+  border-radius: 0 4px 4px 0;
+  font-family: "Roboto Mono", monospace;
+  line-height: 1.6;
+}
+
+.move-description {
+  margin-top: 8px;
+  font-style: italic;
+  color: #555;
+  font-size: 0.95em;
+}
+
+/* Стили для важных заметок */
+.important-note {
+  background-color: #f0f7ff;
+  border-left: 4px solid #3498db;
+  padding: 12px 15px;
+  margin: 20px 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.important-note h4 {
+  margin-top: 0;
+  color: #3498db;
+}
+
+/* =================== КОМПОНЕНТЫ УРОКА =================== */
+/* Видео-контейнер */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-caption {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.5rem;
+}
+
+/* Стилизация для нумерованных списков */
+.numbered-list {
+  counter-reset: item;
+  list-style-type: none;
+  padding-left: 0;
+  margin: 1rem 0;
+}
+
+.numbered-list li {
+  counter-increment: item;
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 2rem;
+}
+
+.numbered-list li::before {
+  content: counter(item);
+  background-color: var(--fenomen-blue);
+  color: var(--fenomen-white);
+  font-weight: 500;
+  font-size: 0.8rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 1.5rem;
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+}
+
+/* Итоговый блок */
+.summary-box {
+  background-color: var(--fenomen-lightgray);
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  margin: 1rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.summary-box::after {
+  content: "";
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--fenomen-yellow);
+  opacity: 0.2;
+}
+
+.summary-box p {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+/* Домашнее задание */
+.homework-container {
+  background-color: var(--fenomen-lightgray);
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  margin: 1rem 0;
+}
+
+.homework-intro {
+  margin-bottom: 1rem;
+}
+
+.homework-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.homework-link {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  background-color: var(--fenomen-white);
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  color: var(--fenomen-darkgray);
+  font-weight: 500;
+  transition: all var(--transition-speed) ease;
+}
+
+.homework-link:hover {
+  background-color: rgba(36, 158, 250, 0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.homework-link i {
+  margin-right: 0.75rem;
+  color: var(--fenomen-blue);
+}
+
+/* Форма обратной связи */
+.lesson-feedback {
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.feedback-form {
+  background-color: var(--fenomen-lightgray);
+  padding: 1.25rem;
+  border-radius: var(--border-radius);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  resize: vertical;
+  font-family: inherit;
+}
+
+.form-group textarea:focus {
+  border-color: var(--fenomen-blue);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(36, 158, 250, 0.2);
+}
+
+/* Кнопки "Поделиться" */
+.lesson-share {
+  margin-top: 2rem;
+}
+
+.share-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.share-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all var(--transition-speed) ease;
+}
+
+.share-button.vk {
+  background-color: #4c75a3;
+  color: white;
+}
+
+.share-button.telegram {
+  background-color: #0088cc;
+  color: white;
+}
+
+.share-button.whatsapp {
+  background-color: #25d366;
+  color: white;
+}
+
+.share-button i {
+  margin-right: 0.5rem;
+}
+
+.share-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Кнопки */
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  background-color: var(--fenomen-blue);
+  color: var(--fenomen-white);
+  font-weight: 500;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #1e8ae0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background-color: var(--fenomen-blue);
+  color: var(--fenomen-white);
+}
+
+.btn-secondary {
+  background-color: var(--fenomen-white);
+  color: var(--fenomen-blue);
+  border: 1px solid var(--fenomen-blue);
+}
+
+.btn-secondary:hover {
+  background-color: var(--fenomen-blue);
+  color: var(--fenomen-white);
+}
+
+.btn-small {
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+}
+
+/* Брендовые декоративные элементы */
+.brand-element {
+  position: absolute;
+  z-index: 0;
+  opacity: 0.3;
+}
+
+.brand-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--fenomen-yellow);
+}
+
+.brand-cross {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(var(--fenomen-blue), var(--fenomen-blue)) center
+      center/10px 100% no-repeat,
+    linear-gradient(var(--fenomen-blue), var(--fenomen-blue)) center center/100%
+      10px no-repeat;
+  transform: rotate(45deg);
+}
+
+/* =================== АДАПТИВНОСТЬ =================== */
+@media (max-width: 992px) {
+  .lesson-container {
+    flex-direction: column;
+  }
+
+  .lesson-sidebar {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 1.5rem;
+    position: sticky;
+    top: var(--header-height);
+    z-index: 100;
+    max-height: none;
+    border-radius: var(--border-radius);
+  }
+
+  .sidebar-toggle-mobile {
+    display: block;
+  }
+
+  .sidebar-navigation {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: var(--fenomen-white);
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border: 1px solid var(--fenomen-lightgray);
+    border-top: none;
+    padding: 0;
+  }
+
+  .sidebar-navigation.active {
+    max-height: var(--sidebar-max-height);
+    overflow-y: auto;
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  .chess-diagram iframe {
+    height: 350px;
+  }
+
+  .chess-diagram {
+    max-width: 600px;
+  }
+
+  .window-visualization {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .lesson-container {
+    padding: 0 1rem;
+  }
+
+  .lesson-content {
+    padding: 1rem;
+  }
+
+  .lesson-meta-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .chess-diagram iframe {
+    height: 300px;
+  }
+
+  .chess-diagram {
+    max-width: 450px;
+  }
+
+  .king-position {
+    width: 100px;
+    height: 100px;
+  }
+
+  .king-icon {
+    font-size: 32px;
+  }
+
+  .share-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 576px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .introduction-text {
+    font-size: 1rem;
+  }
+
+  .chess-diagram iframe {
+    height: 250px;
+  }
+
+  .chess-move {
+    padding: 0 2px;
+    margin: 0 1px;
+  }
+
+  .move-sequence {
+    padding: 6px 10px;
+  }
+
+  .important-note {
+    padding: 10px 12px;
+  }
+}
+
+

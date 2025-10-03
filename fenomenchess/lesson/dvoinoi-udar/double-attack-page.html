@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шахматная Академия | Двойной удар</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/lesson-page.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="../../img/common/logo.svg" alt="Шахматная Академия" class="logo-img">
+                <span class="logo-text">Шахматная Академия</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../../index.html">Главная</a></li>
+                    <li><a href="../../lessons/" class="active">Уроки</a></li>
+                    <li><a href="../../index.html#about">О нас</a></li>
+                    <li><a href="../../index.html#contact">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="lesson-container">
+        <aside class="lesson-sidebar">
+            <div class="sidebar-header">
+                <h3>Содержание урока</h3>
+                <button class="sidebar-toggle-mobile">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <nav class="sidebar-navigation">
+                <ul>
+                    <li><a href="#introduction" class="active">Введение</a></li>
+                    <li><a href="#video-lesson">Видеоурок</a></li>
+                    <li><a href="#double-attack-concept">Понятие двойного удара</a></li>
+                    <li><a href="#double-attack-types">Типы двойного удара</a>
+                        <ul>
+                            <li><a href="#fork">Вилка</a></li>
+                            <li><a href="#pin">Связка</a></li>
+                            <li><a href="#skewer">Шпилька</a></li>
+                            <li><a href="#discovered-attack">Открытое нападение</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#practical-examples">Практические примеры</a></li>
+                    <li><a href="#summary">Итоги</a></li>
+                    <li><a href="#homework">Домашнее задание</a></li>
+                </ul>
+            </nav>
+            <div class="lesson-meta-sidebar">
+                <div class="lesson-level intermediate">Средний уровень</div>
+                <div class="lesson-duration"><img src="../../img/common/icons/clock.svg" alt="Длительность"> 40 минут
+                </div>
+                <div class="lesson-exercises"><img src="../../img/common/icons/tasks.svg" alt="Задания"> 8 заданий</div>
+            </div>
+            <div class="lesson-navigation">
+                <a href="../debyutnye-principy/" class="prev-lesson">
+                    <img src="../../img/common/icons/arrow-left.svg" alt="Предыдущий урок">
+                    <span>Дебютные принципы</span>
+                </a>
+                <a href="../svyazka/" class="next-lesson">
+                    <span>Связка</span>
+                    <img src="../../img/common/icons/arrow-right.svg" alt="Следующий урок">
+                </a>
+            </div>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="breadcrumbs">
+                    <a href="../../index.html">Главная</a> &gt;
+                    <a href="../../lessons/">Уроки</a> &gt;
+                    <span>Двойной удар</span>
+                </div>
+                <h1>Двойной удар</h1>
+                <div class="lesson-meta-header">
+                    <div class="author">
+                        <img src="../../img/common/instructors/instructor2.jpg" alt="Автор">
+                        <span>Автор: Мария Иванова</span>
+                    </div>
+                    <div class="date">Опубликовано: 22 января 2025</div>
+                    <div class="views"><img src="../../img/common/icons/eye.svg" alt="Просмотры"> 985</div>
+                </div>
+            </div>
+
+            <section id="introduction" class="lesson-section">
+                <p class="introduction-text">
+                    Двойной удар — это один из самых эффективных тактических приёмов в шахматах.
+                    Он позволяет атаковать сразу две цели противника одновременно, создавая угрозу,
+                    которую невозможно парировать одним ходом.
+                </p>
+                <iframe width="600" height="371" src="https://lichess.org/study/embed/Cb6ZTv3R/yi0cy6qX#0"
+                    frameborder=0></iframe>
+
+
+                <iframe width="600" height="571" src="https://lichess.org/study/embed/Cb6ZTv3R/yi0cy6qX#0"
+                    frameborder=0></iframe>
+                <iframe src="https://lichess.org/training/frame?theme=brown&bg=dark"
+                    style="width: 400px; aspect-ratio: 10/11;" allowtransparency="true" frameborder="0"></iframe>
+                <iframe width="600" height="371" src="https://lichess.org/study/embed/JerCua4O/i3iVEN9F#4"
+                    frameborder=0></iframe>
+                <p>
+                    Умение находить и применять двойные удары является важнейшим навыком для шахматиста любого уровня.
+                    В этом уроке мы рассмотрим основные типы двойных ударов и научимся их эффективно использовать в
+                    игре.
+                </p>
+            </section>
+
+            <section id="video-lesson" class="lesson-section">
+                <h2>Видеоурок</h2>
+                <div class="video-container">
+                    <iframe width="100%" height="500"
+                        src="https://www.youtube.com/embed/KIMSRzaEvYY?si=t-OYEbQYfNLC4ZAe" title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <section id="double-attack-concept" class="lesson-section">
+                <h2>Понятие двойного удара</h2>
+                <p>
+                    Двойной удар — это тактический приём, при котором одна фигура атакует сразу две цели противника.
+                    Это может быть нападение на две фигуры противника или атака фигуры и угроза мата.
+                </p>
+                <p>
+                    Эффективность двойного удара заключается в том, что противник не может одним ходом защитить обе
+                    цели.
+                    В результате вы получаете материальное преимущество или создаёте угрозу, которая вынуждает соперника
+                    к невыгодным ходам.
+                </p>
+                <div class="chess-diagram">
+                    <img src="../../img/lessons/dvoinoi-udar/double-attack-concept.png" alt="Концепция двойного удара"
+                        class="lesson-img">
+                    <p class="diagram-caption">На этой диаграмме конь на d5 атакует одновременно ферзя на f6 и ладью на
+                        c7</p>
+                </div>
+            </section>
+
+            <section id="double-attack-types" class="lesson-section">
+                <h2>Типы двойного удара</h2>
+                <p>
+                    Существует несколько типов двойного удара, каждый из которых имеет свои особенности и применение.
+                </p>
+
+                <div id="fork" class="subsection">
+                    <h3>Вилка</h3>
+                    <p>
+                        Вилка — это двойной удар, при котором одна фигура атакует две или более фигур противника
+                        одновременно.
+                        Наиболее часто вилки делают кони, благодаря их особому способу перемещения, но и другие фигуры
+                        могут создавать вилки.
+                    </p>
+                    <div class="chess-diagram">
+                        <img src="../../img/lessons/dvoinoi-udar/fork.png" alt="Вилка" class="lesson-img">
+                        <p class="diagram-caption">Конь на e6 ставит вилку на короля и ферзя</p>
+                    </div>
+                    <p>
+                        Конь особенно эффективен в создании вилок, поскольку может атаковать фигуры, которые не защищают
+                        друг друга.
+                        Пешки также могут создавать вилки, атакуя две фигуры по диагонали.
+                    </p>
+                </div>
+
+                <div id="pin" class="subsection">
+                    <h3>Связка</h3>
+                    <p>
+                        Связка — это ситуация, когда фигура не может двигаться, потому что за ней находится более ценная
+                        фигура или король.
+                        Это также форма двойного удара, так как атакующая фигура нацелена на две фигуры в линии.
+                    </p>
+                    <div class="chess-diagram">
+                        <img src="../../img/lessons/dvoinoi-udar/pin.png" alt="Связка" class="lesson-img">
+                        <p class="diagram-caption">Слон на b4 связывает коня с королём</p>
+                    </div>
+                    <p>
+                        Связка может быть абсолютной (когда за связанной фигурой находится король) или относительной
+                        (когда за связанной фигурой находится другая ценная фигура).
+                    </p>
+                </div>
+
+                <div id="skewer" class="subsection">
+                    <h3>Шпилька</h3>
+                    <p>
+                        Шпилька (или рентген) — это разновидность двойного удара, похожая на связку, но с важным
+                        отличием:
+                        более ценная фигура находится впереди менее ценной фигуры в линии атаки.
+                    </p>
+                    <div class="chess-diagram">
+                        <img src="../../img/lessons/dvoinoi-udar/skewer.png" alt="Шпилька" class="lesson-img">
+                        <p class="diagram-caption">Ладья на e1 атакует короля, и когда он отойдёт, ферзь на e8 будет под
+                            ударом</p>
+                    </div>
+                    <p>
+                        Когда более ценная фигура вынуждена отойти, атакующая фигура получает возможность захватить
+                        вторую цель.
+                    </p>
+                </div>
+
+                <div id="discovered-attack" class="subsection">
+                    <h3>Открытое нападение</h3>
+                    <p>
+                        Открытое нападение — это тактический приём, при котором, передвигая одну фигуру, мы открываем
+                        линию атаки для другой фигуры.
+                        Это создаёт эффект двойного удара, так как противник должен реагировать сразу на две угрозы.
+                    </p>
+                    <div class="chess-diagram">
+                        <img src="../../img/lessons/dvoinoi-udar/discovered-attack.png" alt="Открытое нападение"
+                            class="lesson-img">
+                        <p class="diagram-caption">Ход конём с e4 на c5 открывает атаку слона на ферзя</p>
+                    </div>
+                    <p>
+                        Особенно опасен "двойной шах" — разновидность открытого нападения, при которой король противника
+                        получает шах одновременно от двух фигур.
+                    </p>
+                </div>
+            </section>
+
+            <section id="practical-examples" class="lesson-section">
+                <h2>Практические примеры</h2>
+                <p>
+                    Рассмотрим несколько практических примеров, как двойной удар может быть использован в реальной игре.
+                </p>
+
+                <div class="chess-example">
+                    <div class="chess-diagram">
+                        <img src="../../img/lessons/dvoinoi-udar/example1.png" alt="Пример 1" class="lesson-img">
+                    </div>
+                    <div class="example-description">
+                        <h4>Пример 1: Коневая вилка</h4>
+                        <p>
+                            В этой позиции белые могут сыграть Кd5, атакуя одновременно ферзя на f6 и ладью на c7.
+                            Чёрные не могут защитить обе фигуры одновременно и неизбежно теряют материал.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="chess-example">
+                    <div class="chess-diagram">
+                        <img src="../../img/lessons/dvoinoi-udar/example2.png" alt="Пример 2" class="lesson-img">
+                    </div>
+                    <div class="example-description">
+                        <h4>Пример 2: Открытый шах</h4>
+                        <p>
+                            Белые делают ход Кe6+, создавая шах королю. Когда чёрный король вынужден отойти,
+                            открывается атака слона на ферзя чёрных на d8.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="summary" class="lesson-section">
+                <h2>Итоги</h2>
+                <div class="summary-box">
+                    <p>Ключевые моменты о двойном ударе:</p>
+                    <ol class="numbered-list">
+                        <li>Двойной удар — это тактический приём, при котором одной фигурой атакуются две цели
+                            противника</li>
+                        <li>Основные типы двойного удара: вилка, связка, шпилька и открытое нападение</li>
+                        <li>Конь особенно эффективен для создания вилок благодаря своему необычному способу передвижения
+                        </li>
+                        <li>При обнаружении возможности двойного удара всегда проверяйте, не может ли противник
+                            парировать обе угрозы одним ходом</li>
+                        <li>Регулярно ищите возможности для двойного удара, проверяя положение незащищённых фигур
+                            противника</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="homework" class="lesson-section">
+                <h2>Домашнее задание</h2>
+                <div class="homework-container">
+                    <div class="homework-intro">
+                        <p>Для закрепления материала выполните следующие задания:</p>
+                    </div>
+
+                    <div class="homework-task">
+                        <h4>Задание 1</h4>
+                        <p>Найдите двойной удар для белых:</p>
+                        <div class="chess-diagram">
+                            <img src="../../img/lessons/dvoinoi-udar/task1.png" alt="Задание 1" class="lesson-img">
+                        </div>
+                        <div class="task-variants">
+                            <div class="variant">
+                                <label class="radio-label">
+                                    <input type="radio" name="task1" value="a">
+                                    <span>A) Кd5</span>
+                                </label>
+                            </div>
+                            <div class="variant">
+                                <label class="radio-label">
+                                    <input type="radio" name="task1" value="b">
+                                    <span>Б) Сe4</span>
+                                </label>
+                            </div>
+                            <div class="variant">
+                                <label class="radio-label">
+                                    <input type="radio" name="task1" value="c">
+                                    <span>В) Фd7</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="homework-task">
+                        <h4>Задание 2</h4>
+                        <p>Какой ход создаёт связку?</p>
+                        <div class="chess-diagram">
+                            <img src="../../img/lessons/dvoinoi-udar/task2.png" alt="Задание 2" class="lesson-img">
+                        </div>
+                        <div class="task-variants">
+                            <div class="variant">
+                                <label class="radio-label">
+                                    <input type="radio" name="task2" value="a">
+                                    <span>A) Сf4</span>
+                                </label>
+                            </div>
+                            <div class="variant">
+                                <label class="radio-label">
+                                    <input type="radio" name="task2" value="b">
+                                    <span>Б) Лe1</span>
+                                </label>
+                            </div>
+                            <div class="variant">
+                                <label class="radio-label">
+                                    <input type="radio" name="task2" value="c">
+                                    <span>В) Кc7</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary check-homework">Проверить ответы</button>
+                </div>
+            </section>
+
+            <section class="lesson-feedback">
+                <h2>Обратная связь</h2>
+                <p>Остались вопросы по уроку? Задайте их преподавателю!</p>
+                <form class="feedback-form">
+                    <div class="form-group">
+                        <label for="feedback-message">Ваш вопрос или комментарий</label>
+                        <textarea id="feedback-message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
+            </section>
+
+            <section class="lesson-share">
+                <h3>Поделиться уроком</h3>
+                <div class="share-buttons">
+                    <a href="#" class="share-button vk"><img src="../../img/common/icons/vk.svg" alt="ВКонтакте">
+                        ВКонтакте</a>
+                    <a href="#" class="share-button telegram"><img src="../../img/common/icons/telegram.svg"
+                            alt="Telegram"> Telegram</a>
+                    <a href="#" class="share-button whatsapp"><img src="../../img/common/icons/whatsapp.svg"
+                            alt="WhatsApp"> WhatsApp</a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <section class="related-lessons">
+        <div class="container">
+            <h2>Похожие <span class="highlight">уроки</span></h2>
+            <div class="lessons-grid small-grid">
+                <div class="lesson-card">
+                    <div class="lesson-image">
+                        <img src="../../img/lessons/svyazka/thumbnail.jpg" alt="Связка">
+                        <div class="lesson-level intermediate">Средний</div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Связка</h3>
+                        <div class="lesson-meta">
+                            <span class="lesson-duration"><img src="../../img/common/icons/clock.svg"
+                                    alt="Длительность"> 35 минут</span>
+                        </div>
+                        <a href="../svyazka/" class="btn btn-secondary btn-small">Перейти к уроку</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="lesson-image">
+                        <img src="../../img/lessons/villa/thumbnail.jpg" alt="Вилка">
+                        <div class="lesson-level intermediate">Средний</div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Вилка</h3>
+                        <div class="lesson-meta">
+                            <span class="lesson-duration"><img src="../../img/common/icons/clock.svg"
+                                    alt="Длительность"> 30 минут</span>
+                        </div>
+                        <a href="../villa/" class="btn btn-secondary btn-small">Перейти к уроку</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="lesson-image">
+                        <img src="../../img/lessons/zhertva/thumbnail.jpg" alt="Жертва фигуры">
+                        <div class="lesson-level advanced">Продвинутый</div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Жертва фигуры</h3>
+                        <div class="lesson-meta">
+                            <span class="lesson-duration"><img src="../../img/common/icons/clock.svg"
+                                    alt="Длительность"> 45 минут</span>
+                        </div>
+                        <a href="../zhertva/" class="btn btn-secondary btn-small">Перейти к уроку</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <img src="../../img/common/logo-white.svg" alt="Шахматная Академия">
+                    <p>Обучение шахматам для всех уровней</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="../../index.html">Главная</a></li>
+                        <li><a href="../../lessons/">Уроки</a></li>
+                        <li><a href="../../index.html#about">О нас</a></li>
+                        <li><a href="../../index.html#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Социальные сети</h4>
+                    <div class="social-icons">
+                        <a href="#" target="_blank"><img src="../../img/common/icons/vk.svg" alt="ВКонтакте"></a>
+                        <a href="#" target="_blank"><img src="../../img/common/icons/telegram.svg" alt="Telegram"></a>
+                        <a href="#" target="_blank"><img src="../../img/common/icons/youtube.svg" alt="YouTube"></a>
+                    </div>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Подпишитесь на новости</h4>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Ваш email" required>
+                        <button type="submit" class="btn btn-small">Подписаться</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Шахматная Академия. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/sidebar-navigation.js"></script>
+    <script src="../../js/lesson-page.js"></script>
+</body>
+
+</html>

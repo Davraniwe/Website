@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шахматная Академия | Дебютные принципы</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/lesson-page.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="../../img/common/logo.svg" alt="Шахматная Академия" class="logo-img">
+                <span class="logo-text">Шахматная Академия</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../../index.html">Главная</a></li>
+                    <li><a href="../../lessons/" class="active">Уроки</a></li>
+                    <li><a href="../../index.html#about">О нас</a></li>
+                    <li><a href="../../index.html#contact">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="lesson-container">
+        <aside class="lesson-sidebar">
+            <div class="sidebar-header">
+                <h3>Содержание урока</h3>
+                <button class="sidebar-toggle-mobile">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <nav class="sidebar-navigation">
+                <ul>
+                    <li><a href="#introduction" class="active">Введение</a></li>
+                    <li><a href="#video-lesson">Видеоурок</a></li>
+                    <li><a href="#chess-stages">Стадии шахматной партии</a></li>
+                    <li><a href="#opening-principles">Дебютные принципы</a>
+                        <ul>
+                            <li><a href="#center-control">Захват центра</a></li>
+                            <li><a href="#piece-development">Развитие фигур</a></li>
+                            <li><a href="#king-safety">Безопасность короля</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#summary">Итоги</a></li>
+                    <li><a href="#homework">Домашнее задание</a></li>
+                </ul>
+            </nav>
+            <div class="lesson-meta-sidebar">
+                <div class="lesson-level beginner">Начальный уровень</div>
+                <div class="lesson-duration"><img src="../../img/common/icons/clock.svg" alt="Длительность"> 45 минут</div>
+                <div class="lesson-exercises"><img src="../../img/common/icons/tasks.svg" alt="Задания"> 5 заданий</div>
+            </div>
+            <div class="lesson-navigation">
+                <a href="#" class="prev-lesson disabled">
+                    <img src="../../img/common/icons/arrow-left.svg" alt="Предыдущий урок">
+                    <span>Предыдущий урок</span>
+                </a>
+                <a href="#" class="next-lesson">
+                    <span>Следующий урок</span>
+                    <img src="../../img/common/icons/arrow-right.svg" alt="Следующий урок">
+                </a>
+            </div>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="breadcrumbs">
+                    <a href="../../index.html">Главная</a> &gt;
+                    <a href="../../lessons/">Уроки</a> &gt;
+                    <span>Дебютные принципы</span>
+                </div>
+                <h1>Дебютные принципы</h1>
+                <div class="lesson-meta-header">
+                    <div class="author">
+                        <img src="../../img/common/instructors/instructor1.jpg" alt="Автор">
+                        <span>Автор: Александр Петров</span>
+                    </div>
+                    <div class="date">Опубликовано: 15 января 2025</div>
+                    <div class="views"><img src="../../img/common/icons/eye.svg" alt="Просмотры"> 1,250</div>
+                </div>
+            </div>
+
+            <section id="introduction" class="lesson-section">
+                <p class="introduction-text">
+                    Дебют — это начальная стадия шахматной партии, в которой закладывается фундамент всей игры. 
+                    Правильное понимание дебютных принципов поможет вам создать прочную позицию для дальнейшего развития.
+                </p>
+            </section>
+
+            <section id="video-lesson" class="lesson-section">
+                <h2>Видеоурок</h2>
+                <div class="video-container">
+                    <iframe width="100%" height="500" src="https://www.youtube.com/embed/HZjEQHK1CX8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <section id="chess-stages" class="lesson-section">
+                <h2>Стадии шахматной партии</h2>
+                <p>
+                    Существуют три стадии шахматной партии — у каждой из них свои задачи и цели, которые помогают обыграть соперника. 
+                    Перечислим их:
+                </p>
+                <ol class="numbered-list">
+                    <li><strong>Дебют</strong> — начальная стадия шахматной партии</li>
+                    <li><strong>Миттельшпиль</strong> — середина игры, когда в бою участвует много фигур, включая ферзей</li>
+                    <li><strong>Эндшпиль</strong> — заключительная стадия шахматной партии, когда в бою участвует мало фигур</li>
+                </ol>
+                <p>
+                    Слово «дебют» происходит от французского <em>debut</em> — начало. Дебютом также называют первое выступление начинающего артиста. 
+                    А в шахматах дебют — это ходы, с которых начинается партия. Так как с первых ходов в игре существует множество вариантов развития событий, 
+                    то и дебютов существует большое количество — несколько сотен, каждый из которых подразделяется на множество вариантов.
+                </p>
+                <div class="info-box">
+                    <h4>Знаете ли вы, что...</h4>
+                    <p>Согласно американскому математику Шеннону, число возможных уникальных шахматных партий превышает число атомов в видимой вселенной!</p>
+                </div>
+            </section>
+
+            <section id="opening-principles" class="lesson-section">
+                <h2>Дебютные принципы</h2>
+                <p>
+                    В основе любого дебюта лежат дебютные принципы. Рассмотрим их подробнее:
+                </p>
+
+                <div id="center-control" class="subsection">
+                    <h3>1. Захват центра</h3>
+                    <p>
+                        Первое что вы должны делать в почти всех дебютах – захват центра (поля e4, d4, e5 и d5). 
+                        Контроль в центре развяжет вашим лёгким фигурам руки. Центр проще и лучше захватывать пешками. 
+                        Пешки смогут поддерживать ваши фигуры в атаке, или не давать противнику прохода.
+                    </p>
+                    <div class="chess-diagram">
+                        <img src="../../img/lessons/debyutnye-principy/center-control.png" alt="Захват центра" class="lesson-img">
+                    </div>
+                </div>
+
+                <div id="piece-development" class="subsection">
+                    <h3>2. Развитие легких фигур</h3>
+                    <p>
+                        Второе что необходимо делать это выводить "лёгкие фигуры" (конь и слон). 
+                        Обычно кони выходят на f3, c3, f6, c6. Слоны любят простор, поэтому белые чаще выводят их на c4, а чёрные на c5.
+                    </p>
+                    <div class="chess-diagram">
+                        <img src="../../img/lessons/debyutnye-principy/piece-development.png" alt="Развитие легких фигур" class="lesson-img">
+                    </div>
+                </div>
+
+                <div id="king-safety" class="subsection">
+                    <h3>3. Безопасность короля</h3>
+                    <p>
+                        Когда вы выйдете из дебюта начнётся атака с вашей стороны и стороны противника. 
+                        Выигрывает тот, кто первым доберётся до чужого короля. Дак давайте позаботимся об этом и защитим короля ещё в дебюте. 
+                        Рокировка отлично подходит для этого.
+                    </p>
+                    <div class="chess-diagram">
+                        <img src="../../img/lessons/debyutnye-principy/king-safety.png" alt="Безопасность короля" class="lesson-img">
+                    </div>
+                </div>
+            </section>
+
+            <section id="summary" class="lesson-section">
+                <h2>Итоги</h2>
+                <div class="summary-box">
+                    <p>Подведём вышесказанное под итог:</p>
+                    <ol class="numbered-list">
+                        <li>Сначала выводим центральные пешки</li>
+                        <li>Затем выводим лёгкие фигуры (коней и слонов, сперва желательно коня)</li>
+                        <li>На каждую фигуру тратим один ход</li>
+                        <li>Фигуры должны оказывать давление на центр</li>
+                        <li>Делаем рокировку</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="homework" class="lesson-section">
+                <h2>Домашнее задание</h2>
+                <div class="homework-container">
+                    <div class="homework-intro">
+                        <p>Для закрепления материала выполните следующие задания:</p>
+                    </div>
+
+                    <div class="homework-task">
+                        <h4>Задание 1</h4>
+                        <p>Определите, какой из этих первых ходов лучше захватывает центр:</p>
+                        <div class="task-variants">
+                            <div class="variant">
+                                <div class="chess-diagram small">
+                                    <img src="../../img/lessons/debyutnye-principy/task1-a.png" alt="Вариант А" class="task-img">
+                                </div>
+                                <label class="radio-label">
+                                    <input type="radio" name="task1" value="a">
+                                    <span>A) 1.e4</span>
+                                </label>
+                            </div>
+                            <div class="variant">
+                                <div class="chess-diagram small">
+                                    <img src="../../img/lessons/debyutnye-principy/task1-b.png" alt="Вариант Б" class="task-img">
+                                </div>
+                                <label class="radio-label">
+                                    <input type="radio" name="task1" value="b">
+                                    <span>Б) 1.a4</span>
+                                </label>
+                            </div>
+                            <div class="variant">
+                                <div class="chess-diagram small">
+                                    <img src="../../img/lessons/debyutnye-principy/task1-c.png" alt="Вариант В" class="task-img">
+                                </div>
+                                <label class="radio-label">
+                                    <input type="radio" name="task1" value="c">
+                                    <span>В) 1.h4</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="homework-task">
+                        <h4>Задание 2</h4>
+                        <p>Какой ход соответствует принципу развития легких фигур?</p>
+                        <div class="task-variants">
+                            <div class="variant">
+                                <div class="chess-diagram small">
+                                    <img src="../../img/lessons/debyutnye-principy/task2-a.png" alt="Вариант А" class="task-img">
+                                </div>
+                                <label class="radio-label">
+                                    <input type="radio" name="task2" value="a">
+                                    <span>A) Кf3</span>
+                                </label>
+                            </div>
+                            <div class="variant">
+                                <div class="chess-diagram small">
+                                    <img src="../../img/lessons/debyutnye-principy/task2-b.png" alt="Вариант Б" class="task-img">
+                                </div>
+                                <label class="radio-label">
+                                    <input type="radio" name="task2" value="b">
+                                    <span>Б) Лa3</span>
+                                </label>
+                            </div>
+                            <div class="variant">
+                                <div class="chess-diagram small">
+                                    <img src="../../img/lessons/debyutnye-principy/task2-c.png" alt="Вариант В" class="task-img">
+                                </div>
+                                <label class="radio-label">
+                                    <input type="radio" name="task2" value="c">
+                                    <span>В) Фd2</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary check-homework">Проверить ответы</button>
+                </div>
+            </section>
+
+            <section class="lesson-feedback">
+                <h2>Обратная связь</h2>
+                <p>Остались вопросы по уроку? Задайте их преподавателю!</p>
+                <form class="feedback-form">
+                    <div class="form-group">
+                        <label for="feedback-message">Ваш вопрос или комментарий</label>
+                        <textarea id="feedback-message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
+            </section>
+
+            <section class="lesson-share">
+                <h3>Поделиться уроком</h3>
+                <div class="share-buttons">
+                    <a href="#" class="share-button vk"><img src="../../img/common/icons/vk.svg" alt="ВКонтакте"> ВКонтакте</a>
+                    <a href="#" class="share-button telegram"><img src="../../img/common/icons/telegram.svg" alt="Telegram"> Telegram</a>
+                    <a href="#" class="share-button whatsapp"><img src="../../img/common/icons/whatsapp.svg" alt="WhatsApp"> WhatsApp</a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <section class="related-lessons">
+        <div class="container">
+            <h2>Похожие <span class="highlight">уроки</span></h2>
+            <div class="lessons-grid small-grid">
+                <div class="lesson-card">
+                    <div class="lesson-image">
+                        <img src="../../img/lessons/control-center/thumbnail.jpg" alt="Контроль центра">
+                        <div class="lesson-level intermediate">Средний</div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Контроль центра</h3>
+                        <div class="lesson-meta">
+                            <span class="lesson-duration"><img src="../../img/common/icons/clock.svg" alt="Длительность"> 50 минут</span>
+                        </div>
+                        <a href="#" class="btn btn-secondary btn-small">Перейти к уроку</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="lesson-image">
+                        <img src="../../img/lessons/italian-game/thumbnail.jpg" alt="Итальянская партия">
+                        <div class="lesson-level intermediate">Средний</div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Итальянская партия</h3>
+                        <div class="lesson-meta">
+                            <span class="lesson-duration"><img src="../../img/common/icons/clock.svg" alt="Длительность"> 45 минут</span>
+                        </div>
+                        <a href="#" class="btn btn-secondary btn-small">Перейти к уроку</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="lesson-image">
+                        <img src="../../img/lessons/spanish-game/thumbnail.jpg" alt="Испанская партия">
+                        <div class="lesson-level intermediate">Средний</div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Испанская партия</h3>
+                        <div class="lesson-meta">
+                            <span class="lesson-duration"><img src="../../img/common/icons/clock.svg" alt="Длительность"> 55 минут</span>
+                        </div>
+                        <a href="#" class="btn btn-secondary btn-small">Перейти к уроку</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <img src="../../img/common/logo-white.svg" alt="Шахматная Академия">
+                    <p>Обучение шахматам для всех уровней</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="../../index.html">Главная</a></li>
+                        <li><a href="../../lessons/">Уроки</a></li>
+                        <li><a href="../../index.html#about">О нас</a></li>
+                        <li><a href="../../index.html#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Социальные сети</h4>
+                    <div class="social-icons">
+                        <a href="#" target="_blank"><img src="../../img/common/icons/vk.svg" alt="ВКонтакте"></a>
+                        <a href="#" target="_blank"><img src="../../img/common/icons/telegram.svg" alt="Telegram"></a>
+                        <a href="#" target="_blank"><img src="../../img/common/icons/youtube.svg" alt="YouTube"></a>
+                    </div>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Подпишитесь на новости</h4>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Ваш email" required>
+                        <button type="submit" class="btn btn-small">Подписаться</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Шахматная Академия. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/sidebar-navigation.js"></script>
+    <script src="../../js/lesson-page.js"></script>
+</body>
+</html>

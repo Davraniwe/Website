@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Феномен | Двойной удар: Идея 1</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/lesson-page.css">
+    <link rel="stylesheet" href="/css/custom-sidebar-playlist.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Стили для Квиза (если будут добавляться на другие страницы) */
+        .quiz-question-title {
+            font-size: 1.1em;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .task-variants {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .radio-label {
+            display: block;
+            padding: 0.75rem 1rem;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: var(--border-radius-md, 8px);
+            cursor: pointer;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .radio-label:hover {
+            border-color: var(--fenomen-blue, #249efa);
+            background-color: rgba(36, 158, 250, 0.05);
+        }
+
+        .radio-label input[type="radio"] {
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .check-quiz-btn {
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-feedback {
+            margin-top: 10px;
+            padding: 0.75rem;
+            border-radius: var(--border-radius-sm, 4px);
+            font-weight: 500;
+        }
+
+        .quiz-feedback.correct {
+            background-color: #e6ffed;
+            border: 1px solid #5cb85c;
+            color: #3c763d;
+        }
+
+        .quiz-feedback.incorrect {
+            background-color: #f9e9e9;
+            border: 1px solid #d9534f;
+            color: #a94442;
+        }
+
+        .homework-task {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--fenomen-lightgray, #eaeaea);
+        }
+
+        .homework-task:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .video-placeholder {
+            background-color: #f0f0f0;
+            border: 1px dashed #ccc;
+            padding: 3rem 1rem;
+            text-align: center;
+            color: #777;
+            border-radius: var(--border-radius-md, 8px);
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="/img/common/logo.png" alt="Феномен Шахматная школа" class="logo-img">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/index.html">Главная</a></li>
+                    <li><a href="/lessons/" class="active">Уроки</a></li>
+                    <li><a href="/index.html#about">О нас</a></li>
+                    <li><a href="/index.html#contact">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="lesson-container layout-with-right-sidebar">
+        <main class="lesson-content">
+            <div class="brand-element brand-circle" style="top: 50px; right: 30px;"></div>
+            <div class="brand-element brand-cross" style="bottom: 100px; left: 20px;"></div>
+
+            <div class="lesson-header">
+                <div class="breadcrumbs">
+                    <a href="/index.html">Главная</a> >
+                    <a href="/course/1/">Курс: Основы тактики</a> >
+                    <span>Двойной удар: Идея 1</span>
+                </div>
+                <h1>Двойной удар: Идея 1</h1>
+                <div class="lesson-meta-header">
+                    <div class="author">
+                        <span>Автор: Давран Сабиров</span>
+                    </div>
+                    <div class="date">Опубликовано: [Дата]</div>
+                </div>
+            </div>
+
+            <section id="introduction" class="lesson-section">
+                <p class="introduction-text">
+                    Рассмотрим первую ключевую идею двойного удара: атака на открытого короля одновременно с нападением
+                    на незащищенную или слабозащищенную фигуру соперника. Часто это приводит к немедленному выигрышу
+                    материала.
+                </p>
+            </section>
+
+            <section id="video-lesson" class="lesson-section">
+                <h2>Видеоурок</h2>
+                <div class="video-placeholder">
+                    <p><i class="fa-solid fa-clapperboard"></i> Видеоурок по этой теме скоро появится!</p>
+                </div>
+            </section>
+
+            <section id="concept-details" class="lesson-section">
+                <h2>Суть идеи №1</h2>
+                <p>
+                    Главная уязвимость в таких позициях – это король, лишенный пешечного прикрытия. Одновременно с этим
+                    мы ищем другую фигуру противника, которая:
+                </p>
+                <ul>
+                    <li>Не защищена вовсе.</li>
+                    <li>Слабо защищена (на неё уже есть нападения и такое же количество защит).</li>
+                    <li>Менее ценна, чем фигура, которую мы можем выиграть, заставив короля уйти из-под шаха.</li>
+                </ul>
+                <p>Успешное применение этой идеи требует хорошего глазомера и умения быстро оценивать безопасность
+                    короля соперника.</p>
+            </section>
+
+            <section id="homework" class="lesson-section">
+                <h2>Проверь себя: Квиз</h2>
+                <div class="homework-container quiz-container">
+
+                    <div id="quiz-question-1" class="homework-task"></div>
+
+                    <div class="quiz-question-title">
+                        <p><strong>Вопрос 1:</strong> Каковы основные цели в 1 идее двойного удара?</p>
+                    </div>
+                    <div class="task-variants">
+                        <label class="radio-label">
+                            <input type="radio" name="q_idea1" value="a">
+                            <span>A) Две любые незащищенные фигуры.</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q_idea1" value="b" data-correct="true">
+                            <span>B) Открытый король и другая фигура (незащищенная или слабозащищенная).</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q_idea1" value="c">
+                            <span>C) Две тяжелые, защищенные фигуры.</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q_idea1" value="d">
+                            <span>D) Король и его тайник с печеньем.</span>
+                        </label>
+                    </div>
+                    <button class="btn btn-primary check-quiz-btn" data-question="q_idea1">Проверить ответ</button>
+                    <div class="quiz-feedback" id="feedback-q_idea1"></div>
+                </div>
+            </section>
+
+            <section id="homework" class="lesson-section">
+                <h2>Домашнее задание</h2>
+                <div class="homework-container">
+                    <div class="homework-intro">
+                        <p>Для закрепления этой идеи, проанализируйте следующие позиции и найдите возможность для
+                            двойного удара:</p>
+                    </div>
+                    <div class="homework-links">
+                        <a href="https://lichess.org/study/ml4Kx20M" class="homework-link" target="_blank">
+                            <i class="fa-solid fa-bullseye"></i> Перейти к задачам: Идея 1
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="lesson-feedback">
+                <h2>Обратная связь</h2>
+                <p>Остались вопросы по уроку? Задайте их преподавателю!</p>
+                <form class="feedback-form">
+                    <div class="form-group">
+                        <label for="feedback-message">Ваш вопрос или комментарий</label>
+                        <textarea id="feedback-message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
+            </section>
+
+            <section class="lesson-share">
+                <h3>Поделиться уроком</h3>
+                <div class="share-buttons">
+                    <a href="#" class="share-button vk"><i class="fa-brands fa-vk"></i> ВКонтакте</a>
+                    <a href="#" class="share-button telegram"><i class="fa-brands fa-telegram"></i> Telegram</a>
+                    <a href="#" class="share-button whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </section>
+        </main>
+
+        <aside class="lesson-sidebar course-playlist-sidebar">
+            <div class="sidebar-header">
+                <h3>Основы тактики</h3>
+                <button class="sidebar-toggle-mobile"><span></span><span></span><span></span></button>
+            </div>
+            <nav class="sidebar-navigation">
+                <ul class="lesson-list">
+                    <li><a href="/course/1/lesson/0/">Двойной удар (Введение)</a></li>
+                    <li><a href="/course/1/lesson/1/">Вилка: пешка</a></li>
+                    <li><a href="/course/1/lesson/2/">Вилка: конь</a></li>
+                    <li class="active"><a href="#">Двойной удар: Идея 1</a></li>
+                    <li><a href="/course/1/lesson/4/">Двойной удар: Идея 2</a></li>
+                    <li><a href="/course/1/lesson/5/">Двойной удар: Идея 3</a></li>
+                    <li><a href="/course/1/lesson/6/">Двойной удар: Защита</a></li>
+                    <li><a href="/course/1/lesson/7/">Полная (абсолютная) связка</a></li>
+                    <li><a href="/course/1/lesson/8/">Неполная (относительная) связка</a></li>
+                    <li><a href="/course/1/lesson/9/">Связка: Идея 1 (скоро)</a></li>
+                    <li><a href="/course/1/lesson/10/">Связка: Идея 2 (скоро)</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo"><img src="/img/common/logo.png" alt="Феномен Шахматная школа">
+                    <p>Обучение шахматам для всех уровней</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="/index.html">Главная</a></li>
+                        <li><a href="/lessons/">Уроки</a></li>
+                        <li><a href="/index.html#about">О нас</a></li>
+                        <li><a href="/index.html#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Социальные сети</h4>
+                    <div class="social-icons"><a href="#" target="_blank"><i class="fa-brands fa-vk"></i></a><a href="#"
+                            target="_blank"><i class="fa-brands fa-telegram"></i></a><a href="#" target="_blank"><i
+                                class="fa-brands fa-youtube"></i></a></div>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Подпишитесь на новости</h4>
+                    <form class="newsletter-form"><input type="email" placeholder="Ваш email" required><button
+                            type="submit" class="btn btn-small">Подписаться</button></form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Феномен Шахматная школа. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/sidebar-navigation.js"></script>
+    <script src="/js/lesson-page.js"></script>
+    <script> // JS для квиза, такой же как на странице "Введение"
+        document.addEventListener('DOMContentLoaded', function () {
+            const checkButtons = document.querySelectorAll('.check-quiz-btn');
+            checkButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const questionName = this.dataset.question;
+                    const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+                    const feedbackDiv = document.getElementById(`feedback-${questionName}`);
+                    if (selectedOption) {
+                        const isCorrect = selectedOption.dataset.correct === 'true';
+                        if (isCorrect) {
+                            feedbackDiv.textContent = 'Верно! ✅';
+                            feedbackDiv.className = 'quiz-feedback correct';
+                        } else {
+                            feedbackDiv.textContent = 'Неверно. Попробуйте еще раз. ❌';
+                            feedbackDiv.className = 'quiz-feedback incorrect';
+                        }
+                    } else {
+                        feedbackDiv.textContent = 'Пожалуйста, выберите ответ.';
+                        feedbackDiv.className = 'quiz-feedback incorrect';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

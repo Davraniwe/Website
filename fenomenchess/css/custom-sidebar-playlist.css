@@ -1,0 +1,330 @@
+/* custom-sidebar-playlist.css или добавить в lesson-page.css */
+
+/* --- Общий макет с правым сайдбаром --- */
+.lesson-container.layout-with-right-sidebar {
+    display: flex;
+    /* flex-direction: row-reverse;  НЕ НУЖНО, если aside идет после main в HTML */
+    /* CSS Grid или Flexbox order лучше использовать для визуального порядка */
+}
+
+.layout-with-right-sidebar .lesson-content {
+    flex: 1; /* Основной контент занимает доступное место */
+    order: 1; /* Основной контент первый в потоке flex/grid */
+}
+
+.layout-with-right-sidebar .course-playlist-sidebar {
+    width: 280px; /* Ширина сайдбара, можно настроить */
+    flex-shrink: 0;
+    order: 2; /* Сайдбар второй в потоке flex/grid, визуально будет справа */
+    margin-left: 1.5rem; /* Отступ слева от сайдбара */
+    
+    /* Стили, перенесенные/адаптированные из "Феномен" CSS для lesson-sidebar */
+    background-color: var(--fenomen-white, #ffffff);
+    border-radius: var(--border-radius, 8px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: calc(var(--header-height, 70px) + 20px); /* header-height из общего main.css */
+    align-self: flex-start; /* Чтобы не растягивался на всю высоту flex-контейнера */
+    max-height: calc(100vh - var(--header-height, 70px) - 40px); /* Ограничение высоты для скролла */
+    overflow-y: auto;
+    border: 1px solid var(--fenomen-lightgray, #eaeaea);
+    z-index: 100; /* Чтобы был поверх brand-elements если они пересекаются */
+}
+
+.course-playlist-sidebar .sidebar-header {
+    padding: 1rem;
+    border-bottom: 1px solid var(--fenomen-lightgray, #eaeaea);
+    background-color: var(--fenomen-blue, #249efa); /* Или другой цвет для заголовка плейлиста */
+    color: var(--fenomen-white, #ffffff);
+    border-radius: var(--border-radius, 8px) var(--border-radius, 8px) 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.course-playlist-sidebar .sidebar-header h3 {
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.course-playlist-sidebar .sidebar-navigation {
+    padding: 1rem; /* Внутренний отступ для списка */
+}
+
+.course-playlist-sidebar .lesson-list { /* Стилизация списка уроков */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.course-playlist-sidebar .lesson-list li {
+    margin-bottom: 0.3rem; /* Отступ между уроками */
+}
+
+.course-playlist-sidebar .lesson-list a {
+    display: block;
+    padding: 0.6rem 0.75rem; /* Отступы внутри ссылки */
+    color: var(--fenomen-darkgray, #202020);
+    font-size: 0.95rem;
+    border-radius: 4px;
+    transition: all var(--transition-speed, 0.3s) ease;
+    text-decoration: none;
+    border-left: 3px solid transparent; /* Для индикации hover/active */
+}
+
+.course-playlist-sidebar .lesson-list a:hover {
+    background-color: rgba(36, 158, 250, 0.1); /* Светло-голубой фон */
+    color: var(--fenomen-blue, #249efa);
+    border-left-color: var(--fenomen-blue, #249efa);
+}
+
+.course-playlist-sidebar .lesson-list li.active > a {
+    background-color: var(--fenomen-blue, #249efa);
+    color: var(--fenomen-white, #ffffff);
+    font-weight: 500;
+    border-left-color: var(--fenomen-yellow, #ffdb58); /* Акцентный цвет для активного урока */
+}
+
+/* Стили для мобильного отображения сайдбара (гамбургер) */
+.course-playlist-sidebar .sidebar-toggle-mobile {
+    display: none; /* По умолчанию скрыт, будет показан в @media из lesson-page.css */
+    background: none;
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1001; /* поверх других элементов хедера сайдбара */
+}
+.course-playlist-sidebar .sidebar-toggle-mobile span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background-color: var(--fenomen-white); /* Цвет палочек гамбургера */
+    margin: 4px auto;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Анимация гамбургера (скопировать из fenomen.css, если нужно) */
+/* .course-playlist-sidebar .sidebar-toggle-mobile.active span:nth-child(1) { ... } */
+/* .course-playlist-sidebar .sidebar-toggle-mobile.active span:nth-child(2) { ... } */
+/* .course-playlist-sidebar .sidebar-toggle-mobile.active span:nth-child(3) { ... } */
+
+
+/* Адаптивное видео */
+.responsive-video-16x9 {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--border-radius, 8px);
+    box-shadow: 0 4px 10px rgba(0,0,0,.08);
+}
+
+.responsive-video-16x9 iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+
+/* Адаптация для мобильных (переопределить или дополнить стили из lesson-page.css) */
+@media (max-width: 992px) {
+    .lesson-container.layout-with-right-sidebar {
+        flex-direction: column;
+    }
+
+    .layout-with-right-sidebar .lesson-content {
+        order: 1; /* Контент сверху */
+    }
+
+    .layout-with-right-sidebar .course-playlist-sidebar {
+        order: 2; /* Сайдбар снизу */
+        width: 100%;
+        margin-left: 0;
+        margin-top: 1.5rem; /* Отступ сверху, если он под контентом */
+        position: static; /* Убрать sticky на мобильных */
+        max-height: none; /* Снять ограничение по высоте */
+        /* Логика сворачивания/разворачивания для .sidebar-navigation 
+           должна управляться JS и стилями из lesson-page.css */
+    }
+
+    .course-playlist-sidebar .sidebar-header .sidebar-toggle-mobile {
+        display: block; /* Показать гамбургер на мобильных */
+    }
+    
+    /* По умолчанию список уроков скрыт, будет показан JS по клику на гамбургер */
+    .course-playlist-sidebar .sidebar-navigation { 
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        background-color: var(--fenomen-white);
+        border-top: 1px solid var(--fenomen-lightgray);
+        padding: 0; /* Убрать паддинг у скрытого */
+    }
+    .course-playlist-sidebar .sidebar-navigation.active { /* Класс добавляется JS */
+        max-height: 500px; /* Или другая подходящая высота */
+        overflow-y: auto;
+        padding: 1rem; /* Вернуть паддинг у открытого */
+    }
+}
+
+
+
+/* ===== КОРРЕКЦИЯ ВЕРТИКАЛЬНЫХ ОТСТУПОВ НА СТРАНИЦЕ УРОКА ===== */
+
+/* 1. Самое важное: Уменьшаем или убираем глобальный padding для .lesson-section,
+      который приходит из 'section' в main.css */
+.lesson-content > .lesson-section {
+    padding-top: 0.25rem;    /* Значительно уменьшаем с 3rem */
+    padding-bottom: 0.25rem; /* Значительно уменьшаем с 3rem */
+    margin-bottom: 1rem;     /* Этот margin уже был в lesson-page.css, можно оставить или настроить */
+}
+
+/* Для самой первой секции (введение) можно сделать верхний отступ еще меньше */
+.lesson-content > #introduction.lesson-section {
+    padding-top: 0.5rem;
+}
+
+/* 2. Корректируем отступы для конкретных блоков внутри .lesson-content */
+
+/* Отступ под блоком с "хлебными крошками", H1 и мета-информацией урока */
+.lesson-content .lesson-header {
+    margin-bottom: 0.5rem; /* Можно увеличить, если между H1 и первой секцией мало места */
+                            /* Или уменьшить, если сейчас слишком много. Было 1.25rem + 1rem padding-bottom */
+    padding-bottom: 0.75rem;
+}
+
+/* Отступ под основным заголовком H1 урока (если нужно, т.к. он внутри .lesson-header) */
+/* .lesson-content .lesson-header h1 {
+    margin-bottom: 0.5rem; // Уже 0.75rem в lesson-page.css, что обычно нормально
+} */
+
+/* Отступ под вводным текстом */
+.lesson-content .introduction-text {
+    margin-bottom: 1.5rem; /* Было 1.5rem, можно сделать 1rem или 1.25rem */
+}
+
+/* Заголовки секций H2 ("Видеоурок", "Домашнее задание" и т.д.) */
+.lesson-content .lesson-section > h2 {
+    font-size: 1.5rem;      /* Можно чуть уменьшить с 1.6rem для компактности */
+    margin-top: 0;          /* Убираем верхний отступ, если padding секции достаточен */
+    margin-bottom: 1rem;    /* Увеличиваем с 0.75rem, т.к. убрали часть padding у секции */
+    padding-bottom: 0.25rem; /* Отступ для линии под заголовком */
+}
+
+/* Если не нужна линия под H2 и отступ для нее: */
+/* .lesson-content .lesson-section > h2::after {
+    display: none;
+}
+.lesson-content .lesson-section > h2 {
+    padding-bottom: 0;
+} */
+
+/* Отступ под видео-контейнером */
+.lesson-content .video-container.responsive-video-16x9 { /* Уточнил селектор из твоего HTML */
+    margin-bottom: 1.5rem; /* Можно сделать 1.25rem или 1.75rem */
+}
+
+/* Блок домашнего задания */
+.lesson-content #homework.lesson-section { /* Если ДЗ - это отдельная lesson-section */
+    padding-top: 1.5rem; /* Отступ перед блоком ДЗ */
+    padding-bottom: 1.5rem;
+}
+.lesson-content .homework-container {
+    margin-top: 0.5rem;    /* Отступ между H2 "Домашнее задание" и самим блоком */
+    margin-bottom: 0;    /* Если это последний элемент в секции, нижний отступ не нужен от контейнера */
+    padding: 1.25rem;    /* Внутренние отступы в блоке ДЗ (было 1.25rem) */
+}
+
+/* Блоки обратной связи и "поделиться" */
+.lesson-content .lesson-feedback,
+.lesson-content .lesson-share {
+    margin-top: 1.5rem;     /* Уменьшаем с 2rem */
+    padding-top: 1.5rem;    /* Используем padding секции */
+    padding-bottom: 1.5rem;
+}
+.lesson-content .lesson-feedback > h2, /* Заголовки внутри этих секций */
+.lesson-content .lesson-share > h2 {
+    margin-top: 0;
+}
+
+
+/* Общий отступ для параграфов, если нужно еще компактнее */
+/* .lesson-content p {
+    margin-bottom: 0.5rem; // Стандартно 0.75rem или 1rem
+} */
+
+
+/* Стили для улучшения мобильного меню навигации по урокам курса */
+
+@media (max-width: 992px) {
+    /* 1. Изменяем порядок блоков: сначала сайдбар, потом основной контент урока */
+    .lesson-container.layout-with-right-sidebar {
+        flex-direction: column; /* Стандартный блочный поток для мобильных */
+    }
+
+    .layout-with-right-sidebar .course-playlist-sidebar {
+        order: 1; /* Сайдбар (меню уроков) теперь будет первым в потоке */
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 1.5rem; /* Отступ перед основным контентом урока */
+        
+        /* --- Делаем шапку сайдбара "прилипающей" под основным хедером сайта --- */
+        position: sticky;
+        /* var(--header-height, 70px) - высота вашего основного хедера сайта. 
+           Если переменная --header-height не определена глобально или в main.css/lesson-page.css, 
+           замените 70px на актуальную высоту вашего .main-header.
+           Этот top должен быть равен высоте элемента .main-header, если тот тоже position: sticky или fixed.
+        */
+        top: var(--header-height, 70px); 
+        z-index: 999; /* Достаточно высокий z-index, чтобы быть над контентом, но под модальными окнами, если есть */
+        
+        /* Стили для .sidebar-header (заголовок и бургер) уже должны быть в lesson-page.css.
+           Убедимся, что он хорошо выглядит как "прилипшая" панель. */
+        border-radius: 0 0 var(--border-radius, 8px) var(--border-radius, 8px); /* Скругляем только нижние углы, если он прилип */
+        /* Если основной .main-header не имеет тени или границы снизу, можно добавить их сюда для отделения */
+         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .layout-with-right-sidebar .lesson-content {
+        order: 2; /* Основной контент урока теперь идет после меню уроков */
+    }
+
+    /* 2. Стилизация выпадающего списка уроков под "прилипшей" шапкой сайдбара */
+    .course-playlist-sidebar .sidebar-header {
+        /* Убедимся, что шапка сайдбара не имеет верхних скруглений, если она прилипает */
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+         /* Если вы хотите, чтобы шапка сайдбара всегда имела одинаковый радиус, оставьте как было в lesson-page.css */
+         /* border-radius: var(--border-radius, 8px) var(--border-radius, 8px) 0 0; */
+    }
+    
+    .course-playlist-sidebar .sidebar-navigation {
+        /* max-height: 0; и overflow: hidden; уже должны быть из lesson-page.css для скрытого состояния */
+        /* Стили для фона, границ и скруглений выпадающего списка */
+        background-color: var(--fenomen-white, #ffffff);
+        border: 1px solid var(--fenomen-lightgray, #eaeaea);
+        border-top: none; /* Шапка сайдбара уже имеет нижнюю границу */
+        border-bottom-left-radius: var(--border-radius, 8px);
+        border-bottom-right-radius: var(--border-radius, 8px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Небольшая тень для выпадающего списка */
+        /* padding: 0; уже должен быть для скрытого состояния из lesson-page.css */
+    }
+
+    .course-playlist-sidebar .sidebar-navigation.active {
+        /* max-height: var(--sidebar-max-height, 500px); и overflow-y: auto; из lesson-page.css */
+        padding: 1rem; /* Восстанавливаем внутренний отступ для активного (открытого) списка */
+    }
+
+    /* Дополнительно: можно немного изменить вид кнопки-бургера, если стандартная не очень вписывается */
+    .course-playlist-sidebar .sidebar-header .sidebar-toggle-mobile {
+        /* Например, немного увеличить, если она кажется маленькой */
+        /* transform: scale(1.1); */
+    }
+}

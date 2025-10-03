@@ -13,6 +13,7 @@ const BIOGROW_DARK_PORT = Number(process.env.BIOGROW_DARK_PORT || 1002);
 const LISA_BIOTECH_V2_PORT = Number(process.env.LISA_V2_PORT || 1004);
 const LISA_BIOTECH_PORT = Number(process.env.LISA_PORT || 1005);
 const LISA_BIOTECH_V3_PORT = Number(process.env.LISA_V3_PORT || 1006);
+const FENOMENCHESS_PORT = Number(process.env.FENOMENCHESS_PORT || 1010);
 
 const PORT_SITE_ENTRIES = [
     [PRIMARY_PORT, 'cancero.tech'],
@@ -21,6 +22,7 @@ const PORT_SITE_ENTRIES = [
     [LISA_BIOTECH_V2_PORT, 'lisa.biotech.v2'],
     [LISA_BIOTECH_PORT, 'lisa.biotech'],
     [LISA_BIOTECH_V3_PORT, 'lisa.biotech.v3'],
+    [FENOMENCHESS_PORT, 'fenomenchess'],
 ].filter(([port]) => Number.isFinite(port) && port > 0);
 const EMAIL_RECIPIENTS = process.env.CONTACT_RECIPIENT || 'topoj@bk.ru';
 const EMAIL_FROM = process.env.CONTACT_FROM || process.env.CONTACT_SMTP_USER || 'no-reply@cancero.tech';

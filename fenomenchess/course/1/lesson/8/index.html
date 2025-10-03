@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Феномен | Неполная (относительная) связка</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/lesson-page.css">
+    <link rel="stylesheet" href="/css/custom-sidebar-playlist.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Стили для Квиза и Диаграммы (как в предыдущих файлах) */
+        .quiz-question-title {
+            font-size: 1.1em;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .task-variants {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .radio-label {
+            display: block;
+            padding: 0.75rem 1rem;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: var(--border-radius-md, 8px);
+            cursor: pointer;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .radio-label:hover {
+            border-color: var(--fenomen-blue, #249efa);
+            background-color: rgba(36, 158, 250, 0.05);
+        }
+
+        .radio-label input[type="radio"] {
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .check-quiz-btn {
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-feedback {
+            margin-top: 10px;
+            padding: 0.75rem;
+            border-radius: var(--border-radius-sm, 4px);
+            font-weight: 500;
+        }
+
+        .quiz-feedback.correct {
+            background-color: #e6ffed;
+            border: 1px solid #5cb85c;
+            color: #3c763d;
+        }
+
+        .quiz-feedback.incorrect {
+            background-color: #f9e9e9;
+            border: 1px solid #d9534f;
+            color: #a94442;
+        }
+
+        .homework-task {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--fenomen-lightgray, #eaeaea);
+        }
+
+        .homework-task:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .video-placeholder {
+            background-color: #f0f0f0;
+            border: 1px dashed #ccc;
+            padding: 3rem 1rem;
+            text-align: center;
+            color: #777;
+            border-radius: var(--border-radius-md, 8px);
+            font-size: 1.1em;
+        }
+
+        /* Стили для интерактивной диаграммы связки */
+        .interactive-pin-diagram.variant-1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #f7f7f7;
+            border-radius: 8px;
+            max-width: 224px;
+            margin: 20px auto;
+            font-family: 'Roboto', sans-serif;
+            border: 1px solid #e0e0e0;
+        }
+
+        .diagram-board {
+            display: grid;
+            grid-template-columns: repeat(3, 60px);
+            grid-template-rows: repeat(5, 60px);
+            border: 2px solid #333;
+            position: relative;
+        }
+
+        .square {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 38px;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .square.dark {
+            background-color: #b58863;
+        }
+
+        .square.white {
+            background-color: #f0d9b5;
+        }
+
+        .square[data-piece="♛"] {
+            color: #000000;
+        }
+
+        /* Черный Ферзь */
+        .square[data-piece="♞"] {
+            color: #000000;
+        }
+
+        /* Черный конь */
+        .square[data-piece="♖"] {
+            color: #333333;
+        }
+
+        /* Белая ладья (темная для видимости) */
+        .square.occupied {
+            cursor: pointer;
+        }
+
+        .square.highlight-pinning {
+            box-shadow: 0 0 10px 3px gold;
+            z-index: 10;
+        }
+
+        .square.highlight-pinned {
+            box-shadow: 0 0 10px 3px #ff704d;
+            z-index: 10;
+        }
+
+        /* Другой цвет для относительной связки, если нужно */
+        .square.highlight-covered {
+            box-shadow: 0 0 10px 3px #ffb366;
+            z-index: 10;
+        }
+
+        /* Оранжевый для ценной фигуры */
+        .line-of-attack {
+            position: absolute;
+            background-color: rgba(255, 100, 0, 0.35);
+            width: 6px;
+            left: calc(50% - 3px);
+            transform-origin: top center;
+            transition: height 0.2s ease, top 0.2s ease;
+            z-index: 5;
+            display: none;
+            border-radius: 3px;
+        }
+
+        .diagram-info {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+            min-height: 50px;
+            line-height: 1.4;
+            width: calc(100% - 40px);
+            box-sizing: border-box;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="/img/common/logo.png" alt="Феномен Шахматная школа" class="logo-img">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/index.html">Главная</a></li>
+                    <li><a href="/lessons/" class="active">Уроки</a></li>
+                    <li><a href="/index.html#about">О нас</a></li>
+                    <li><a href="/index.html#contact">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="lesson-container layout-with-right-sidebar">
+        <main class="lesson-content">
+            <div class="brand-element brand-circle" style="top: 50px; right: 30px;"></div>
+            <div class="brand-element brand-cross" style="bottom: 100px; left: 20px;"></div>
+
+            <div class="lesson-header">
+                <div class="breadcrumbs">
+                    <a href="/index.html">Главная</a> >
+                    <a href="/course/1/">Курс: Основы тактики</a> >
+                    <span>Неполная (относительная) связка</span>
+                </div>
+                <h1>Неполная (относительная) связка</h1>
+                <div class="lesson-meta-header">
+                    <div class="author">
+                        <span>Автор: Давран Сабиров</span>
+                    </div>
+                    <div class="date">Опубликовано: 25.05.2025</div>
+                </div>
+            </div>
+
+            <section id="introduction" class="lesson-section">
+                <p class="introduction-text">
+                    Продолжаем изучать связки! Сегодня на очереди неполная, или относительная, связка. В отличие от
+                    абсолютной, здесь за связанной фигурой находится не король, а другая ценная фигура.
+                </p>
+            </section>
+
+            <section id="video-lesson" class="lesson-section">
+                <h2>Видеоурок</h2>
+                <div class="video-placeholder">
+                    <p><i class="fa-solid fa-clapperboard"></i> Видеоурок по этой теме скоро появится!</p>
+                </div>
+            </section>
+
+            <section id="what-is-relative-pin" class="lesson-section">
+                <h2>Что такое неполная (относительная) связка?</h2>
+                <p>
+                    Как и при полной связке, <strong>относительная связка</strong> создается дальнобойной фигурой
+                    (ферзем, ладьей или слоном), которая атакует фигуру соперника. Ключевое отличие: за этой связанной
+                    фигурой на линии атаки находится <strong>другая фигура соперника, более ценная, чем связанная, но не
+                        король</strong>.
+                </p>
+                <p>Участвуют те же три элемента:</p>
+                <ul>
+                    <li><strong>Связывающая фигура:</strong> Ваша атакующая дальнобойная фигура.</li>
+                    <li><strong>Связанная фигура:</strong> Фигура соперника, чья подвижность ограничена.</li>
+                    <li><strong>Прикрываемая фигура:</strong> Более ценная фигура (не король!), стоящая за связанной.
+                    </li>
+                </ul>
+                <p>
+                    При неполной связке связанная фигура <strong>формально может сделать ход</strong> и уйти с линии
+                    атаки. Однако такой ход обычно крайне невыгоден, так как это приведет к потере более ценной
+                    прикрываемой фигуры. Соперник оказывается перед неприятным выбором.
+                </p>
+            </section>
+
+            <section id="pin-diagram-section" class="lesson-section">
+                <h2>Схема относительной связки</h2>
+                <p>Рассмотрим пример: Белая Ладья связывает черного Коня, который прикрывает черного Ферзя.</p>
+                <div class="interactive-pin-diagram variant-1">
+                    <div class="diagram-board">
+                        <div class="square black" data-square="d8"></div>
+                        <div class="square white" data-square="e8" data-piece="♛" data-role="covered-queen">♛</div>
+                        <div class="square black" data-square="f8"></div>
+                        <div class="square white" data-square="d7"></div>
+                        <div class="square black occupied" data-square="e7" data-piece="♞" data-role="pinned-knight">♞
+                        </div>
+                        <div class="square white" data-square="f7"></div>
+                        <div class="square black" data-square="d6"></div>
+                        <div class="square white" data-square="e6"></div>
+                        <div class="square black" data-square="f6"></div>
+                        <div class="square white" data-square="d5"></div>
+                        <div class="square black" data-square="e5"></div>
+                        <div class="square white" data-square="f5"></div>
+                        <div class="square black" data-square="d1"></div>
+                        <div class="square white occupied" data-square="e1" data-piece="♖" data-role="pinning-rook">♖
+                        </div>
+                        <div class="square black" data-square="f1"></div>
+
+                        <div class="line-of-attack" id="line-of-attack-v1-relative"></div>
+                    </div>
+                    <div class="diagram-info" id="info-box-v1-relative">
+                        Наведите или кликните на фигуру, чтобы узнать ее роль.
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 10px;">В этой ситуации черный конь на e7 может уйти, но тогда
+                    белая ладья съест черного ферзя на e8.</p>
+            </section>
+
+            <section id="homework" class="lesson-section">
+                <h2>Проверь себя: Квиз</h2>
+                <div class="homework-container quiz-container">
+
+                    <div id="quiz-question-relpin1" class="homework-task">
+                        <div class="quiz-question-title">
+                            <p><strong>Вопрос 1:</strong> При неполной (относительной) связке, может ли связанная фигура
+                                сделать ход?</p>
+                        </div>
+                        <div class="task-variants">
+                            <label class="radio-label">
+                                <input type="radio" name="q_relpin1" value="a">
+                                <span>A) Нет, никогда, это запрещено правилами.</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="q_relpin1" value="b" data-correct="true">
+                                <span>B) Да, может, но это обычно ведет к потере более ценной фигуры, стоящей за
+                                    ней.</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="q_relpin1" value="c">
+                                <span>C) Да, может, и это никогда не влечет за собой негативных последствий.</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="q_relpin1" value="d">
+                                <span>D) Только если связывающая фигура - слон.</span>
+                            </label>
+                        </div>
+                        <button class="btn btn-primary check-quiz-btn" data-question="q_relpin1">Проверить
+                            ответ</button>
+                        <div class="quiz-feedback" id="feedback-q_relpin1"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="homework" class="lesson-section">
+                <h2>Домашнее задание</h2>
+                <div class="homework-container">
+                    <div class="homework-intro">
+                        <p>Для закрепления темы, решите следующие задачи по ссылке:</p>
+                    </div>
+                    <div class="homework-links">
+                        <a href="https://lichess.org/study/4lMGZ5oR" class="homework-link" target="_blank">
+                            <i class="fa-solid fa-link"></i> Перейти к задачам
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="lesson-feedback">
+                <h2>Обратная связь</h2>
+                <p>Остались вопросы по уроку? Задайте их преподавателю!</p>
+                <form class="feedback-form">
+                    <div class="form-group">
+                        <label for="feedback-message">Ваш вопрос или комментарий</label>
+                        <textarea id="feedback-message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
+            </section>
+
+            <section class="lesson-share">
+                <h3>Поделиться уроком</h3>
+                <div class="share-buttons">
+                    <a href="#" class="share-button vk"><i class="fa-brands fa-vk"></i> ВКонтакте</a>
+                    <a href="#" class="share-button telegram"><i class="fa-brands fa-telegram"></i> Telegram</a>
+                    <a href="#" class="share-button whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </section>
+        </main>
+
+        <aside class="lesson-sidebar course-playlist-sidebar">
+            <div class="sidebar-header">
+                <h3>Основы тактики</h3>
+                <button class="sidebar-toggle-mobile"><span></span><span></span><span></span></button>
+            </div>
+            <nav class="sidebar-navigation">
+                <ul class="lesson-list">
+                    <li><a href="/course/1/lesson/0/">Двойной удар (Введение)</a></li>
+                    <li><a href="/course/1/lesson/1/">Вилка: пешка</a></li>
+                    <li><a href="/course/1/lesson/2/">Вилка: конь</a></li>
+                    <li><a href="/course/1/lesson/3/">Двойной удар: Идея 1</a></li>
+                    <li><a href="/course/1/lesson/4/">Двойной удар: Идея 2</a></li>
+                    <li><a href="/course/1/lesson/5/">Двойной удар: Идея 3</a></li>
+                    <li><a href="/course/1/lesson/6/">Двойной удар: Защита</a></li>
+                    <li><a href="/course/1/lesson/7/">Полная (абсолютная) связка</a></li>
+                    <li class="active"><a href="#">Неполная (относительная) связка</a></li>
+                    <li><a href="/course/1/lesson/9/">Связка: Идея 1 (скоро)</a></li>
+                    <li><a href="/course/1/lesson/10/">Связка: Идея 2 (скоро)</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo"><img src="/img/common/logo.png" alt="Феномен Шахматная школа">
+                    <p>Обучение шахматам для всех уровней</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="/index.html">Главная</a></li>
+                        <li><a href="/lessons/">Уроки</a></li>
+                        <li><a href="/index.html#about">О нас</a></li>
+                        <li><a href="/index.html#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Социальные сети</h4>
+                    <div class="social-icons"><a href="#" target="_blank"><i class="fa-brands fa-vk"></i></a><a href="#"
+                            target="_blank"><i class="fa-brands fa-telegram"></i></a><a href="#" target="_blank"><i
+                                class="fa-brands fa-youtube"></i></a></div>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Подпишитесь на новости</h4>
+                    <form class="newsletter-form"><input type="email" placeholder="Ваш email" required><button
+                            type="submit" class="btn btn-small">Подписаться</button></form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Феномен Шахматная школа. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/sidebar-navigation.js"></script>
+    <script src="/js/lesson-page.js"></script>
+    <script> // JS для интерактивной диаграммы
+        document.addEventListener('DOMContentLoaded', () => {
+            const diagramRelative = document.querySelector('.interactive-pin-diagram.variant-1'); // Убедись, что селектор уникален или используй ID
+            if (!diagramRelative) return;
+
+            const squares = diagramRelative.querySelectorAll('.diagram-board .square[data-role]');
+            const infoBox = diagramRelative.querySelector('.diagram-info'); // ID был #info-box-v1-relative, меняем на общий или передаем
+            const lineOfAttack = diagramRelative.querySelector('.line-of-attack'); // ID был #line-of-attack-v1-relative
+
+            const rookSquare = diagramRelative.querySelector('[data-role="pinning-rook"]');
+            const knightSquare = diagramRelative.querySelector('[data-role="pinned-knight"]');
+            const queenSquare = diagramRelative.querySelector('[data-role="covered-queen"]');
+
+            function showInfo(squareElement) {
+                const role = squareElement.dataset.role;
+                squares.forEach(s => s.className = s.className.replace(/highlight-\w+/, '').trim());
+
+                let highlightClass = '';
+                if (role === 'pinning-rook') highlightClass = 'highlight-pinning';
+                else if (role === 'pinned-knight') highlightClass = 'highlight-pinned';
+                else if (role === 'covered-queen') highlightClass = 'highlight-covered';
+
+                if (highlightClass) squareElement.classList.add(highlightClass);
+
+
+                if ((role === 'pinning-rook' || role === 'pinned-knight' || role === 'covered-queen') && rookSquare && queenSquare) {
+                    const coveredPieceCenterY = queenSquare.offsetTop + queenSquare.offsetHeight / 2;
+                    const pinningPieceCenterY = rookSquare.offsetTop + rookSquare.offsetHeight / 2;
+
+                    const lineTopPosition = Math.min(coveredPieceCenterY, pinningPieceCenterY);
+                    const lineHeight = Math.abs(pinningPieceCenterY - coveredPieceCenterY);
+
+                    lineOfAttack.style.display = 'block';
+                    lineOfAttack.style.top = `${lineTopPosition}px`;
+                    lineOfAttack.style.height = `${lineHeight}px`;
+                    lineOfAttack.style.left = `${rookSquare.offsetLeft + rookSquare.offsetWidth / 2 - lineOfAttack.offsetWidth / 2}px`;
+                } else {
+                    lineOfAttack.style.display = 'none';
+                }
+
+                switch (role) {
+                    case 'pinning-rook':
+                        infoBox.innerHTML = '<strong>Белая Ладья (♖)</strong><br>Связывающая фигура. Атакует по вертикали "e".';
+                        break;
+                    case 'pinned-knight':
+                        infoBox.innerHTML = '<strong>Черный Конь (♞)</strong><br>Связанная фигура. Может отойти, но тогда будет потерян Ферзь!';
+                        break;
+                    case 'covered-queen':
+                        infoBox.innerHTML = '<strong>Черный Ферзь (♛)</strong><br>Прикрываемая фигура (не король). Если Конь уйдет, Ферзь будет взят.';
+                        break;
+                    default:
+                        infoBox.textContent = 'Наведите или кликните на фигуру, чтобы узнать ее роль.';
+                }
+            }
+
+            function hideInfo(squareElement) {
+                squareElement.className = squareElement.className.replace(/highlight-\w+/, '').trim();
+                let isMouseOverAnotherInteractiveSquare = false;
+                squares.forEach(s => {
+                    if (s.matches(':hover') && s.dataset.role) {
+                        isMouseOverAnotherInteractiveSquare = true;
+                    }
+                });
+                if (!isMouseOverAnotherInteractiveSquare) {
+                    infoBox.textContent = 'Наведите или кликните на фигуру, чтобы узнать ее роль.';
+                    lineOfAttack.style.display = 'none';
+                }
+            }
+
+            squares.forEach(square => {
+                square.addEventListener('mouseenter', () => showInfo(square));
+                square.addEventListener('click', () => showInfo(square));
+                square.addEventListener('mouseleave', () => hideInfo(square));
+            });
+        });
+    </script>
+    <script> // JS для квиза
+        document.addEventListener('DOMContentLoaded', function () {
+            const checkButtons = document.querySelectorAll('.check-quiz-btn');
+            checkButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const questionName = this.dataset.question;
+                    const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+                    const feedbackDiv = document.getElementById(`feedback-${questionName}`);
+                    if (selectedOption) {
+                        const isCorrect = selectedOption.dataset.correct === 'true';
+                        if (isCorrect) {
+                            feedbackDiv.textContent = 'Верно! ✅';
+                            feedbackDiv.className = 'quiz-feedback correct';
+                        } else {
+                            feedbackDiv.textContent = 'Неверно. Попробуйте еще раз. ❌';
+                            feedbackDiv.className = 'quiz-feedback incorrect';
+                        }
+                    } else {
+                        feedbackDiv.textContent = 'Пожалуйста, выберите ответ.';
+                        feedbackDiv.className = 'quiz-feedback incorrect';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

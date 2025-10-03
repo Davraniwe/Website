@@ -1,0 +1,260 @@
+/* Стили страницы уроков (lessons.css) */
+
+/* Герой секция */
+.lessons-hero {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--bg-gray);
+    text-align: center;
+}
+
+.lessons-hero h1 {
+    margin-bottom: var(--spacing-sm);
+}
+
+.lessons-hero p {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Фильтры */
+.lessons-filters {
+    padding: var(--spacing-lg) 0;
+    background-color: var(--bg-light);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.filter-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.search-filter {
+    flex: 1;
+    position: relative;
+    min-width: 300px;
+}
+
+.search-filter input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    font-size: 1rem;
+}
+
+.search-filter input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.search-btn {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.search-btn img {
+    width: 18px;
+    height: 18px;
+    opacity: 0.6;
+}
+
+.category-filter,
+.level-filter {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.category-filter label,
+.level-filter label {
+    font-weight: 500;
+}
+
+.category-filter select,
+.level-filter select {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    font-size: 1rem;
+    background-color: var(--bg-light);
+    cursor: pointer;
+}
+
+.category-filter select:focus,
+.level-filter select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* Список уроков */
+.lessons-list {
+    padding-top: var(--spacing-xl);
+}
+
+.section-title {
+    font-size: 1.75rem;
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Путь обучения */
+.learning-path {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--bg-gray);
+}
+
+.learning-path h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.path-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.path-stage {
+    flex: 1;
+    text-align: center;
+    background-color: var(--bg-light);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    z-index: 2;
+}
+
+.path-stage.active {
+    border: 2px solid var(--primary);
+}
+
+.stage-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--spacing-md);
+}
+
+.beginner-stage .stage-icon {
+    background-color: var(--beginner);
+}
+
+.intermediate-stage .stage-icon {
+    background-color: var(--intermediate);
+}
+
+.advanced-stage .stage-icon {
+    background-color: var(--advanced);
+}
+
+.stage-icon img {
+    width: 30px;
+    height: 30px;
+}
+
+.path-stage h3 {
+    margin-bottom: var(--spacing-sm);
+}
+
+.path-stage p {
+    margin-bottom: var(--spacing-md);
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.progress-bar {
+    height: 8px;
+    background-color: var(--bg-gray);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: var(--spacing-xs);
+}
+
+.progress {
+    height: 100%;
+    background-color: var(--primary);
+    border-radius: 4px;
+}
+
+.progress-text {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.path-connector {
+    position: absolute;
+    top: 80px;
+    left: 20%;
+    right: 20%;
+    height: 4px;
+    background-color: var(--border-color);
+    z-index: 1;
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+    .path-container {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-lg);
+    }
+    
+    .path-stage {
+        width: 80%;
+    }
+    
+    .path-connector {
+        left: 50%;
+        top: 140px;
+        bottom: 140px;
+        width: 4px;
+        height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .filter-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-filter {
+        min-width: auto;
+    }
+    
+    .path-stage {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .category-filter,
+    .level-filter {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+    
+    .category-filter select,
+    .level-filter select {
+        width: 100%;
+    }
+}

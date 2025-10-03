@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Феномен | Двойной удар (Введение)</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/lesson-page.css">
+    <link rel="stylesheet" href="/css/custom-sidebar-playlist.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Стили для Квиза (можно вынести в custom-sidebar-playlist.css или lesson-page.css) */
+        .quiz-question-title {
+            /* Изменен класс для заголовка вопроса */
+            font-size: 1.1em;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .task-variants {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .radio-label {
+            display: block;
+            padding: 0.75rem 1rem;
+            background-color: #fff;
+            /* Используйте переменные CSS, если они доступны глобально, например var(--fenomen-white) */
+            border: 1px solid #dee2e6;
+            /* var(--border-color) */
+            border-radius: var(--border-radius-md, 8px);
+            cursor: pointer;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .radio-label:hover {
+            border-color: var(--fenomen-blue, #249efa);
+            background-color: rgba(36, 158, 250, 0.05);
+        }
+
+        .radio-label input[type="radio"] {
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .check-quiz-btn {
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            /* Отступ перед фидбеком */
+        }
+
+        .quiz-feedback {
+            margin-top: 10px;
+            padding: 0.75rem;
+            border-radius: var(--border-radius-sm, 4px);
+            font-weight: 500;
+        }
+
+        .quiz-feedback.correct {
+            background-color: #e6ffed;
+            /* Светло-зеленый */
+            border: 1px solid #5cb85c;
+            /* Зеленый */
+            color: #3c763d;
+            /* Темно-зеленый */
+        }
+
+        .quiz-feedback.incorrect {
+            background-color: #f9e9e9;
+            /* Светло-красный */
+            border: 1px solid #d9534f;
+            /* Красный */
+            color: #a94442;
+            /* Темно-красный */
+        }
+
+        .homework-task {
+            /* Если используется для каждого вопроса */
+            margin-bottom: 2rem;
+            /* Отступ между вопросами */
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--fenomen-lightgray, #eaeaea);
+        }
+
+        .homework-task:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="/img/common/logo.png" alt="Феномен Шахматная школа" class="logo-img">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#" class="active">Уроки</a></li>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="lesson-container layout-with-right-sidebar">
+        <main class="lesson-content">
+            <div class="brand-element brand-circle" style="top: 50px; right: 30px;"></div>
+            <div class="brand-element brand-cross" style="bottom: 100px; left: 20px;"></div>
+
+            <div class="lesson-header">
+                <div class="breadcrumbs">
+                    <a href="#">Главная</a> >
+                    <a href="#">Курс: Основы тактики</a> >
+                    <span>Двойной удар (Введение)</span>
+                </div>
+                <h1>Двойной удар (Введение)</h1>
+                <div class="lesson-meta-header">
+                    <div class="author">
+                        <span>Автор: Давран Сабиров</span>
+                    </div>
+                    <div class="date">Опубликовано: 22.05.2025</div>
+                </div>
+            </div>
+
+            <section id="introduction" class="lesson-section">
+                <p class="introduction-text">
+                    Двойной удар — это один из самых эффективных тактических приёмов в шахматах. Он позволяет атаковать
+                    сразу две цели противника одной фигурой одновременно.
+                </p>
+            </section>
+
+            <section id="video-lesson" class="lesson-section">
+                <h2>Видеоурок</h2>
+                <div class="video-container responsive-video-16x9">
+                    <iframe src="https://kinescope.io/embed/spH5gCLqcYHwmgEGx7bMve"
+                        allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;"
+                        frameborder="0" allowfullscreen title="Двойной удар: Введение - видеоурок"></iframe>
+                </div>
+            </section>
+
+            <section id="homework" class="lesson-section">
+                <h2>Проверь себя: Квиз</h2>
+                <div class="homework-container quiz-container">
+
+                    <div id="quiz-question-1" class="homework-task">
+                        <div class="quiz-question-title">
+                            <p><strong>Вопрос 1:</strong> Какая фигура или фигуры могут ставить двойной удар?</p>
+                        </div>
+                        <div class="task-variants">
+                            <label class="radio-label">
+                                <input type="radio" name="q1" value="a">
+                                <span>A) Только конь и пешка</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="q1" value="b" data-correct="true"> <span>B) Все фигуры</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="q1" value="c">
+                                <span>C) Только ферзь и ладья</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="q1" value="d">
+                                <span>D) Только слон</span>
+                            </label>
+                        </div>
+                        <button class="btn btn-primary check-quiz-btn" data-question="q1">Проверить ответ</button>
+                        <div class="quiz-feedback" id="feedback-q1"></div>
+                    </div>
+
+                    <div id="quiz-question-2" class="homework-task">
+                        <div class="quiz-question-title">
+                            <p><strong>Вопрос 2:</strong> Что из перечисленного является "вилкой" в шахматах?</p>
+                        </div>
+                        <div class="task-variants">
+                            <label class="radio-label">
+                                <input type="radio" name="q2" value="a">
+                                <span>A) Любой двойной удар ферзем</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="q2" value="b" data-correct="true"> <span>B) Двойной удар,
+                                    выполняемый пешкой или конем</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="q2" value="c">
+                                <span>C) Атака на короля и ферзя одновременно любой фигурой</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="q2" value="d">
+                                <span>D) Только двойной удар конем</span>
+                            </label>
+                        </div>
+                        <button class="btn btn-primary check-quiz-btn" data-question="q2">Проверить ответ</button>
+                        <div class="quiz-feedback" id="feedback-q2"></div>
+                    </div>
+
+                    <div id="quiz-question-3" class="homework-task">
+                        <div class="quiz-question-title">
+                            <p><strong>Вопрос 3:</strong> Какова главная цель двойного удара?</p>
+                        </div>
+                        <div class="task-variants">
+                            <label class="radio-label">
+                                <input type="radio" name="q3" value="a">
+                                <span>A) Только поставить шах королю</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="q3" value="b">
+                                <span>B) Заставить противника защищаться, не получая преимущества</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="q3" value="c" data-correct="true"> <span>C) Выиграть материал
+                                    или создать решающую угрозу, т.к. противник не может защитить все атакованные
+                                    объекты одним ходом</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="q3" value="d">
+                                <span>D) Пожертвовать свою фигуру для красоты</span>
+                            </label>
+                        </div>
+                        <button class="btn btn-primary check-quiz-btn" data-question="q3">Проверить ответ</button>
+                        <div class="quiz-feedback" id="feedback-q3"></div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="lesson-feedback">
+                <h2>Обратная связь</h2>
+                <p>Остались вопросы по уроку? Задайте их преподавателю!</p>
+                <form class="feedback-form">
+                    <div class="form-group">
+                        <label for="feedback-message">Ваш вопрос или комментарий</label>
+                        <textarea id="feedback-message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
+            </section>
+
+            <section class="lesson-share">
+                <h3>Поделиться уроком</h3>
+                <div class="share-buttons">
+                    <a href="#" class="share-button vk">
+                        <i class="fa-brands fa-vk"></i> ВКонтакте
+                    </a>
+                    <a href="#" class="share-button telegram">
+                        <i class="fa-brands fa-telegram"></i> Telegram
+                    </a>
+                    <a href="#" class="share-button whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <aside class="lesson-sidebar course-playlist-sidebar">
+            <div class="sidebar-header">
+                <h3>Основы тактики</h3>
+                <button class="sidebar-toggle-mobile"><span></span><span></span><span></span></button>
+            </div>
+            <nav class="sidebar-navigation">
+                <ul class="lesson-list">
+                    <li class="active"><a href="#">Двойной удар (Введение)</a></li>
+                    <li><a href="/course/1/lesson/1/">Вилка: пешка</a></li>
+                    <li><a href="/course/1/lesson/2/">Вилка: конь</a></li>
+                    <li><a href="/course/1/lesson/3/">Двойной удар: Идея 1</a></li>
+                    <li><a href="/course/1/lesson/4/">Двойной удар: Идея 2</a></li>
+                    <li><a href="/course/1/lesson/5/">Двойной удар: Идея 3</a></li>
+                    <li><a href="/course/1/lesson/6/">Двойной удар: Защита</a></li>
+                    <li><a href="/course/1/lesson/7/">Полная (абсолютная) связка</a></li>
+                    <li><a href="/course/1/lesson/8/">Неполная (относительная) связка</a></li>
+                    <li><a href="/course/1/lesson/9/">Связка: Идея 1 (скоро)</a></li>
+                    <li><a href="/course/1/lesson/10/">Связка: Идея 2 (скоро)</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <img src="/img/common/logo.png" alt="Феномен Шахматная школа">
+                    <p>Обучение шахматам для всех уровней</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="#">Главная</a></li>
+                        <li><a href="#">Уроки</a></li>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Социальные сети</h4>
+                    <div class="social-icons">
+                        <a href="#" target="_blank"><i class="fa-brands fa-vk"></i></a>
+                        <a href="#" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                        <a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Подпишитесь на новости</h4>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Ваш email" required>
+                        <button type="submit" class="btn btn-small">Подписаться</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Феномен Шахматная школа. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/sidebar-navigation.js"></script>
+    <script src="/js/lesson-page.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const checkButtons = document.querySelectorAll('.check-quiz-btn');
+
+            checkButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const questionName = this.dataset.question; // Получаем имя группы радиокнопок (q1, q2, q3)
+                    const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+                    const feedbackDiv = document.getElementById(`feedback-${questionName}`);
+
+                    if (selectedOption) {
+                        const isCorrect = selectedOption.dataset.correct === 'true';
+                        if (isCorrect) {
+                            feedbackDiv.textContent = 'Верно! ✅';
+                            feedbackDiv.className = 'quiz-feedback correct'; // Сбрасываем и ставим классы
+                        } else {
+                            feedbackDiv.textContent = 'Неверно. Попробуйте еще раз. ❌';
+                            feedbackDiv.className = 'quiz-feedback incorrect';
+                        }
+                    } else {
+                        feedbackDiv.textContent = 'Пожалуйста, выберите ответ.';
+                        feedbackDiv.className = 'quiz-feedback incorrect'; // Можно сделать отдельный стиль для "не выбрано"
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
