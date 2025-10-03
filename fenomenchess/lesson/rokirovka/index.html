@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Феномен | Рокировка</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/lesson-page.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="/img/common/logo.png" alt="Феномен Шахматная школа" class="logo-img">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/index.html">Главная</a></li>
+                    <li><a href="/lessons/" class="active">Уроки</a></li>
+                    <li><a href="/index.html#about">О нас</a></li>
+                    <li><a href="/index.html#contact">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="lesson-container">
+        <aside class="lesson-sidebar">
+            <div class="sidebar-header">
+                <h3>Содержание урока</h3>
+                <button class="sidebar-toggle-mobile">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <nav class="sidebar-navigation">
+                <ul>
+                    <li><a href="#introduction" class="active">Введение</a></li>
+                    <li><a href="#video-lesson">Видеоурок</a></li>
+                    <li><a href="#what-is-castling">Что такое рокировка</a></li>
+                    <li><a href="#how-to-castle">Как делается рокировка</a></li>
+                    <li><a href="#castling-types">Виды рокировки</a>
+                        <ul>
+                            <li><a href="#short-castle">Короткая рокировка</a></li>
+                            <li><a href="#long-castle">Длинная рокировка</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#castling-functions">Функции рокировки</a></li>
+                    <li><a href="#castling-rules">Когда рокировка невозможна</a></li>
+                    <li><a href="#summary">Итоги</a></li>
+                    <li><a href="#homework">Домашнее задание</a></li>
+                </ul>
+            </nav>
+            <div class="lesson-meta-sidebar">
+                <div class="lesson-level beginner">Начальный уровень</div>
+                <div class="lesson-duration"><img src="../../img/common/icons/clock.svg" alt="Длительность"> 40 минут</div>
+                <div class="lesson-exercises"><img src="../../img/common/icons/tasks.svg" alt="Задания"> 5 заданий</div>
+            </div>
+            <div class="lesson-navigation">
+                <a href="/lesson/debyutnye-principy/" class="prev-lesson">
+                    <img src="/img/common/icons/arrow-left.svg" alt="Предыдущий урок">
+                    <span>Дебютные принципы</span>
+                </a>
+                <a href="#" class="next-lesson disabled">
+                    <span>Следующий урок</span>
+                    <img src="/img/common/icons/arrow-right.svg" alt="Следующий урок">
+                </a>
+            </div>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="breadcrumbs">
+                    <a href="/index.html">Главная</a> >
+                    <a href="/lessons/">Уроки</a> >
+                    <span>Рокировка</span>
+                </div>
+                <h1>Рокировка</h1>
+                <div class="lesson-meta-header">
+                    <div class="author">
+                        <span>Автор: Давран Сабиров</span>
+                    </div>
+                    <div class="date">Опубликовано: 15 января 2025</div>
+                </div>
+            </div>
+
+            <section id="introduction" class="lesson-section">
+                <p class="introduction-text">
+                    Рокировка — это особый ход в шахматах, который одновременно защищает короля и вводит в игру ладью.
+                    В этом уроке вы узнаете, как правильно делать рокировку и в каких случаях её делать нельзя.
+                </p>
+            </section>
+
+            <section id="video-lesson" class="lesson-section">
+                <h2>Видеоурок</h2>
+                <div class="video-container">
+                    <iframe width="100%" height="500" src="https://www.youtube.com/embed/HZjEQHK1CX8?start=7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <section id="what-is-castling" class="lesson-section">
+                <h2>Что такое рокировка</h2>
+                <p>
+                    Рокировка — это <strong>особый ход</strong> в шахматах, в котором участвуют король и одна из ладей.
+                    Это единственный ход в шахматах, обладающий двумя уникальными особенностями:
+                </p>
+                <ol class="numbered-list">
+                    <li><strong>Король перемещается на два поля</strong> (обычно он ходит только на одно поле)</li>
+                    <li><strong>Две фигуры ходят одновременно</strong> (такое больше никогда не происходит в шахматах)</li>
+                </ol>
+                <div class="info-box">
+                    <h4>Интересный факт</h4>
+                    <p>
+                        На английском языке рокировка называется <strong>"castling"</strong>, что переводится как "замок" или "крепость".
+                        Это отражает главную функцию рокировки — создать безопасную крепость для короля.
+                    </p>
+                </div>
+            </section>
+
+            <section id="how-to-castle" class="lesson-section">
+                <h2>Как делается рокировка</h2>
+                <p>
+                    Механика рокировки одинакова в обе стороны и выполняется в два действия:
+                </p>
+                <ol class="numbered-list">
+                    <li><strong>Король идёт на два поля</strong> в сторону ладьи</li>
+                    <li><strong>Ладья перепрыгивает</strong> через короля и становится рядом с ним с другой стороны</li>
+                </ol>
+                <p>
+                    Важно: В практической игре сначала нужно взяться за короля и переместить его, затем переставить ладью.
+                    Если вы сначала возьмётесь за ладью, это будет считаться ходом ладьи, а не рокировкой!
+                </p>
+            </section>
+
+            <section id="castling-types" class="lesson-section">
+                <h2>Виды рокировки</h2>
+                <p>
+                    Существует два вида рокировки — короткая и длинная. Они отличаются направлением и скоростью подготовки.
+                </p>
+
+                <div id="short-castle" class="subsection">
+                    <h3>Короткая рокировка (0-0)</h3>
+                    <p>
+                        Короткая рокировка делается в сторону <strong>королевского фланга</strong> (где изначально стоял король).
+                        Между королём и ладьёй освобождается всего <strong>два поля</strong>.
+                    </p>
+                    <div class="chess-diagram">
+                        <img src="rokirovka-korotkaya-do.png" alt="Позиция перед короткой рокировкой" class="lesson-img">
+                        <p class="image-caption">До короткой рокировки — между королём и ладьёй два свободных поля</p>
+                    </div>
+                    <div class="chess-diagram">
+                        <img src="rokirovka-korotkaya-posle.png" alt="Позиция после короткой рокировки" class="lesson-img">
+                        <p class="image-caption">После короткой рокировки — король на g1, ладья на f1</p>
+                    </div>
+                    <p>
+                        <strong>Преимущества короткой рокировки:</strong>
+                    </p>
+                    <ul>
+                        <li>Делается быстрее (нужно вывести только коня и слона)</li>
+                        <li>Считается более безопасной для короля</li>
+                        <li>Наиболее часто используется в практической игре</li>
+                    </ul>
+                </div>
+
+                <div id="long-castle" class="subsection">
+                    <h3>Длинная рокировка (0-0-0)</h3>
+                    <p>
+                        Длинная рокировка делается в сторону <strong>ферзевого фланга</strong> (где изначально стоял ферзь).
+                        Между королём и ладьёй освобождается <strong>три поля</strong>, поэтому она называется "длинной".
+                    </p>
+                    <div class="chess-diagram">
+                        <img src="rokirovka-dlinnaya-do.png" alt="Позиция перед длинной рокировкой" class="lesson-img">
+                        <p class="image-caption">До длинной рокировки — между королём и ладьёй три свободных поля</p>
+                    </div>
+                    <div class="chess-diagram">
+                        <img src="rokirovka-dlinnaya-posle.png" alt="Позиция после длинной рокировки" class="lesson-img">
+                        <p class="image-caption">После длинной рокировки — король на c1, ладья на d1</p>
+                    </div>
+                    <p>
+                        <strong>Особенности длинной рокировки:</strong>
+                    </p>
+                    <ul>
+                        <li>Требует больше времени на подготовку (нужно вывести коня, слона и ферзя)</li>
+                        <li>Примерно на <strong>два хода</strong> дольше, чем короткая</li>
+                        <li>Пешка "a" может стать уязвимой</li>
+                        <li>Король может оказаться под атакой по диагонали</li>
+                    </ul>
+                    <div class="info-box">
+                        <h4>Профилактический ход</h4>
+                        <p>
+                            После длинной рокировки часто делают профилактический ход королём на b1 (для белых) или b8 (для чёрных),
+                            чтобы уйти от возможной атаки по диагонали и защититься от шахов.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="castling-functions" class="lesson-section">
+                <h2>Функции рокировки</h2>
+                <p>
+                    Рокировка выполняет сразу две важные функции в шахматной партии:
+                </p>
+
+                <div class="subsection">
+                    <h3>1. Безопасность короля</h3>
+                    <p>
+                        Король уходит из центра доски в безопасное место за пешечной "крепостью".
+                        Пешки, которые не двигались с начала партии, создают надёжную защиту.
+                    </p>
+                    <div class="chess-diagram">
+                        <img src="rokirovka-krepost.png" alt="Король в безопасности за пешками" class="lesson-img">
+                        <p class="image-caption">Король в безопасности за пешечной крепостью после рокировки</p>
+                    </div>
+                    <div class="info-box warning">
+                        <h4>Важно!</h4>
+                        <p>
+                            Не ломайте пешечную крепость без необходимости! Если вы срубите фигуру противника пешкой перед королём,
+                            образуется "дыра" — и это создаёт опасность для короля. Открытый король — это предвестник беды!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3>2. Ввод ладьи в игру</h3>
+                    <p>
+                        Ладья из пассивной позиции в углу доски перемещается ближе к центру и может активно участвовать в игре.
+                    </p>
+                    <div class="chess-diagram">
+                        <img src="rokirovka-ladya-aktivna.png" alt="Активная позиция ладьи" class="lesson-img">
+                        <p class="image-caption">После рокировки ладья занимает активную позицию</p>
+                    </div>
+                    <p>
+                        <strong>Дополнительный бонус:</strong> Рокировка помогает соединить ладьи. Когда между ладьями нет фигур,
+                        их сила удваивается — они могут работать вместе, контролируя важные линии.
+                    </p>
+                </div>
+            </section>
+
+            <section id="castling-rules" class="lesson-section">
+                <h2>Когда рокировка невозможна</h2>
+                <p>
+                    Рокировка — особый ход, и её нельзя делать в определённых ситуациях.
+                    Запомнить эти правила легко — их всего <strong>пять, как пальцев на руке</strong>:
+                </p>
+
+                <div class="subsection">
+                    <h3>1. Между королём и ладьёй есть фигура</h3>
+                    <p>
+                        Самое очевидное правило — между участниками рокировки не должно быть других фигур.
+                        Все поля между королём и ладьёй должны быть свободны.
+                    </p>
+                    <div class="chess-diagram">
+                        <img src="rokirovka-nevozmozhna-figury.png" alt="Фигуры между королём и ладьёй" class="lesson-img">
+                        <p class="image-caption">Рокировка невозможна — между королём и ладьёй стоит фигура</p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3>2. Король или ладья уже делали ход</h3>
+                    <p>
+                        Если король или ладья хотя бы раз сходили в партии, право на рокировку теряется <strong>навсегда</strong>.
+                        Даже если они вернутся на исходные позиции, рокировка уже будет невозможна.
+                    </p>
+                    <p>
+                        <strong>Важно:</strong> Если сходила ладья на одном фланге, вы всё ещё можете сделать рокировку
+                        на другом фланге (если та ладья не ходила).
+                    </p>
+                </div>
+
+                <div class="subsection">
+                    <h3>3. Король находится под шахом</h3>
+                    <p>
+                        Рокировка <strong>не является способом защиты</strong> от шаха. Если королю объявлен шах,
+                        сначала нужно от него защититься одним из трёх способов: съесть нападающую фигуру,
+                        убежать или прикрыться.
+                    </p>
+                    <div class="chess-diagram">
+                        <img src="rokirovka-nevozmozhna-shakh.png" alt="Король под шахом" class="lesson-img">
+                        <p class="image-caption">Рокировка невозможна — король под шахом</p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3>4. Король пересекает битое поле</h3>
+                    <p>
+                        Поле, через которое проходит король во время рокировки, не должно быть атаковано фигурами противника.
+                        Такое поле называется "битым", и король не может через него рокироваться.
+                    </p>
+                    <div class="chess-diagram">
+                        <img src="rokirovka-nevozmozhna-bitoe-pole.png" alt="Битое поле" class="lesson-img">
+                        <p class="image-caption">Рокировка невозможна — король пересекает битое поле</p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3>5. Король встаёт под шах</h3>
+                    <p>
+                        Поле, на которое должен встать король после рокировки, не должно быть атаковано противником.
+                        Король не может сделать ход, после которого он окажется под шахом.
+                    </p>
+                    <div class="chess-diagram">
+                        <img src="rokirovka-nevozmozhna-pod-shakh.png" alt="Король встаёт под шах" class="lesson-img">
+                        <p class="image-caption">Рокировка невозможна — король встанет под шах</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h4>Запомните "правило пяти пальцев"</h4>
+                    <ol class="numbered-list">
+                        <li>Между ними кто-то есть</li>
+                        <li>Король или ладья ходили</li>
+                        <li>Король под шахом</li>
+                        <li>Король пересекает битое поле</li>
+                        <li>Король встаёт под шах</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="summary" class="lesson-section">
+                <h2>Итоги</h2>
+                <div class="summary-box">
+                    <p><strong>Рокировка — что нужно знать:</strong></p>
+                    <ul>
+                        <li><strong>Особый ход:</strong> Единственный ход, где двигаются две фигуры и король идёт на два поля</li>
+                        <li><strong>Два вида:</strong> Короткая (быстрее, безопаснее) и длинная (требует больше времени)</li>
+                        <li><strong>Две функции:</strong> Защита короля и ввод ладьи в игру</li>
+                        <li><strong>Пять правил невозможности:</strong> Как пять пальцев на руке</li>
+                    </ul>
+                    <p><strong>Практические советы:</strong></p>
+                    <ul>
+                        <li>Делайте рокировку как можно быстрее в дебюте</li>
+                        <li>Чаще всего лучше выбирать короткую рокировку</li>
+                        <li>Не ломайте пешечную крепость перед королём без необходимости</li>
+                        <li>После рокировки стремитесь соединить ладьи</li>
+                        <li>Если противник медлит с рокировкой — используйте это!</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="homework" class="lesson-section">
+                <h2>Домашнее задание</h2>
+                <div class="homework-container">
+                    <div class="homework-intro">
+                        <p>Для закрепления материала выполните следующие задания:</p>
+                    </div>
+
+                    <div class="homework-task">
+                        <h4>Задание 1: Определите вид рокировки</h4>
+                        <p>Можно ли сделать рокировку в этой позиции? Если да, то какую?</p>
+                        <div class="task-description">
+                            <p><em>Здесь будет шахматная диаграмма с позицией для анализа</em></p>
+                        </div>
+                    </div>
+
+                    <div class="homework-task">
+                        <h4>Задание 2: Найдите ошибку</h4>
+                        <p>Почему в данной позиции рокировка невозможна?</p>
+                        <div class="task-description">
+                            <p><em>Здесь будет шахматная диаграмма с невозможной рокировкой</em></p>
+                        </div>
+                    </div>
+
+                    <div class="homework-task">
+                        <h4>Задание 3: Практика</h4>
+                        <p>Сыграйте 5 партий, стараясь сделать рокировку в первых 10 ходах. Обратите внимание, насколько безопаснее чувствует себя ваш король после рокировки.</p>
+                    </div>
+
+                    <button class="btn btn-primary check-homework">Проверить ответы</button>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo"><img src="/img/common/logo.png" alt="Феномен Шахматная школа">
+                    <p>Обучение шахматам для всех уровней</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="/index.html">Главная</a></li>
+                        <li><a href="/lessons/">Уроки</a></li>
+                        <li><a href="/index.html#about">О нас</a></li>
+                        <li><a href="/index.html#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Социальные сети</h4>
+                    <div class="social-icons"><a href="#" target="_blank"><i class="fa-brands fa-vk"></i></a><a href="#"
+                            target="_blank"><i class="fa-brands fa-telegram"></i></a><a href="#" target="_blank"><i
+                                class="fa-brands fa-youtube"></i></a></div>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Подпишитесь на новости</h4>
+                    <form class="newsletter-form"><input type="email" placeholder="Ваш email" required><button
+                            type="submit" class="btn btn-small">Подписаться</button></form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Феномен Шахматная школа. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/sidebar-navigation.js"></script>
+    <script src="/js/lesson-page.js"></script>
+</body>
+</html>
