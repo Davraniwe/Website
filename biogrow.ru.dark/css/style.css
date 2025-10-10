@@ -485,6 +485,7 @@ body {
     text-align: center;
     margin-bottom: 3rem;
     position: relative;
+    color: #FFFFFF;
 }
 
 .section-title::after {
@@ -693,6 +694,7 @@ body {
 .tech-explanation h3 {
     font-size: 2rem;
     margin-bottom: 2rem;
+    color: #FFFFFF;
 }
 
 .tech-steps {
@@ -711,13 +713,13 @@ body {
 .tech-badge {
     padding: 0.65rem 1.2rem;
     border-radius: 999px;
-    background: rgba(43, 78, 164, 0.18);
-    border: 1px solid rgba(99, 134, 222, 0.45);
+    background: rgba(79, 132, 255, 0.25);
+    border: 1px solid rgba(99, 134, 222, 0.55);
     font-size: 0.85rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(16, 24, 52, 0.85);
+    color: rgba(226, 232, 240, 0.95);
 }
 
 .tech-step {
@@ -749,10 +751,11 @@ body {
 .tech-step h4 {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
+    color: #FFFFFF;
 }
 
 .tech-step p {
-    color: var(--text-secondary);
+    color: rgba(226, 232, 240, 0.85);
     font-size: 0.95rem;
 }
 
@@ -1150,18 +1153,126 @@ body {
 
 /* Footer */
 .footer {
-    background: var(--text-primary);
+    background: linear-gradient(180deg, rgba(7, 12, 28, 0.95) 0%, rgba(11, 17, 32, 1) 100%);
     color: white;
-    padding: 40px 0;
+    padding: 60px 0 20px;
     margin-top: 80px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .footer-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1.3fr;
+    gap: 3rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-logo {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.footer-logo svg {
+    margin-bottom: 0.5rem;
+}
+
+.footer-logo h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: #FFFFFF;
+}
+
+.footer-logo p {
+    color: rgba(226, 232, 240, 0.75);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.footer-links h4,
+.footer-newsletter h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    color: #FFFFFF;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.footer-links ul li a {
+    color: rgba(226, 232, 240, 0.75);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.footer-links ul li a:hover {
+    color: var(--accent-color);
+}
+
+.footer-newsletter p {
+    color: rgba(226, 232, 240, 0.75);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+}
+
+.footer-partners {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
     flex-wrap: wrap;
-    gap: 2rem;
+}
+
+.footer-partners a {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8rem 1.2rem;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.footer-partners a:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.footer-partners a img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) saturate(100%) invert(15%) sepia(12%) saturate(1200%) hue-rotate(180deg) brightness(95%) contrast(95%);
+}
+
+.footer-partners a:hover img {
+    filter: brightness(0) saturate(100%) invert(35%) sepia(25%) saturate(1500%) hue-rotate(190deg) brightness(90%) contrast(100%);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+}
+
+.footer-bottom p {
+    color: rgba(226, 232, 240, 0.6);
+    font-size: 0.9rem;
+    margin: 0;
 }
 
 @media (max-width: 1200px) {
@@ -1290,6 +1401,11 @@ body {
         gap: 2rem;
     }
 
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
     .nav-menu {
         display: none;
     }
@@ -1325,5 +1441,17 @@ body {
 
     .hamburger.is-active span:nth-child(3) {
         transform: translateY(-6px) rotate(-45deg);
+    }
+}
+
+@media (max-width: 900px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .footer-content {
+        grid-template-columns: 1fr;
     }
 }
