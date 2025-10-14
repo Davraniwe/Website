@@ -17,14 +17,14 @@ const BIOGRAFT_PORT = Number(process.env.BIOGRAFT_PORT || 1007);
 const FENOMENCHESS_PORT = Number(process.env.FENOMENCHESS_PORT || 1010);
 
 const PORT_SITE_ENTRIES = [
-    [PRIMARY_PORT, 'cancero.tech'],
-    [BIOGROW_LIGHT_PORT, 'biogrow.ru'],
-    [BIOGROW_DARK_PORT, 'biogrow.ru.dark'],
-    [LISA_BIOTECH_V2_PORT, 'lisa.biotech.v2'],
-    [LISA_BIOTECH_PORT, 'lisa.biotech'],
-    [LISA_BIOTECH_V3_PORT, 'lisa.biotech.v3'],
+    [PRIMARY_PORT, 'cancero.tech.1000'],
+    [BIOGROW_LIGHT_PORT, 'biogrow.ru.1001'],
+    [BIOGROW_DARK_PORT, 'biogrow.ru.dark.1002'],
+    [LISA_BIOTECH_V2_PORT, 'lisa.biotech.v2.1004'],
+    [LISA_BIOTECH_PORT, 'lisa.biotech.1005'],
+    [LISA_BIOTECH_V3_PORT, 'lisa.biotech.v3.1006'],
     [BIOGRAFT_PORT, 'biograft.ru.1007'],
-    [FENOMENCHESS_PORT, 'fenomenchess'],
+    [FENOMENCHESS_PORT, 'fenomenchess.1010'],
 ].filter(([port]) => Number.isFinite(port) && port > 0);
 const EMAIL_RECIPIENTS = process.env.CONTACT_RECIPIENT || 'topoj@bk.ru';
 const EMAIL_FROM = process.env.CONTACT_FROM || process.env.CONTACT_SMTP_USER || 'no-reply@cancero.tech';
