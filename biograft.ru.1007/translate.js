@@ -129,8 +129,8 @@ const translations = {
     formMessage: "Сообщение",
     formSubmit: "Отправить",
     // Footer
-    footerText: "Проект выполнен при поддержке Фонда Содействия Инновациям в рамках федерального проекта «Платформа университетского технологического предпринимательства».",
-    copyright: "© 2024 Биографт. Все права защищены."
+    footerText: "Проект выполнен при поддержке «Фонда содействия инновациям» в рамках программы \"Студенческий стартап\" федерального проекта «Платформа университетского технологического предпринимательства»",
+    copyright: "© 2025 Биографт. Все права защищены."
   },
   en: {
     // Header elements
@@ -261,7 +261,7 @@ const translations = {
     formMessage: "Message",
     formSubmit: "Submit",
     // Footer
-    footerText: "Project implemented with the support of the Innovation Assistance Fund under the federal project 'University Technological Entrepreneurship Platform'.",
-    copyright: "© 2024 Biograft. All rights reserved."
+    footerText: "Project implemented with the support of the Innovation Assistance Fund under the 'Student Startup' program of the federal project 'University Technological Entrepreneurship Platform'.",
+    copyright: "© 2025 Biograft. All rights reserved."
   }
 };
