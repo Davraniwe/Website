@@ -240,7 +240,7 @@ nav ul li a:hover::after {
 
 #hero::before {
   content: "";
-  background-image: url("img/hero7.png");
+  background-image: url("../images/hero7.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
