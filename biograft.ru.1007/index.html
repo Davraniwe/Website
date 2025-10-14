@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Biograft - Инновации в Регенеративной Медицине</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/favicon.png">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <!-- Логотип -->
+            <div class="logo">
+                <a href="index.html">
+                    <div class="logo-square">
+                        <span id="logoText">Biograft</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Контейнер навигации -->
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="#about" id="navAbout">О нас</a></li>
+                    <li><a href="#problem" id="navProblem">Проблема</a></li>
+                    <li><a href="#solutions" id="navSolutions">шение</a></li>
+                    <li><a href="#advantages" id="navAdvantages">Преимущества</a></li>
+                    <li><a href="#faq" id="navFAQ">FAQ</a></li>
+                    <li><a href="#contact" id="navContact">Контакты</a></li>
+                </ul>
+            </nav>
+
+            <!-- Кнопка закрытия меню -->
+            <div class="menu-close">
+                <i class="fas fa-times"></i>
+            </div>
+
+            <!-- Контролы хедера -->
+            <div class="header-controls">
+                <div class="language-switcher">
+                    <button data-lang="ru">РУ</button>
+                    <button data-lang="en">EN</button>
+                </div>
+                <button id="themeToggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="container">
+                <h1 id="heroTitle">Инновации в регенеративной медицине</h1>
+                <p id="heroSubtitle">Современное решение молекулярной медицины для лечения костей и нервов</p>
+                <a href="#contact" class="button" id="contactButton">Связаться с нами</a>
+            </div>
+        </section>
+
+        <!-- About Us -->
+        <section id="about" class="fade-in">
+            <div class="container">
+                <div class="about-text">
+                    <h2 id="aboutTitle">О нас</h2>
+                    <p id="aboutText1">
+                        Компания <strong>Биографт</strong> сосредоточена на создании генных препаратов и уникальных
+                        скаффолдов на основе наноматериалов, которые позволяют существенно улучшить методы лечения
+                        заболеваний опорно-двигательного аппарата и неврологических расстройств.
+                    </p>
+                    <p id="aboutText2">
+                        Наша миссия — разработка инновационных решений для терапии заболеваний костной и нервной тканей,
+                        применяя передовые технологии генной терапии и наноматериалов.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <img src="img/team.jpg" alt="Наша команда">
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem -->
+        <section id="problem" class="fade-in">
+            <div class="container">
+                <h2 id="problemTitle">Проблема</h2>
+                <p id="problemText">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima itaque vel, ipsam
+                    beatae explicabo natus sequi eius molestiae debitis aperiam. Cum tempora nihil neque alias
+                    praesentium esse dicta ipsam. Quis! Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Similique mollitia minima, perferendis at odit autem aut voluptatem, odio eveniet sit soluta
+                    reprehenderit error ex beatae expedita debitis, repellat ut dolor.</p>
+            </div>
+        </section>
+
+        <!-- Solution -->
+        <section id="solutions" class="fade-in">
+            <div class="container">
+                <h2 id="solutionsTitle">Решение</h2>
+                <div class="solutions-grid">
+                    <!-- Solution Item -->
+                    <div class="solution-item">
+                        <div class="solution-icon">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                        <h3 id="solutionsGenetic">Генные препараты</h3>
+                        <p id="solutionsGeneticText"></p>
+                    </div>
+                    <div class="solution-item">
+                        <div class="solution-icon">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <h3 id="solutionsNano">Наноматериалы и скаффолды</h3>
+                        <p id="solutionsNanoText"></p>
+                    </div>
+                    <div class="solution-item">
+                        <div class="solution-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 id="solutionsNerve">Ген-активированные матрицы</h3>
+                        <p id="solutionsNerveText"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="molecular-medicine" class="fade-in">
+            <div class="container">
+                <h2 id="molecularTitle">Молекулярная медицина</h2>
+
+                <!-- Введение -->
+                <p id="molecularIntro">
+                    Факторы VEGF (Сосудистый эндотелиальный фактор роста) и GDNF (Фактор роста нервов) играют ключевую
+                    роль в нейропротекции и восстановлении нервной ткани.
+                </p>
+
+                <!-- Сетка карточек для нервной ткани -->
+                <div class="cards-grid">
+                    <!-- Карточка VEGF для нервной ткани -->
+                    <div class="card">
+                        <h3 id="vegfTitle">VEGF (Нервная ткань)</h3>
+                        <ul id="vegfList">
+                            <li>Ангиогенез: стимулирует образование новых сосудов, увеличивая кровоснабжение нервной
+                                ткани.</li>
+                            <li>Нейропротекция: активирует сигнальные пути для выживания нейронов.</li>
+                            <li>Модуляция воспаления: снижает уровень провоспалительных цитокинов.</li>
+                            <li>Клеточная миграция: способствует миграции нейрональных предшественников к месту
+                                повреждения.</li>
+                        </ul>
+                    </div>
+                    <!-- Карточка GDNF -->
+                    <div class="card">
+                        <h3 id="gdnfTitle">GDNF (Фактор роста нервов)</h3>
+                        <ul id="gdnfList">
+                            <li>Поддержка выживания нейронов через активацию сигнальных путей.</li>
+                            <li>Улучшение нейропластичности и функций нейронных сетей.</li>
+                            <li>Защита нейронов через воздействие на глиальные клетки.</li>
+                            <li>Содействие восстановлению после травм и инсультов.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Блок с изображением и текстом для нервной ткани -->
+                <div class="info-block">
+                    <p id="interaction">
+                        <strong>Взаимодействие VEGF и GDNF:</strong> Оба фактора играют ключевую роль в восстановлении
+                        нервной ткани, усиливая нейропротекцию и регенерацию.
+                    </p>
+                    <div class="image-container">
+                        <img src="img/image4.jpg" alt="VEGF и GDNF в нейрорегенерации">
+                    </div>
+                </div>
+
+                <!-- Разделитель -->
+                <hr class="section-divider">
+
+                <!-- Введение для костной ткани -->
+                <p id="boneIntro">
+                    Факторы роста, такие как Белки морфогенеза костей (BMP) и Сосудистый эндотелиальный фактор роста
+                    (VEGF), играют важную роль в остеоиндукции и ангиогенезе, способствуя восстановлению и регенерации
+                    костной ткани.
+                </p>
+
+                <!-- Сетка карточек для костной ткани -->
+                <div class="cards-grid">
+                    <!-- Карточка BMP -->
+                    <div class="card">
+                        <h3 id="bmpTitle">BMP (Белки морфогенеза костей)</h3>
+                        <ul id="bmpList">
+                            <li>Активация сигнальных путей через специфические рецепторы (например, SMAD).</li>
+                            <li>Стимуляция дифференцировки мезенхимальных стволовых клеток в остеобласты.</li>
+                            <li>Поддержка минерализации матрицы и формирования стабильной костной ткани.</li>
+                        </ul>
+                    </div>
+                    <!-- Карточка VEGF для костной ткани -->
+                    <div class="card">
+                        <h3 id="vegfBoneTitle">VEGF (Костная ткань)</h3>
+                        <ul id="vegfBoneList">
+                            <li>Стимуляция пролиферации и миграции эндотелиальных клеток для ангиогенеза.</li>
+                            <li>Обеспечение кровоснабжения для новых остеобластов.</li>
+                            <li>Взаимодействие с BMP для усиления остеоиндуктивных свойств.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Блок с изображением и текстом для костной ткани -->
+                <div class="info-block">
+                    <p id="interactionBone">
+                        <strong>Взаимодействие BMP и VEGF:</strong> Совместное действие способствует не только
+                        формированию костной ткани, но и обеспечивает необходимое кровоснабжение для оптимального роста
+                        и ремоделирования костей.
+                    </p>
+                    <div class="image-container">
+                        <img src="img/image5.png" alt="BMP и VEGF в регенерации костной ткани">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Advantages -->
+        <section id="advantages" class="fade-in">
+            <div class="container">
+                <h2 id="advantagesTitle">Преимущества</h2>
+                <ul class="advantages-list" id="advantagesList"></ul>
+                <!-- Блок с изображениями -->
+                <div class="advantages-images">
+                    <img src="img/advantage1.avif" alt="Преимущество 1">
+                    <img src="img/advantage2.png" alt="Преимущество 2">
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Product Features -->
+        <section id="product-features" class="fade-in">
+            <div class="container">
+                <h2 id="productFeaturesTitle">Характеристики продукта</h2>
+                <!-- Product Feature -->
+                <div class="product-feature">
+                    <div class="product-feature-content">
+                        <h3 id="product1Title">Nerve Guide</h3>
+                        <ul id="product1Features"></ul>
+                    </div>
+                    <div class="product-feature-image">
+                        <img src="img/features1.jpg" alt="NeuraGen 3D Nerve Guide Matrix">
+                    </div>
+                </div>
+                <!-- Other product features... -->
+                <div class="product-feature">
+                    <div class="product-feature-content">
+                        <h3 id="product2Title">Nerve Guide Matrix</h3>
+                        <ul id="product2Features"></ul>
+                    </div>
+                    <div class="product-feature-image">
+                        <img src="img/features2.png" alt="NeuraGen 3D Nerve Guide Matrix">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="fade-in">
+            <div class="container">
+                <h2 id="faqTitle">Часто задаваемые вопросы</h2>
+                <div id="faqContainer"></div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="fade-in">
+            <div class="container">
+                <h2 id="contactTitle">Связаться с нами</h2>
+                <p id="contactText">Заполните форму ниже, и мы свяжемся с вами в ближайшее время.</p>
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span id="phoneNumber">+7 (917) 249-63-14</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span id="emailAddress">eldar.davletschin@gmail.com</span>
+                    </div>
+                </div>
+                <!-- Contact Form -->
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name" id="formName">Имя</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" id="formEmail">Электронная почта</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" id="formMessage">Сообщение</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" id="formSubmit">Отправить</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <p id="footerText">Проект выполнен при поддержке Фонда Содействия Инновациям в рамках федерального проекта
+                «Платформа университетского технологического предпринимательства».</p>
+            <a href="https://fasie.ru/">
+                <img class="footer-logo" src="img/fasie.png" alt="Фонд Содействия Инновациям">
+            </a>
+            <a href="https://univertechpred.ru/">
+                <img class="footer-logo" src="img/univertechpred.svg"
+                    alt="Университетское технологическое предпринимательство">
+            </a>
+            <div class="social-icons">
+                <a href="https://t.me/eklldk"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+            <p id="copyright">© 2024 Биографт. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="translate.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
