@@ -29,6 +29,7 @@ body {
 img {
   max-width: 100%;
   height: auto;
+  loading: lazy;
 }
 
 .container {
@@ -749,10 +750,36 @@ footer p {
   margin: 5px 0;
 }
 
+.footer-support {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.footer-support p {
+  max-width: 600px;
+  text-align: left;
+  margin: 0;
+}
+
+.footer-logos {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
 .footer-logo {
-  max-height: 80px;
+  max-height: 60px;
   width: auto;
-  margin: 20px;
+  transition: opacity 0.3s;
+}
+
+.footer-logo:hover {
+  opacity: 0.8;
 }
 
 .social-icons {
@@ -902,16 +929,43 @@ nav ul li a:hover::after {
   nav.open ~ .logo {
     display: none;
   }
+
+  /* Hero секция на мобильных */
+  #hero h1 {
+    font-size: 32px;
+    line-height: 1.2;
+    padding: 0 10px;
+  }
+
+  #hero p {
+    font-size: 18px;
+    padding: 0 10px;
+  }
+
+  /* Футер на мобильных */
+  .footer-support {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .footer-support p {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .footer-logos {
+    flex-direction: column;
+  }
 }
 
-/* Скрыть бургер-меню на экранах шире 768px */
+/* Десктоп адаптация */
 @media (min-width: 769px) {
-  .menu-toggle {
+  .menu-toggle,
+  .menu-close {
     display: none;
   }
 
   .menu-close {
-    display: none; /* По умолчанию скрыта */
     position: fixed;
     top: 20px;
     right: 20px;
