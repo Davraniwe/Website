@@ -413,51 +413,67 @@ function setupScrollSpy(sidebarLinks, headerOffset) {
     const sections = Array.from(sidebarLinks).map(link => {
         const targetId = link.getAttribute('href');
         if (!targetId || !targetId.startsWith('#')) return null;
-        
+
         const section = document.querySelector(targetId);
-        return { id: targetId, element: section, link: link };
+        // Определяем, является ли это подглавой (ссылка находится во вложенном <ul>)
+        const isSubchapter = link.closest('li').parentElement.closest('li') !== null;
+        return { id: targetId, element: section, link: link, isSubchapter: isSubchapter };
     }).filter(item => item && item.element);
-    
+
     if (sections.length === 0) return;
-    
+
     // Функция для определения, какой раздел находится в области просмотра
     function findVisibleSection() {
+        let visibleSections = [];
+
+        // Собираем все видимые секции
         for (const section of sections) {
             const rect = section.element.getBoundingClientRect();
             // Проверяем, находится ли верхняя часть секции в области просмотра с учетом отступа хедера
             if (rect.top <= headerOffset + 100 && rect.bottom > headerOffset) {
-                return section;
+                visibleSections.push(section);
             }
         }
-        return null;
+
+        if (visibleSections.length === 0) return null;
+
+        // Приоритизируем подглавы перед главными главами
+        // Сначала ищем видимую подглаву
+        const visibleSubchapter = visibleSections.find(s => s.isSubchapter);
+        if (visibleSubchapter) {
+            return visibleSubchapter;
+        }
+
+        // Если нет видимых подглав, возвращаем первую видимую главу
+        return visibleSections[0];
     }
-    
+
     // Функция для обновления активной ссылки
     function updateActiveLink() {
         const visibleSection = findVisibleSection();
-        
+
         if (!visibleSection) {
             // Если нет видимых секций, возможно, мы находимся в начале страницы или в конце
             return;
         }
-        
+
         // Сначала сбрасываем все активные ссылки
         sidebarLinks.forEach(link => link.classList.remove('active'));
 
         // Делаем активной найденную ссылку
         visibleSection.link.classList.add('active');
     }
-    
+
     // Устанавливаем отслеживание прокрутки с дебаунсингом
     let scrollTimeout;
     window.addEventListener('scroll', function() {
         if (scrollTimeout) clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(updateActiveLink, 100);
     });
-    
+
     // Вызываем функцию один раз при загрузке страницы
     updateActiveLink();
-    
+
     // И еще раз после полной загрузки страницы (для корректной работы с изображениями и т.д.)
     window.addEventListener('load', updateActiveLink);
 }
