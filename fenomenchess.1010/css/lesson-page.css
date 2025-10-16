@@ -423,6 +423,16 @@ p {
   top: 0.15rem;
 }
 
+/* Исключаем вложенные <li> внутри <ul> из CSS нумерации */
+.numbered-list ul li {
+  counter-increment: none;
+  padding-left: 0;
+}
+
+.numbered-list ul li::before {
+  display: none;
+}
+
 /* Итоговый блок */
 .summary-box {
   background-color: var(--fenomen-lightgray);
