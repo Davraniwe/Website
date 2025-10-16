@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Феномен | Пат</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/lesson-page.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="/img/common/logo.png" alt="Феномен Шахматная школа" class="logo-img">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/index.html">Главная</a></li>
+                    <li><a href="/lessons/" class="active">Уроки</a></li>
+                    <li><a href="/index.html#about">О нас</a></li>
+                    <li><a href="/index.html#contact">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="lesson-container">
+        <aside class="lesson-sidebar">
+            <div class="sidebar-header">
+                <h3>Содержание урока</h3>
+                <button class="sidebar-toggle-mobile">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <nav class="sidebar-navigation">
+                <ul>
+                    <li><a href="#introduction" class="active">Введение</a></li>
+                    <li><a href="#definition">Определение пата</a></li>
+                    <li><a href="#conditions">Условия пата</a></li>
+                    <li><a href="#examples">Примеры патовых ситуаций</a></li>
+                    <li><a href="#how-to-avoid">Как избежать пата</a></li>
+                    <li><a href="#summary">Итоги</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="breadcrumbs">
+                    <a href="/index.html">Главная</a> >
+                    <a href="/lessons/">Уроки</a> >
+                    <span>Пат</span>
+                </div>
+                <h1>Пат — ничейная ситуация в шахматах</h1>
+                <div class="lesson-meta-header">
+                    <div class="author">
+                        <span>Автор: Давран Сабиров</span>
+                    </div>
+                    <div class="date">Опубликовано: 15 октября 2025</div>
+                </div>
+            </div>
+
+            <section id="introduction" class="lesson-section">
+                <p class="introduction-text">
+                    Пат — это особая ситуация в шахматах, которая приводит к ничьей. Понимание пата важно как для атаки,
+                    так и для защиты, ведь иногда пат может спасти безнадёжную позицию!
+                </p>
+            </section>
+
+            <section id="definition" class="lesson-section">
+                <h2>Что такое пат?</h2>
+                <p>
+                    <strong>Пат</strong> — это ситуация, когда игрок, чья очередь хода, не может сделать ни одного легального хода,
+                    и при этом его король <strong>не находится под шахом</strong>.
+                </p>
+                <p>
+                    Если возникает пат, партия сразу заканчивается ничьей, независимо от материального перевеса на доске.
+                </p>
+
+                <div class="info-box">
+                    <h4>Важно понимать разницу!</h4>
+                    <p>
+                        <strong>Пат ≠ <a href="/lesson/mat/">Мат</a></strong>
+                    </p>
+                    <ul>
+                        <li><strong>Пат:</strong> Королю некуда ходить, но он <strong>НЕ</strong> под шахом → Ничья</li>
+                        <li><strong>Мат:</strong> Король под шахом и ему некуда ходить → Поражение</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="conditions" class="lesson-section">
+                <h2>Условия возникновения пата</h2>
+                <p>Для того чтобы возник пат, должны выполняться <strong>все</strong> следующие условия одновременно:</p>
+                <ol class="numbered-list">
+                    <li><strong>Очередь хода</strong> у игрока, у которого пат</li>
+                    <li><strong>Король не под шахом</strong> (не находится под нападением)</li>
+                    <li><strong>Нет легальных ходов:</strong>
+                        <ul>
+                            <li>Король не может пойти ни на одно поле (все поля заняты своими фигурами, атакованы противником, или это край доски)</li>
+                            <li>Все остальные фигуры (если они есть) также не могут сделать ход</li>
+                        </ul>
+                    </li>
+                </ol>
+            </section>
+
+            <section id="examples" class="lesson-section">
+                <h2>Примеры патовых ситуаций</h2>
+
+                <div class="subsection">
+                    <h3>Классический пример пата</h3>
+                    <p>
+                        Представьте ситуацию: у белых король и ферзь, у чёрных только король в углу доски.
+                        Белые неосторожно ставят ферзя вплотную к чёрному королю, отнимая у него все поля для хода,
+                        но не объявляя шах. Это пат — ничья!
+                    </p>
+                    <div class="info-box">
+                        <h4>Типичная ошибка начинающих</h4>
+                        <p>
+                            При постановке <a href="/lesson/mat-ferzem-i-korolem/">мата ферзём и королём</a>
+                            важно всегда оставлять вражескому королю хотя бы одно поле для хода, пока ваш король не подойдёт на поддержку.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3>Пат как спасение</h3>
+                    <p>
+                        В проигрышной позиции опытный игрок может намеренно стремиться к пату, жертвуя последние фигуры,
+                        чтобы остаться без ходов и получить ничью вместо поражения.
+                    </p>
+                </div>
+            </section>
+
+            <section id="how-to-avoid" class="lesson-section">
+                <h2>Как избежать пата</h2>
+                <p>Если вы атакуете и у вас большое преимущество:</p>
+                <ul>
+                    <li><strong>Всегда оставляйте противнику возможность хода</strong> — хотя бы одно легальное поле для короля</li>
+                    <li><strong>Не спешите</strong> — планируйте матующую атаку заранее</li>
+                    <li><strong>Подводите своего короля</strong> для поддержки перед финальным ударом</li>
+                    <li><strong>Проверяйте позицию</strong> перед каждым ходом — есть ли у противника легальные ходы?</li>
+                </ul>
+
+                <p>Если вы защищаетесь в проигрышной позиции:</p>
+                <ul>
+                    <li><strong>Ищите возможности для пата</strong> — это ваш шанс спасти партию</li>
+                    <li><strong>Жертвуйте фигуры</strong>, чтобы остаться без ходов</li>
+                    <li><strong>Загоняйте своего короля в угол</strong>, где у него будет меньше полей для хода</li>
+                </ul>
+            </section>
+
+            <section id="summary" class="lesson-section">
+                <h2>Итоги</h2>
+                <div class="summary-box">
+                    <p><strong>Ключевые моменты о пате:</strong></p>
+                    <ul>
+                        <li><strong>Пат = Ничья</strong> — партия сразу заканчивается вничью</li>
+                        <li>Пат возникает, когда игроку некуда ходить, но король НЕ под шахом</li>
+                        <li>Пат ≠ Мат (при мате король под шахом)</li>
+                        <li>Пат может быть как ошибкой атакующего, так и спасением для защищающегося</li>
+                        <li>При большом преимуществе всегда оставляйте противнику возможность хода</li>
+                    </ul>
+
+                    <p><strong>Запомните:</strong></p>
+                    <p>
+                        Перед каждым ходом в эндшпиле задавайте себе вопрос: "Есть ли у противника легальные ходы после моего хода?"
+                        Это поможет вам избежать пата и довести выигрышную позицию до победы.
+                    </p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo"><img src="/img/common/logo.png" alt="Феномен Шахматная школа">
+                    <p>Обучение шахматам для всех уровней</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="/index.html">Главная</a></li>
+                        <li><a href="/lessons/">Уроки</a></li>
+                        <li><a href="/index.html#about">О нас</a></li>
+                        <li><a href="/index.html#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Социальные сети</h4>
+                    <div class="social-icons"><a href="https://vk.com/phenomen_kazan" target="_blank" rel="noopener noreferrer" aria-label="VK"><i class="fa-brands fa-vk"></i></a><a href="#"
+                            target="_blank"><i class="fa-brands fa-telegram"></i></a><a href="#" target="_blank"><i
+                                class="fa-brands fa-youtube"></i></a></div>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Подпишитесь на новости</h4>
+                    <form class="newsletter-form"><input type="email" placeholder="Ваш email" required><button
+                            type="submit" class="btn btn-small">Подписаться</button></form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Феномен Шахматная школа. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/sidebar-navigation.js"></script>
+    <script src="/js/lesson-page.js"></script>
+</body>
+</html>

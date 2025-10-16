@@ -3,13 +3,13 @@
  * Объединяет функциональность из lesson-page.js и lesson-page-update.js
  */
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Инициализация проверки домашнего задания
     setupHomeworkChecking();
-    
+
     // Инициализация кнопок "Поделиться"
     setupShareButtons();
-    
+
     // Инициализация кнопок навигации между уроками
     setupLessonNavigation();
 
@@ -22,16 +22,16 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function setupHomeworkChecking() {
     const checkButton = document.querySelector('.check-homework');
-    
+
     if (!checkButton) return;
-    
-    checkButton.addEventListener('click', function() {
+
+    checkButton.addEventListener('click', function () {
         // Определяем, на какой странице урока находимся
         const lessonPath = window.location.pathname;
-        
+
         // Выбираем правильные ответы в зависимости от урока
         let correctAnswers = {};
-        
+
         if (lessonPath.includes('peshechnyj-proryv')) {
             // Ответы для урока "Пешечный прорыв"
             correctAnswers = {
@@ -57,35 +57,35 @@ function setupHomeworkChecking() {
                 task2: 'a'
             };
         }
-        
+
         // Получаем все выбранные ответы
         const task1Answer = document.querySelector('input[name="task1"]:checked');
         const task2Answer = document.querySelector('input[name="task2"]:checked');
-        
+
         // Проверяем, выбраны ли ответы
         if (!task1Answer || !task2Answer) {
             showNotification('Пожалуйста, ответьте на все вопросы', 'warning');
             return;
         }
-        
+
         // Проверяем ответы
         const task1Correct = task1Answer.value === correctAnswers.task1;
         const task2Correct = task2Answer.value === correctAnswers.task2;
-        
+
         // Выделяем правильные и неправильные ответы
         highlightAnswers('task1', correctAnswers.task1);
         highlightAnswers('task2', correctAnswers.task2);
-        
+
         // Определяем общий результат
         const totalCorrect = (task1Correct ? 1 : 0) + (task2Correct ? 1 : 0);
         const totalQuestions = 2;
-        
+
         // Показываем результат
         let message, type;
         if (totalCorrect === totalQuestions) {
             message = 'Отлично! Все ответы верны!';
             type = 'success';
-            
+
             // Сохраняем информацию о завершении урока
             const lessonId = getLessonId(lessonPath);
             if (lessonId) {
@@ -98,9 +98,9 @@ function setupHomeworkChecking() {
             message = 'К сожалению, все ответы неверны. Попробуйте еще раз!';
             type = 'error';
         }
-        
+
         showNotification(message, type);
-        
+
         // Создаем сводку результатов
         createResultSummary(totalCorrect, totalQuestions);
     });
@@ -119,14 +119,14 @@ function getLessonId(path) {
  */
 function highlightAnswers(taskName, correctValue) {
     const options = document.querySelectorAll(`input[name="${taskName}"]`);
-    
+
     options.forEach(option => {
         const label = option.closest('.radio-label');
         if (!label) return;
-        
+
         // Сбрасываем предыдущие стили
         label.classList.remove('correct', 'incorrect', 'correct-answer');
-        
+
         // Если выбран этот вариант
         if (option.checked) {
             if (option.value === correctValue) {
@@ -135,7 +135,7 @@ function highlightAnswers(taskName, correctValue) {
                 label.classList.add('incorrect');
             }
         }
-        
+
         // Всегда помечаем правильный ответ, даже если он не выбран
         if (option.value === correctValue && !option.checked) {
             label.classList.add('correct-answer');
@@ -149,7 +149,7 @@ function highlightAnswers(taskName, correctValue) {
 function createResultSummary(correct, total) {
     // Проверяем, существует ли уже сводка
     let resultSummary = document.querySelector('.result-summary');
-    
+
     if (resultSummary) {
         // Обновляем существующую сводку
         resultSummary.innerHTML = '';
@@ -157,26 +157,26 @@ function createResultSummary(correct, total) {
         // Создаем новую сводку
         resultSummary = document.createElement('div');
         resultSummary.className = 'result-summary';
-        
+
         // Добавляем после кнопки проверки
         const checkButton = document.querySelector('.check-homework');
         if (checkButton) checkButton.after(resultSummary);
     }
-    
+
     // Создаем заголовок
     const heading = document.createElement('h4');
     heading.textContent = 'Результаты проверки:';
     resultSummary.appendChild(heading);
-    
+
     // Создаем текст результата
     const resultText = document.createElement('p');
     resultText.textContent = `Правильных ответов: ${correct} из ${total}`;
     resultSummary.appendChild(resultText);
-    
+
     // Добавляем поясняющий текст
     const explanation = document.createElement('p');
     explanation.className = 'explanation-text';
-    
+
     if (correct === total) {
         explanation.textContent = 'Отлично! Вы хорошо усвоили материал урока.';
     } else if (correct > 0) {
@@ -184,9 +184,9 @@ function createResultSummary(correct, total) {
     } else {
         explanation.textContent = 'Рекомендуем внимательно перечитать материалы урока и посмотреть видео еще раз, чтобы лучше усвоить тему.';
     }
-    
+
     resultSummary.appendChild(explanation);
-    
+
     // Добавляем кнопку "Перейти к следующему уроку" если все ответы правильные
     if (correct === total) {
         const nextLessonBtn = document.createElement('a');
@@ -205,18 +205,18 @@ function createResultSummary(correct, total) {
  */
 function setupShareButtons() {
     const shareButtons = document.querySelectorAll('.share-button');
-    
+
     if (shareButtons.length === 0) return;
-    
+
     const pageUrl = encodeURIComponent(window.location.href);
     const pageTitle = encodeURIComponent(document.title);
-    
+
     shareButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', function (e) {
             e.preventDefault();
-            
+
             let shareUrl = '';
-            
+
             // Определяем URL для шаринга в зависимости от социальной сети
             if (button.classList.contains('vk')) {
                 shareUrl = `https://vk.com/share.php?url=${pageUrl}&title=${pageTitle}`;
@@ -225,7 +225,7 @@ function setupShareButtons() {
             } else if (button.classList.contains('whatsapp')) {
                 shareUrl = `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
             }
-            
+
             // Открываем окно для шаринга
             if (shareUrl) {
                 window.open(shareUrl, '_blank', 'width=640,height=480');
@@ -240,21 +240,21 @@ function setupShareButtons() {
 function setupLessonNavigation() {
     const prevButton = document.querySelector('.prev-lesson');
     const nextButton = document.querySelector('.next-lesson');
-    
+
     if (!prevButton && !nextButton) return;
-    
+
     // Определяем текущий урок
     const lessonPath = window.location.pathname;
     const lessonId = getLessonId(lessonPath);
-    
+
     // Проверяем, завершен ли текущий урок
-    const lessonCompleted = lessonId ? 
+    const lessonCompleted = lessonId ?
         localStorage.getItem(`lesson_completed_${lessonId}`) === 'true' : false;
-    
+
     if (nextButton && !nextButton.classList.contains('disabled')) {
         if (!lessonCompleted) {
             // Если урок еще не завершен, добавляем подсказку
-            nextButton.addEventListener('click', function(e) {
+            nextButton.addEventListener('click', function (e) {
                 if (!lessonCompleted) {
                     e.preventDefault();
                     showNotification('Завершите домашнее задание, чтобы разблокировать следующий урок', 'warning');
@@ -273,12 +273,12 @@ function showNotification(message, type = 'info') {
         window.showNotification(message, type);
         return;
     }
-    
+
     // Создаем элемент уведомления
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
     notification.textContent = message;
-    
+
     // Добавляем кнопку закрытия
     const closeButton = document.createElement('button');
     closeButton.className = 'notification-close';
@@ -286,10 +286,10 @@ function showNotification(message, type = 'info') {
     closeButton.addEventListener('click', () => {
         document.body.removeChild(notification);
     });
-    
+
     notification.appendChild(closeButton);
     document.body.appendChild(notification);
-    
+
     // Автоматическое закрытие через 5 секунд
     setTimeout(() => {
         if (document.body.contains(notification)) {
@@ -309,7 +309,7 @@ function showNotification(message, type = 'info') {
  */
 function setupChessDiagrams() {
     const chessIframes = document.querySelectorAll('.chess-diagram iframe');
-    
+
     chessIframes.forEach(iframe => {
         // Добавляем параметры к URL, если они еще не добавлены
         let src = iframe.getAttribute('src');
@@ -317,9 +317,9 @@ function setupChessDiagrams() {
             src = src.includes('?') ? `${src}&autoplay=0&menu=false` : `${src}?autoplay=0&menu=false`;
             iframe.setAttribute('src', src);
         }
-        
+
         // При клике на фрейм, предотвращаем автоматическое открытие меню
-        iframe.addEventListener('load', function() {
+        iframe.addEventListener('load', function () {
             try {
                 // Попытка избежать проблем с cross-origin
                 iframe.contentWindow.postMessage('{"name":"focus"}', '*');

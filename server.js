@@ -91,15 +91,17 @@ const resolveSiteRoot = async (hostname, fallbackSite = DEFAULT_SITE) => {
         }
     }
 
-    const fallbackDir = path.join(SITES_ROOT, fallbackSite);
-
-    try {
-        const stats = await fs.promises.stat(fallbackDir);
-        if (stats.isDirectory()) {
-            return fallbackDir;
+    // Use fallbackSite directly (for port-based routing)
+    if (fallbackSite) {
+        const fallbackDir = path.join(SITES_ROOT, fallbackSite);
+        try {
+            const stats = await fs.promises.stat(fallbackDir);
+            if (stats.isDirectory()) {
+                return fallbackDir;
+            }
+        } catch (error) {
+            // Ignore and fall back to default site.
         }
-    } catch (error) {
-        // Ignore and use default site path regardless of existence check failure.
     }
 
     return path.join(SITES_ROOT, DEFAULT_SITE);
