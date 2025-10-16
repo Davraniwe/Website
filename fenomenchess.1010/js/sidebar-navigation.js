@@ -239,13 +239,6 @@ function setupSidebarLinks() {
             sidebarLinks.forEach(l => l.classList.remove('active'));
             link.classList.add('active');
             
-            // Если это подраздел, также делаем активным родительский пункт
-            const parentLi = link.closest('li').parentElement.closest('li');
-            if (parentLi) {
-                const parentLink = parentLi.querySelector('a');
-                if (parentLink) parentLink.classList.add('active');
-            }
-            
             // Обновляем URL для возможности обмена ссылкой с якорем
             history.pushState(null, null, targetId);
         }, true); // Используем фазу захвата для приоритета над обработчиками из main.js
@@ -450,16 +443,9 @@ function setupScrollSpy(sidebarLinks, headerOffset) {
         
         // Сначала сбрасываем все активные ссылки
         sidebarLinks.forEach(link => link.classList.remove('active'));
-        
+
         // Делаем активной найденную ссылку
         visibleSection.link.classList.add('active');
-        
-        // Если это подраздел, делаем активным родительский пункт
-        const parentLi = visibleSection.link.closest('li').parentElement.closest('li');
-        if (parentLi) {
-            const parentLink = parentLi.querySelector('a');
-            if (parentLink) parentLink.classList.add('active');
-        }
     }
     
     // Устанавливаем отслеживание прокрутки с дебаунсингом
